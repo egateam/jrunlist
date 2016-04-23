@@ -18,31 +18,60 @@ package com.github.egateam;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
+import com.beust.jcommander.Parameters;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.github.egateam.commands.*;
 
+@Parameters
 public class RunlistMain {
 
-    private static class Args {
-        @Parameter(names = "--verbose")
-        boolean verbose;
 
-        @Parameter(names = "--name")
-        String name;
+    @Parameter(names = {"--help", "-h"}, description = "Print this help and quit", help = true)
+    private boolean help = false;
 
-        @Parameter(names = {"--output", "-o"}, required = true, description = "The output file")
-        String file;
+    private void run(String[] args) throws Exception {
+
+        JCommander jCommander = new JCommander(this);
+
+        jCommander.addCommand("genome", new CommandGenome());
+        jCommander.addCommand("merge", new CommandMerge());
+
+        String parsedCommand;
+        try {
+            jCommander.parse(args);
+            parsedCommand = jCommander.getParsedCommand();
+
+            if ( help ) {
+                jCommander.usage();
+                return;
+            }
+
+            if ( parsedCommand == null ) throw new Exception("No command specified");
+        } catch ( Exception e ) {
+            System.err.println(e.getMessage());
+            jCommander.usage();
+            return;
+        }
+
+        Object command = jCommander.getCommands().get(parsedCommand).getObjects().get(0);
+
+        if ( command instanceof CommandGenome ) {
+            CommandGenome commandNew = (CommandGenome) command;
+            commandNew.run();
+        } else if ( command instanceof CommandMerge ) {
+            CommandMerge commandNew = (CommandMerge) command;
+            commandNew.run();
+        }
+
+
     }
 
     /*
     mvn clean verify
-    java -jar target/jrunlist-0.1.0-SNAPSHOT-jar-with-dependencies.jar
+    java -jar target/jrunlist-0.1.0-SNAPSHOT-with-dependencies.jar
      */
-    public static void main(String[] argv) {
-        Args args = new Args();
-        new JCommander(args).parse(argv);
-        System.out.printf("Hello %s, output is: %s, verbose is: %s%n", args.name, args.file,
-            args.verbose);
+    public static void main(String[] args) throws Exception {
+        new RunlistMain().run(args);
     }
+
 }
