@@ -22,6 +22,7 @@ package com.github.egateam;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
+import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
 
 import com.github.egateam.commands.*;
@@ -36,11 +37,9 @@ public class Runlist {
     @Parameter(names = {"--help", "-h"}, description = "Print this help and quit", help = true)
     private boolean help = false;
 
-    @SuppressWarnings("RedundantThrows")
-    public void execute(String[] args) throws Exception {
+    public void execute(String[] args) {
 
         JCommander jc = new JCommander(this);
-
         jc.addCommand("genome", new Genome());
         jc.addCommand("merge", new Merge());
 
@@ -54,7 +53,11 @@ public class Runlist {
                 return;
             }
 
-            if ( parsedCommand == null ) throw new Exception("No command specified");
+            if ( parsedCommand == null ) throw new ParameterException("No command specified");
+        } catch ( ParameterException e ) {
+            System.err.println(e.getMessage());
+            jc.usage();
+            return;
         } catch ( Exception e ) {
             e.printStackTrace();
             return;
