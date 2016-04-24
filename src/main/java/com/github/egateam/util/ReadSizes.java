@@ -10,10 +10,9 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-@SuppressWarnings("WeakerAccess")
 public class ReadSizes {
-    private File file;
-    private boolean remove;
+    private final File file;
+    private final boolean remove;
 
     public ReadSizes(File file, boolean remove) {
         this.file = file;

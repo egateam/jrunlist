@@ -14,9 +14,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.PrintStream;
-import java.net.URL;
 
 public class MergeTest {
     // Store the original standard out before changing it.

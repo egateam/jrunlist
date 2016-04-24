@@ -1,3 +1,9 @@
+/**
+ * THE SOFTWARE IS PROVIDED "AS IS" WITHOUT A WARRANTY OF ANY KIND. ALL EXPRESS OR IMPLIED
+ * REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY DISCLAIMED.
+ */
+
 package com.github.egateam.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,8 +15,8 @@ import java.io.*;
 import java.util.Map;
 
 public class WriteYAML {
-    private String fileName;
-    private Map<String, ?> map;
+    private final String fileName;
+    private final Map<String, ?> map;
 
     public WriteYAML(String fileName, Map<String, ?> map) {
         this.fileName = fileName;
