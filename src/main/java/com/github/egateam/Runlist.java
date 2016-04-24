@@ -78,6 +78,11 @@ public class Runlist {
     /*
     mvn clean verify
     java -jar target/jrunlist-0.1.0-SNAPSHOT-with-dependencies.jar
+    java -jar target/jrunlist-0.1.0-SNAPSHOT-jar-with-dependencies.jar \
+        merge \
+        src/test/resources/I.yml \
+        src/test/resources/II.yml \
+        -o stdout
      */
     public static void main(String[] args) throws Exception {
         new Runlist().execute(args);
