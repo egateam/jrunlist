@@ -7,6 +7,7 @@
 package com.github.egateam.commands;
 
 import com.github.egateam.Runlist;
+import com.github.egateam.util.ExpandResource;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -31,7 +32,7 @@ public class GenomeTest {
         System.setErr(new PrintStream(this.stderrContent));
     }
 
-    @Test(description = "Test genome command without parameters")
+    @Test(description = "Test command without parameters")
     public void testFailed() throws Exception {
         String[] args = {"genome"};
         Runlist.main(args);
@@ -40,15 +41,14 @@ public class GenomeTest {
             "Except parameters");
     }
 
-    @Test(description = "Test genome command with chr.sizes")
+    @Test(description = "Test command with chr.sizes")
     public void testExecute() throws Exception {
-        // http://stackoverflow.com/questions/5529532/how-to-get-a-test-resource-file
-        URL url = Thread.currentThread().getContextClassLoader().getResource("chr.sizes");
-        File file;
-        if ( url != null ) {
-            file = new File(url.getPath());
-            String[] args = {"genome", file.toString(), "--outfile", "stdout"};
+        try {
+            String fileName = new ExpandResource("chr.sizes").converter();
+            String[] args = {"genome", fileName, "--outfile", "stdout"};
             Runlist.main(args);
+        } catch ( Exception err ) {
+            err.printStackTrace();
         }
 
         Assert.assertEquals(this.stdoutContent.toString().split("\r\n|\r|\n").length, 17, "line count");
