@@ -12,6 +12,15 @@
 
 This Java class is ported from the Perl module `App::RL`.
 
+## REQUIREMENTS
+
+Install jintspan to local repository.
+
+```bash
+cd ~/Scripts/java/jintspan
+mvn install
+```
+
 ## AUTHOR
 
 Qiang Wang &lt;wang-q@outlook.com&gt;

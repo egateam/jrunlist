@@ -31,9 +31,8 @@
             <groupId>com.github.egateam</groupId>
             <artifactId>jintspan</artifactId>
             <version>0.1.1-SNAPSHOT</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/resources/jintspan-0.1.1-SNAPSHOT.jar</systemPath>
         </dependency>
+
     </dependencies>
 
     <build>
