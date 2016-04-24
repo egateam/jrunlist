@@ -29,41 +29,42 @@ public class RunlistMain {
     @Parameter(names = {"--help", "-h"}, description = "Print this help and quit", help = true)
     private boolean help = false;
 
-    private void run(String[] args) throws Exception {
+    private void execute(String[] args) throws Exception {
 
-        JCommander jCommander = new JCommander(this);
+        JCommander jc = new JCommander(this);
 
-        jCommander.addCommand("genome", new CommandGenome());
-        jCommander.addCommand("merge", new CommandMerge());
+        jc.addCommand("genome", new CommandGenome());
+        jc.addCommand("merge", new CommandMerge());
 
         String parsedCommand;
         try {
-            jCommander.parse(args);
-            parsedCommand = jCommander.getParsedCommand();
+            jc.parse(args);
+            parsedCommand = jc.getParsedCommand();
 
             if ( help ) {
-                jCommander.usage();
+                jc.usage();
                 return;
             }
 
             if ( parsedCommand == null ) throw new Exception("No command specified");
         } catch ( Exception e ) {
             System.err.println(e.getMessage());
-            jCommander.usage();
             return;
         }
 
-        Object command = jCommander.getCommands().get(parsedCommand).getObjects().get(0);
+        Object command = jc.getCommands().get(parsedCommand).getObjects().get(0);
 
-        if ( command instanceof CommandGenome ) {
-            CommandGenome commandNew = (CommandGenome) command;
-            commandNew.run();
-        } else if ( command instanceof CommandMerge ) {
-            CommandMerge commandNew = (CommandMerge) command;
-            commandNew.run();
+        try {
+            if ( command instanceof CommandGenome ) {
+                CommandGenome commandNew = (CommandGenome) command;
+                commandNew.execute();
+            } else if ( command instanceof CommandMerge ) {
+                CommandMerge commandNew = (CommandMerge) command;
+                commandNew.execute();
+            }
+        } catch ( Exception e ) {
+            System.err.println(e.getMessage());
         }
-
-
     }
 
     /*
@@ -71,7 +72,7 @@ public class RunlistMain {
     java -jar target/jrunlist-0.1.0-SNAPSHOT-with-dependencies.jar
      */
     public static void main(String[] args) throws Exception {
-        new RunlistMain().run(args);
+        new RunlistMain().execute(args);
     }
 
 }

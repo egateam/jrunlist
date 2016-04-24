@@ -14,7 +14,7 @@ public class CommandMerge {
     @Parameter(names = {"--outfile", "-o"}, description = "Output filename. [stdout] for screen.")
     private String outfile;
 
-    public void run() {
+    public void execute() {
 
         System.out.print("Merge() success\n");
         System.out.printf("output is: %s%n", outfile);
