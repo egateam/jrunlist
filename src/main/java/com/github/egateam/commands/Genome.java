@@ -9,14 +9,10 @@ package com.github.egateam.commands;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.github.egateam.IntSpan;
 import com.github.egateam.util.FileConverterIn;
-import com.github.egateam.util.OpenForFile;
 import com.github.egateam.util.ReadSizes;
+import com.github.egateam.util.WriteYAML;
 
 import java.io.*;
 import java.util.HashMap;
@@ -59,7 +55,7 @@ public class Genome {
         Map<String, Integer> lengthOf = new ReadSizes(inFile, remove).read();
 
         //----------------------------
-        // Loading
+        // Operating
         //----------------------------
         Map<String, String> runlistOf = new HashMap<>();
         for ( Map.Entry<String, Integer> entry : lengthOf.entrySet() ) {
@@ -71,16 +67,6 @@ public class Genome {
         //----------------------------
         // Output
         //----------------------------
-        try {
-            // http://www.mkyong.com/java/how-to-convert-java-map-to-from-json-jackson/
-            // http://stackoverflow.com/questions/4405078/how-to-write-to-standard-output-using-bufferedwriter
-            ObjectWriter omw = new ObjectMapper(new YAMLFactory()).writer();
-            BufferedWriter writer = new BufferedWriter(OpenForFile.convert(outfile));
-
-            // write YAML to a file or stdout
-            omw.with(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS).writeValue(writer, runlistOf);
-        } catch ( Exception err ) {
-            err.printStackTrace();
-        }
+        new WriteYAML(outfile, runlistOf).write();
     }
 }
