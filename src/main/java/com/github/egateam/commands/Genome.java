@@ -15,6 +15,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.github.egateam.IntSpan;
 import com.github.egateam.util.FileConverterIn;
+import com.github.egateam.util.OpenForFile;
 import com.github.egateam.util.ReadSizes;
 
 import java.io.*;
@@ -48,20 +49,6 @@ public class Genome {
         }
     }
 
-    private Writer openForFile(String fileName) {
-        Object writer = null;
-        if ( !fileName.equals("stdout") )
-            try {
-                writer = new PrintWriter(fileName);
-            } catch ( FileNotFoundException e ) {
-                e.printStackTrace();
-            }
-        else {
-            writer = new OutputStreamWriter(System.out);
-        }
-        return (Writer) writer;
-    }
-
     public void execute() {
         validateArgs();
 
@@ -88,7 +75,7 @@ public class Genome {
             // http://www.mkyong.com/java/how-to-convert-java-map-to-from-json-jackson/
             // http://stackoverflow.com/questions/4405078/how-to-write-to-standard-output-using-bufferedwriter
             ObjectWriter omw = new ObjectMapper(new YAMLFactory()).writer();
-            BufferedWriter writer = new BufferedWriter(openForFile(outfile));
+            BufferedWriter writer = new BufferedWriter(OpenForFile.convert(outfile));
 
             // write YAML to a file or stdout
             omw.with(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS).writeValue(writer, runlistOf);
