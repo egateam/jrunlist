@@ -24,8 +24,9 @@ import com.github.egateam.commands.*;
 
 @Parameters
 public class RunlistMain {
-
-
+    /**
+     * The only global options
+     */
     @Parameter(names = {"--help", "-h"}, description = "Print this help and quit", help = true)
     private boolean help = false;
 

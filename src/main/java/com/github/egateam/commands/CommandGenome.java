@@ -3,9 +3,13 @@ package com.github.egateam.commands;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.github.egateam.IntSpan;
 
-import java.io.File;
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,24 +39,52 @@ public class CommandGenome {
         }
     }
 
+    private Writer openForFile(String fileName) {
+        Object writer = null;
+        if ( !fileName.equals("stdout") )
+            try {
+                writer = new PrintWriter(fileName);
+            } catch ( FileNotFoundException e ) {
+                e.printStackTrace();
+            }
+        else {
+            writer = new OutputStreamWriter(System.out);
+        }
+        return (Writer) writer;
+    }
+
     public void execute() {
         validateArgs();
 
+        //----------------------------
+        // Loading
+        //----------------------------
         File inFile = files.get(0);
-
         Map<String, Integer> lengthOf = new ReadSizes(inFile, remove).read();
-        Map<String, IntSpan> setOF = new HashMap<>();
 
+        //----------------------------
+        // Loading
+        //----------------------------
+        Map<String, String> runlistOf = new HashMap<>();
         for ( Map.Entry<String, Integer> entry : lengthOf.entrySet() ) {
             IntSpan set = new IntSpan();
             set.addPair(1, entry.getValue());
-            setOF.put(entry.getKey(), set);
+            runlistOf.put(entry.getKey(), set.toString());
         }
 
-        System.err.printf("infile is: %s%n", inFile);
-        System.err.printf("number of entries is: %d%n", setOF.size());
-        System.err.printf("output is: %s, remove is: %s%n", outfile, remove);
-        System.out.print("Genome() success\n");
-    }
+        //----------------------------
+        // Output
+        //----------------------------
+        try {
+            // http://www.mkyong.com/java/how-to-convert-java-map-to-from-json-jackson/
+            // http://stackoverflow.com/questions/4405078/how-to-write-to-standard-output-using-bufferedwriter
+            ObjectWriter omw = new ObjectMapper(new YAMLFactory()).writer();
+            BufferedWriter writer = new BufferedWriter(openForFile(outfile));
 
+            // write YAML to a file or stdout
+            omw.with(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS).writeValue(writer, runlistOf);
+        } catch ( Exception err ) {
+            err.printStackTrace();
+        }
+    }
 }
