@@ -1,3 +1,9 @@
+/**
+ * THE SOFTWARE IS PROVIDED "AS IS" WITHOUT A WARRANTY OF ANY KIND. ALL EXPRESS OR IMPLIED
+ * REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY DISCLAIMED.
+ */
+
 package com.github.egateam.commands;
 
 import com.beust.jcommander.Parameter;
@@ -17,6 +23,7 @@ import java.util.Map;
 @Parameters(commandDescription = "Convert chr.size to runlists")
 public class CommandGenome {
 
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     @Parameter(description = "<infile>", converter = FileConverterIn.class, required = true)
     private List<File> files;
 

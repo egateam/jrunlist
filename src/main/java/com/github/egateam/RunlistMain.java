@@ -9,6 +9,10 @@
  * <p>
  * This is free software; you can redistribute it and/or modify it under the same terms as the Perl
  * 5 programming language system itself.
+ * <p>
+ * THE SOFTWARE IS PROVIDED "AS IS" WITHOUT A WARRANTY OF ANY KIND. ALL EXPRESS OR IMPLIED
+ * REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY DISCLAIMED.
  *
  * @author Qiang Wang
  * @since 1.7
@@ -22,15 +26,18 @@ import com.beust.jcommander.Parameters;
 
 import com.github.egateam.commands.*;
 
+@SuppressWarnings("WeakerAccess")
 @Parameters
 public class RunlistMain {
     /**
      * The only global options
      */
+    @SuppressWarnings("CanBeFinal")
     @Parameter(names = {"--help", "-h"}, description = "Print this help and quit", help = true)
     private boolean help = false;
 
-    private void execute(String[] args) throws Exception {
+    @SuppressWarnings("RedundantThrows")
+    public void execute(String[] args) throws Exception {
 
         JCommander jc = new JCommander(this);
 
