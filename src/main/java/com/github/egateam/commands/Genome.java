@@ -32,7 +32,7 @@ public class Genome {
     @Parameter(names = {"--remove", "-r"}, description = "Remove 'chr0' from chromosome names.")
     private Boolean remove = false;
 
-    @Parameter(names = "--help", help = true)
+    @Parameter(names = "--help", help = true, hidden = true)
     private boolean help;
 
     private void validateArgs() {

@@ -31,7 +31,7 @@ public class Merge {
     @Parameter(names = {"--outfile", "-o"}, description = "Output filename. [stdout] for screen.")
     private String outfile;
 
-    @Parameter(names = "--help", help = true)
+    @Parameter(names = "--help", help = true, hidden = true)
     private boolean help;
 
     private void validateArgs() {

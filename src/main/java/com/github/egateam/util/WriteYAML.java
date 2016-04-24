@@ -22,8 +22,8 @@ public class WriteYAML {
         if ( !fileName.equals("stdout") )
             try {
                 writer = new PrintWriter(fileName);
-            } catch ( FileNotFoundException e ) {
-                e.printStackTrace();
+            } catch ( FileNotFoundException err ) {
+                err.printStackTrace();
             }
         else {
             writer = new OutputStreamWriter(System.out);

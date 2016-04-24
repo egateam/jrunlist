@@ -55,8 +55,8 @@ public class Runlist {
             }
 
             if ( parsedCommand == null ) throw new Exception("No command specified");
-        } catch ( Exception e ) {
-            System.err.println(e.getMessage());
+        } catch ( Exception err ) {
+            err.printStackTrace();
             return;
         }
 
@@ -70,8 +70,8 @@ public class Runlist {
                 Merge commandNew = (Merge) command;
                 commandNew.execute();
             }
-        } catch ( Exception e ) {
-            System.err.println(e.getMessage());
+        } catch ( Exception err ) {
+            err.printStackTrace();
         }
     }
 
