@@ -7,12 +7,9 @@
 package com.github.egateam.commands;
 
 import com.beust.jcommander.Parameter;
-import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.github.egateam.util.FileConverterIn;
+import com.github.egateam.util.ReadYAML;
 import com.github.egateam.util.WriteYAML;
 import org.apache.commons.io.FilenameUtils;
 
@@ -44,7 +41,7 @@ public class Merge {
         }
     }
 
-    public void execute() {
+    public void execute() throws Exception {
         validateArgs();
 
         //----------------------------
@@ -52,20 +49,10 @@ public class Merge {
         //----------------------------
         Map<String, Map> master = new HashMap<>();
         for ( File inFile : files ) {
+            Map<String, ?> map = new ReadYAML(inFile).read();
+
             String basename = FilenameUtils.getBaseName(inFile.toString());
-
-            try {
-                ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-
-                // read JSON from a file
-                Map<String, Object> map = mapper.readValue(
-                    inFile,
-                    new TypeReference<Map<String, Object>>() {
-                    });
-                master.put(basename, map);
-            } catch ( Exception err ) {
-                err.printStackTrace();
-            }
+            master.put(basename, map);
         }
 
         //----------------------------

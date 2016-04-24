@@ -9,6 +9,7 @@ package com.github.egateam.commands;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
+
 import com.github.egateam.IntSpan;
 import com.github.egateam.util.FileConverterIn;
 import com.github.egateam.util.ReadSizes;
@@ -35,7 +36,7 @@ public class Genome {
     @Parameter(names = "--help", help = true, hidden = true)
     private boolean help;
 
-    private void validateArgs() {
+    private void validateArgs() throws ParameterException {
         if ( files.size() != 1 ) {
             throw new ParameterException("This command need one input file.");
         }
@@ -45,7 +46,7 @@ public class Genome {
         }
     }
 
-    public void execute() {
+    public void execute() throws Exception {
         validateArgs();
 
         //----------------------------

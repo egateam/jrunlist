@@ -14,9 +14,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.PrintStream;
-import java.net.URL;
 
 public class GenomeTest {
     // Store the original standard out before changing it.
@@ -43,13 +41,9 @@ public class GenomeTest {
 
     @Test(description = "Test command with chr.sizes")
     public void testExecute() throws Exception {
-        try {
-            String fileName = new ExpandResource("chr.sizes").converter();
-            String[] args = {"genome", fileName, "--outfile", "stdout"};
-            Runlist.main(args);
-        } catch ( Exception err ) {
-            err.printStackTrace();
-        }
+        String fileName = new ExpandResource("chr.sizes").converter();
+        String[] args = {"genome", fileName, "--outfile", "stdout"};
+        Runlist.main(args);
 
         Assert.assertEquals(this.stdoutContent.toString().split("\r\n|\r|\n").length, 17, "line count");
         Assert.assertTrue(this.stdoutContent.toString().contains("I: \"1-230218\""), "first chromosome");

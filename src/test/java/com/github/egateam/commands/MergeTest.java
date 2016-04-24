@@ -43,14 +43,10 @@ public class MergeTest {
 
     @Test(description = "Test command with I.yml and II.yml")
     public void testExecute() throws Exception {
-        try {
-            String fileName1 = new ExpandResource("I.yml").converter();
-            String fileName2 = new ExpandResource("II.yml").converter();
-            String[] args = {"merge", fileName1, fileName2, "--outfile", "stdout"};
-            Runlist.main(args);
-        } catch ( Exception err ) {
-            err.printStackTrace();
-        }
+        String fileName1 = new ExpandResource("I.yml").converter();
+        String fileName2 = new ExpandResource("II.yml").converter();
+        String[] args = {"merge", fileName1, fileName2, "--outfile", "stdout"};
+        Runlist.main(args);
 
         Assert.assertEquals(this.stdoutContent.toString().split("\r\n|\r|\n").length, 5, "line count");
         Assert.assertTrue(this.stdoutContent.toString().contains("28547-29194"), "runlist exists");
@@ -67,5 +63,4 @@ public class MergeTest {
         this.stdoutContent = new ByteArrayOutputStream();
         this.stderrContent = new ByteArrayOutputStream();
     }
-
 }

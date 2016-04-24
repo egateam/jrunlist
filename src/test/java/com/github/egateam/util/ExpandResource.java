@@ -11,21 +11,15 @@ public class ExpandResource {
         this.value = value;
     }
 
-    public String converter() {
-        try {
-            // http://stackoverflow.com/questions/5529532/how-to-get-a-test-resource-file
-            URL url = Thread.currentThread().getContextClassLoader().getResource(value);
-            File file = null;
-            if ( url != null ) {
-                file = new File(url.getPath());
-                return file.toString();
-            } else {
-                throw new IOException(String.format("Reseouce file [%s] doesn't exist", value));
-            }
-        } catch ( Exception err ) {
-            err.printStackTrace();
+    public String converter() throws Exception {
+        // http://stackoverflow.com/questions/5529532/how-to-get-a-test-resource-file
+        URL url = Thread.currentThread().getContextClassLoader().getResource(value);
+        File file = null;
+        if ( url != null ) {
+            file = new File(url.getPath());
+            return file.toString();
+        } else {
+            throw new IOException(String.format("Reseouce file [%s] doesn't exist", value));
         }
-
-        return null;
     }
 }

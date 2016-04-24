@@ -20,7 +20,7 @@ public class ReadSizes {
         this.remove = remove;
     }
 
-    public Map<String, Integer> read() {
+    public Map<String, Integer> read() throws Exception {
         HashMap<String, Integer> lengthOf = new HashMap<>();
 
         try ( BufferedReader reader = new BufferedReader(new FileReader(file)) ) {
@@ -35,8 +35,6 @@ public class ReadSizes {
                     lengthOf.put(fields[0], Integer.parseInt(fields[1]));
                 }
             }
-        } catch ( Exception err ) {
-            err.printStackTrace();
         }
 
         return lengthOf;

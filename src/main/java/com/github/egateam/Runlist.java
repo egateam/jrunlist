@@ -55,8 +55,8 @@ public class Runlist {
             }
 
             if ( parsedCommand == null ) throw new Exception("No command specified");
-        } catch ( Exception err ) {
-            err.printStackTrace();
+        } catch ( Exception e ) {
+            e.printStackTrace();
             return;
         }
 
@@ -70,14 +70,20 @@ public class Runlist {
                 Merge commandNew = (Merge) command;
                 commandNew.execute();
             }
-        } catch ( Exception err ) {
-            err.printStackTrace();
+        } catch ( Exception e ) {
+            e.printStackTrace();
+            System.exit(1);
         }
     }
 
     /*
     mvn clean verify
-    java -jar target/jrunlist-0.1.0-SNAPSHOT-with-dependencies.jar
+
+    java -jar target/jrunlist-0.1.0-SNAPSHOT-jar-with-dependencies.jar \
+        genome \
+        src/test/resources/chr.sizes \
+        -o stdout
+
     java -jar target/jrunlist-0.1.0-SNAPSHOT-jar-with-dependencies.jar \
         merge \
         src/test/resources/I.yml \
@@ -87,5 +93,4 @@ public class Runlist {
     public static void main(String[] args) throws Exception {
         new Runlist().execute(args);
     }
-
 }
