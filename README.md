@@ -5,6 +5,26 @@
 ## SYNOPSIS
 
 ```
+Usage: <main class> [options] [command] [command options]
+  Options:
+    --help, -h
+       Print this help and quit
+       Default: false
+  Commands:
+    genome      Convert chr.size to runlists
+      Usage: genome [options] <infile>
+        Options:
+          --outfile, -o
+             Output filename. [stdout] for screen.
+          --remove, -r
+             Remove 'chr0' from chromosome names.
+             Default: false
+
+    merge      Merge runlist yaml files
+      Usage: merge [options] <infiles>
+        Options:
+          --outfile, -o
+             Output filename. [stdout] for screen.
 
 ```
 
