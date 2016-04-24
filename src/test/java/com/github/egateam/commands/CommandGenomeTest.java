@@ -19,17 +19,28 @@ import java.net.URL;
 
 public class CommandGenomeTest {
     // Store the original standard out before changing it.
-    private final PrintStream originalStdOut = System.out;
-    private ByteArrayOutputStream consoleContent = new ByteArrayOutputStream();
-
+    private final PrintStream originalStdout = System.out;
+    private final PrintStream originalStderr = System.err;
+    private ByteArrayOutputStream stdoutContent = new ByteArrayOutputStream();
+    private ByteArrayOutputStream stderrContent = new ByteArrayOutputStream();
 
     @BeforeMethod
     public void beforeTest() {
-        // Redirect all System.out to consoleContent.
-        System.setOut(new PrintStream(this.consoleContent));
+        // Redirect all System.out to stdoutContent.
+        System.setOut(new PrintStream(this.stdoutContent));
+        System.setErr(new PrintStream(this.stderrContent));
     }
 
-    @Test(description = "Test genome command")
+    @Test(description = "Test genome command without parameters")
+    public void testFailed() throws Exception {
+        String[] args = {"genome"};
+        RunlistMain.main(args);
+
+        Assert.assertTrue(this.stderrContent.toString().contains("Main parameters are required"),
+            "Except parameters");
+    }
+
+    @Test(description = "Test genome command with chr.sizes")
     public void testExecute() throws Exception {
         // http://stackoverflow.com/questions/5529532/how-to-get-a-test-resource-file
         URL url = Thread.currentThread().getContextClassLoader().getResource("chr.sizes");
@@ -37,23 +48,22 @@ public class CommandGenomeTest {
         if ( url != null ) {
             file = new File(url.getPath());
             String[] args = {"genome", file.toString(), "--outfile", "stdout"};
-            new RunlistMain().execute(args);
+            RunlistMain.main(args);
         }
 
-        Assert.assertTrue(this.consoleContent.toString().contains("I: \"1-230218\""), "first chromosome");
+        Assert.assertEquals(this.stdoutContent.toString().split("\r\n|\r|\n").length, 17, "line count");
+        Assert.assertTrue(this.stdoutContent.toString().contains("I: \"1-230218\""), "first chromosome");
     }
 
     @AfterMethod
     public void afterTest() {
         // Put back the standard out.
-        System.setOut(this.originalStdOut);
+        System.setOut(this.originalStdout);
+        System.setErr(this.originalStderr);
 
-        // Print what has been captured.
-        System.out.println(this.consoleContent.toString());
-        System.out.printf("    ==>Captured Console length=%d\n", this.consoleContent.toString().length());
-
-        // Clear the consoleContent.
-        this.consoleContent = new ByteArrayOutputStream();
+        // Clear the stdoutContent.
+        this.stdoutContent = new ByteArrayOutputStream();
+        this.stderrContent = new ByteArrayOutputStream();
     }
 
 }
