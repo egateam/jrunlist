@@ -30,7 +30,6 @@ public class RunlistMainTest {
 
     @Test(description = "Test no command")
     public void testMain() throws Exception {
-
         String[] args = {};
         Runlist.main(args);
 
@@ -39,7 +38,6 @@ public class RunlistMainTest {
 
     @Test(description = "Test usage")
     public void testUsage() throws Exception {
-
         String[] args = {"--help"};
         Runlist.main(args);
 
@@ -48,7 +46,6 @@ public class RunlistMainTest {
 
     @Test(description = "Test non-existing")
     public void testNonExisting() throws Exception {
-
         String[] args = {"non-existing"};
         Runlist.main(args);
 
