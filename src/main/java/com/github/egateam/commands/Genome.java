@@ -14,6 +14,8 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.github.egateam.IntSpan;
+import com.github.egateam.util.FileConverterIn;
+import com.github.egateam.util.ReadSizes;
 
 import java.io.*;
 import java.util.HashMap;
@@ -21,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 @Parameters(commandDescription = "Convert chr.size to runlists")
-public class CommandGenome {
+public class Genome {
 
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     @Parameter(description = "<infile>", converter = FileConverterIn.class, required = true)

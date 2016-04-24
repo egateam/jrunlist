@@ -32,7 +32,7 @@ public class RunlistMainTest {
     public void testMain() throws Exception {
 
         String[] args = {};
-        RunlistMain.main(args);
+        Runlist.main(args);
 
         Assert.assertTrue(this.stderrContent.toString().contains("No command specified"), "No command");
     }
@@ -41,7 +41,7 @@ public class RunlistMainTest {
     public void testUsage() throws Exception {
 
         String[] args = {"--help"};
-        RunlistMain.main(args);
+        Runlist.main(args);
 
         Assert.assertTrue(this.stdoutContent.toString().contains("Options:"), "Usage");
     }
@@ -50,7 +50,7 @@ public class RunlistMainTest {
     public void testNonExisting() throws Exception {
 
         String[] args = {"non-existing"};
-        RunlistMain.main(args);
+        Runlist.main(args);
 
         Assert.assertTrue(this.stderrContent.toString().contains("Expected a command"), "Non-existing command");
     }

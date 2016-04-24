@@ -12,7 +12,7 @@ import com.beust.jcommander.Parameters;
 import java.util.List;
 
 @Parameters(commandDescription = "Merge runlist yaml files")
-public class CommandMerge {
+public class Merge {
 
     @Parameter(description = "<infiles>")
     private List<String> files;

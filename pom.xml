@@ -86,7 +86,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.github.egateam.RunlistMain</mainClass>
+                            <mainClass>com.github.egateam.Runlist</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

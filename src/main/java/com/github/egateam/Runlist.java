@@ -28,7 +28,7 @@ import com.github.egateam.commands.*;
 
 @SuppressWarnings("WeakerAccess")
 @Parameters
-public class RunlistMain {
+public class Runlist {
     /**
      * The only global options
      */
@@ -41,8 +41,8 @@ public class RunlistMain {
 
         JCommander jc = new JCommander(this);
 
-        jc.addCommand("genome", new CommandGenome());
-        jc.addCommand("merge", new CommandMerge());
+        jc.addCommand("genome", new Genome());
+        jc.addCommand("merge", new Merge());
 
         String parsedCommand;
         try {
@@ -63,11 +63,11 @@ public class RunlistMain {
         Object command = jc.getCommands().get(parsedCommand).getObjects().get(0);
 
         try {
-            if ( command instanceof CommandGenome ) {
-                CommandGenome commandNew = (CommandGenome) command;
+            if ( command instanceof Genome ) {
+                Genome commandNew = (Genome) command;
                 commandNew.execute();
-            } else if ( command instanceof CommandMerge ) {
-                CommandMerge commandNew = (CommandMerge) command;
+            } else if ( command instanceof Merge ) {
+                Merge commandNew = (Merge) command;
                 commandNew.execute();
             }
         } catch ( Exception e ) {
@@ -80,7 +80,7 @@ public class RunlistMain {
     java -jar target/jrunlist-0.1.0-SNAPSHOT-with-dependencies.jar
      */
     public static void main(String[] args) throws Exception {
-        new RunlistMain().execute(args);
+        new Runlist().execute(args);
     }
 
 }

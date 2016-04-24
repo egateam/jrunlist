@@ -6,7 +6,7 @@
 
 package com.github.egateam.commands;
 
-import com.github.egateam.RunlistMain;
+import com.github.egateam.Runlist;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -17,7 +17,7 @@ import java.io.File;
 import java.io.PrintStream;
 import java.net.URL;
 
-public class CommandGenomeTest {
+public class GenomeTest {
     // Store the original standard out before changing it.
     private final PrintStream originalStdout = System.out;
     private final PrintStream originalStderr = System.err;
@@ -34,7 +34,7 @@ public class CommandGenomeTest {
     @Test(description = "Test genome command without parameters")
     public void testFailed() throws Exception {
         String[] args = {"genome"};
-        RunlistMain.main(args);
+        Runlist.main(args);
 
         Assert.assertTrue(this.stderrContent.toString().contains("Main parameters are required"),
             "Except parameters");
@@ -48,7 +48,7 @@ public class CommandGenomeTest {
         if ( url != null ) {
             file = new File(url.getPath());
             String[] args = {"genome", file.toString(), "--outfile", "stdout"};
-            RunlistMain.main(args);
+            Runlist.main(args);
         }
 
         Assert.assertEquals(this.stdoutContent.toString().split("\r\n|\r|\n").length, 17, "line count");
