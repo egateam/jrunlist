@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings({"CanBeFinal"})
+@SuppressWarnings({"CanBeFinal", "unused"})
 @Parameters(commandDescription = "Output covers on chromosomes.\n"
     + "\t\tLike `command combine`, but <infiles> are genome positions.\n"
     + "\t\tI:1-100\n"
