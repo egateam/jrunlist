@@ -132,6 +132,10 @@ public class Runlist {
         compare --op intersect -o stdout \
         src/test/resources/intergenic.yml \
         src/test/resources/repeat.yml
+
+    java -jar target/jrunlist-0.1.0-SNAPSHOT-jar-with-dependencies.jar \
+        cover -o stdout \
+        src/test/resources/S288c.txt
      */
     public static void main(String[] args) throws Exception {
         new Runlist().execute(args);
