@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-public class RunlistMainTest {
+public class RunlistTest {
     // Store the original standard out before changing it.
     private final PrintStream originalStdout = System.out;
     private final PrintStream originalStderr = System.err;
@@ -52,8 +52,44 @@ public class RunlistMainTest {
         Assert.assertTrue(this.stderrContent.toString().contains("Expected a command"), "Non-existing command");
     }
 
-    @Test(description = "Test combine without parameters")
-    public void testFailed() throws Exception {
+    @Test
+    public void testGenomeFailed() throws Exception {
+        String[] args = {"genome"};
+        Runlist.main(args);
+
+        Assert.assertTrue(this.stderrContent.toString().contains("Main parameters are required"),
+            "Except parameters");
+    }
+
+    @Test
+    public void testMergeFailed() throws Exception {
+        String[] args = {"merge"};
+        Runlist.main(args);
+
+        Assert.assertTrue(this.stderrContent.toString().contains("Main parameters are required"),
+            "Except parameters");
+    }
+
+    @Test
+    public void testSplitFailed() throws Exception {
+        String[] args = {"split"};
+        Runlist.main(args);
+
+        Assert.assertTrue(this.stderrContent.toString().contains("Main parameters are required"),
+            "Except parameters");
+    }
+
+    @Test
+    public void testSomeFailed() throws Exception {
+        String[] args = {"some"};
+        Runlist.main(args);
+
+        Assert.assertTrue(this.stderrContent.toString().contains("Main parameters are required"),
+            "Except parameters");
+    }
+
+    @Test
+    public void testCombineFailed() throws Exception {
         String[] args = {"combine"};
         Runlist.main(args);
 

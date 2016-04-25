@@ -30,15 +30,6 @@ public class SplitTest {
         System.setErr(new PrintStream(this.stderrContent));
     }
 
-    @Test(description = "Test command without parameters")
-    public void testFailed() throws Exception {
-        String[] args = {"split"};
-        Runlist.main(args);
-
-        Assert.assertTrue(this.stderrContent.toString().contains("Main parameters are required"),
-            "Except parameters");
-    }
-
     @Test(description = "Test command with I.II.yml")
     public void testExecute() throws Exception {
         String fileName = new ExpandResource("I.II.yml").converter();

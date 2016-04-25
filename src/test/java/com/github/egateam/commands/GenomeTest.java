@@ -30,15 +30,6 @@ public class GenomeTest {
         System.setErr(new PrintStream(this.stderrContent));
     }
 
-    @Test(description = "Test command without parameters")
-    public void testFailed() throws Exception {
-        String[] args = {"genome"};
-        Runlist.main(args);
-
-        Assert.assertTrue(this.stderrContent.toString().contains("Main parameters are required"),
-            "Except parameters");
-    }
-
     @Test(description = "Test command with chr.sizes")
     public void testExecute() throws Exception {
         String fileName = new ExpandResource("chr.sizes").converter();

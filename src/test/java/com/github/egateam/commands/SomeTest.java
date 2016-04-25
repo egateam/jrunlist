@@ -30,15 +30,6 @@ public class SomeTest {
         System.setErr(new PrintStream(this.stderrContent));
     }
 
-    @Test(description = "Test command without parameters")
-    public void testFailed() throws Exception {
-        String[] args = {"some"};
-        Runlist.main(args);
-
-        Assert.assertTrue(this.stderrContent.toString().contains("Main parameters are required"),
-            "Except parameters");
-    }
-
     @Test(description = "Test command with Atha.yml and Atha.list")
     public void testExecute() throws Exception {
         String fileName1 = new ExpandResource("Atha.yml").converter();
