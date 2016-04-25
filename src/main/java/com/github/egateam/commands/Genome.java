@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("CanBeFinal")
 @Parameters(commandDescription = "Convert chr.size to runlists")
 public class Genome {
 
@@ -30,7 +31,6 @@ public class Genome {
     @Parameter(names = {"--outfile", "-o"}, description = "Output filename. [stdout] for screen.")
     private String outfile;
 
-    @SuppressWarnings("CanBeFinal")
     @Parameter(names = {"--remove", "-r"}, description = "Remove 'chr0' from chromosome names.")
     private Boolean remove = false;
 

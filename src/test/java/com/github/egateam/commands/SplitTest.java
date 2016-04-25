@@ -32,7 +32,7 @@ public class SplitTest {
 
     @Test(description = "Test command without parameters")
     public void testFailed() throws Exception {
-        String[] args = {"merge"};
+        String[] args = {"split"};
         Runlist.main(args);
 
         Assert.assertTrue(this.stderrContent.toString().contains("Main parameters are required"),

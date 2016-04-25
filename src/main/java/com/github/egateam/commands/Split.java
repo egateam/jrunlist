@@ -15,10 +15,10 @@ import com.github.egateam.util.WriteYAML;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("CanBeFinal")
 @Parameters(commandDescription = "Split a runlist yaml file")
 public class Split {
 
