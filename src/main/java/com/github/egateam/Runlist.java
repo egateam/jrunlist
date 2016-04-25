@@ -44,6 +44,7 @@ public class Runlist {
         jc.addCommand("merge", new Merge());
         jc.addCommand("split", new Split());
         jc.addCommand("some", new Some());
+        jc.addCommand("combine", new Combine());
 
         String parsedCommand;
         try {
@@ -79,6 +80,9 @@ public class Runlist {
                 commandNew.execute();
             } else if ( command instanceof Some ) {
                 Some commandNew = (Some) command;
+                commandNew.execute();
+            } else if ( command instanceof Combine ) {
+                Combine commandNew = (Combine) command;
                 commandNew.execute();
             }
         } catch ( Exception e ) {

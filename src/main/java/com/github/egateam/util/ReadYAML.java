@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.Map;
 
 public class ReadYAML {
@@ -28,7 +29,7 @@ public class ReadYAML {
         // read YAML from a file
         ObjectMapper om = new ObjectMapper(new YAMLFactory());
 
-        return om.<Map<String, Object>>readValue(
+        return om.<HashMap<String, Object>>readValue(
             file,
             new TypeReference<Map<String, Object>>() {
             });
