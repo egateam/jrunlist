@@ -57,8 +57,8 @@ public class Combine {
         // Operating
         //----------------------------
         Map<String, IntSpan> opResultOf = new HashMap<>();
-        for ( String key : yaml.getSortedChrs() ) {
-            opResultOf.put(key, new IntSpan());
+        for ( String chr : yaml.getSortedChrs() ) {
+            opResultOf.put(chr, new IntSpan());
         }
 
         for ( String name : yaml.getSortedNames() ) {
