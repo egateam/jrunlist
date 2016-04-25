@@ -48,7 +48,7 @@ public class Split {
         // Loading
         //----------------------------
         File inFile = files.get(0);
-        Map<String, ?> master = new ReadYAML(inFile).read();
+        Map<String, ?> master = new ReadYAML(inFile).invoke();
 
         for ( Map.Entry<String, ?> entry : master.entrySet() ) {
             String key = entry.getKey();
@@ -64,12 +64,12 @@ public class Split {
             // Output
             //----------------------------
             if ( outdir.equals("stdout") ) {
-                new WriteYAML("stdout", map).write();
+                new WriteYAML("stdout", map).invoke();
             } else {
                 String filename = key + suffix;
                 String fullPath = FilenameUtils.concat(outdir, filename);
 
-                new WriteYAML(fullPath, map).write();
+                new WriteYAML(fullPath, map).invoke();
             }
         }
     }

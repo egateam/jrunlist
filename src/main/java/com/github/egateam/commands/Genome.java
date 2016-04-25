@@ -54,7 +54,7 @@ public class Genome {
         // Loading
         //----------------------------
         File inFile = files.get(0);
-        Map<String, Integer> lengthOf = new ReadSizes(inFile, remove).read();
+        Map<String, Integer> lengthOf = new ReadSizes(inFile, remove).invoke();
 
         //----------------------------
         // Operating
@@ -69,6 +69,6 @@ public class Genome {
         //----------------------------
         // Output
         //----------------------------
-        new WriteYAML(outfile, runlistOf).write();
+        new WriteYAML(outfile, runlistOf).invoke();
     }
 }

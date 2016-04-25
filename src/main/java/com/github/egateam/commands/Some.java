@@ -51,11 +51,11 @@ public class Some {
         File listFile = files.get(1);
 
         Set<String> allNames = new HashSet<>();
-        for ( String str : new ReadNames(listFile).read() ) {
+        for ( String str : new ReadNames(listFile).invoke() ) {
             allNames.add(str);
         }
 
-        Map<String, ?> master = new ReadYAML(inFile).read();
+        Map<String, ?> master = new ReadYAML(inFile).invoke();
         Map<String, Object> outMap = new HashMap<>();
 
         for ( Map.Entry<String, ?> entry : master.entrySet() ) {
@@ -70,6 +70,6 @@ public class Some {
         //----------------------------
         // Output
         //----------------------------
-        new WriteYAML(outfile, outMap).write();
+        new WriteYAML(outfile, outMap).invoke();
     }
 }

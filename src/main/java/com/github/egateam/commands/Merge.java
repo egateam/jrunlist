@@ -50,7 +50,7 @@ public class Merge {
         //----------------------------
         Map<String, Map> master = new HashMap<>();
         for ( File inFile : files ) {
-            Map<String, ?> map = new ReadYAML(inFile).read();
+            Map<String, ?> map = new ReadYAML(inFile).invoke();
 
             String basename = FilenameUtils.getBaseName(inFile.toString());
             master.put(basename, map);
@@ -59,6 +59,6 @@ public class Merge {
         //----------------------------
         // Output
         //----------------------------
-        new WriteYAML(outfile, master).write();
+        new WriteYAML(outfile, master).invoke();
     }
 }

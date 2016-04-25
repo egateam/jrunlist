@@ -19,7 +19,7 @@ public class ReadNames {
         this.file = file;
     }
 
-    public List<String> read() throws Exception {
+    public List<String> invoke() throws Exception {
         List<String> names = new ArrayList<>();
 
         try ( BufferedReader reader = new BufferedReader(new FileReader(file)) ) {

@@ -21,12 +21,12 @@ public class ReadYAML {
         this.file = fileName;
     }
 
-    public Map<String, ?> read() throws Exception {
+    public Map<String, ?> invoke() throws Exception {
         if ( !file.isFile() ) {
             throw new IOException(String.format("YAML file [%s] doesn't exist", file));
         }
 
-        // read YAML from a file
+        // invoke YAML from a file
         ObjectMapper om = new ObjectMapper(new YAMLFactory());
 
         return om.<HashMap<String, Object>>readValue(

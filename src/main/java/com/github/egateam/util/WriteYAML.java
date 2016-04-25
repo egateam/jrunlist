@@ -30,13 +30,13 @@ public class WriteYAML {
         this.map = map;
     }
 
-    public void write() throws Exception {
+    public void invoke() throws Exception {
         // http://www.mkyong.com/java/how-to-convert-java-map-to-from-json-jackson/
         // http://stackoverflow.com/questions/4405078/how-to-write-to-standard-output-using-bufferedwriter
         ObjectWriter omw = new ObjectMapper(new YAMLFactory()).writer();
         String yamlString = omw.with(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS).writeValueAsString(map);
 
-        // write YAML to a file or stdout
+        // invoke YAML to a file or stdout
         if ( fileName.equals("stdout") )
             System.out.print(yamlString);
         else {

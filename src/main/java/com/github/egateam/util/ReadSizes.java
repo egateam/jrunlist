@@ -19,7 +19,7 @@ public class ReadSizes {
         this.remove = remove;
     }
 
-    public Map<String, Integer> read() throws Exception {
+    public Map<String, Integer> invoke() throws Exception {
         HashMap<String, Integer> lengthOf = new HashMap<>();
 
         try ( BufferedReader reader = new BufferedReader(new FileReader(file)) ) {
