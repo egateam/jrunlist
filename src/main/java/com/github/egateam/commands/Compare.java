@@ -16,7 +16,7 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.util.*;
 
-@SuppressWarnings({"CanBeFinal", "unused"})
+@SuppressWarnings({"CanBeFinal"})
 @Parameters(commandDescription = "Compare 2 YAML files.\n"
     + "\t\tOnly the *first* file can contain multiple sets of runlists.")
 public class Compare {

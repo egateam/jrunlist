@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings({"CanBeFinal", "unused"})
+@SuppressWarnings({"CanBeFinal"})
 @Parameters(commandDescription = "Convert chr.size to runlists")
 public class Genome {
 

@@ -18,7 +18,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings({"CanBeFinal", "unused"})
+@SuppressWarnings({"CanBeFinal"})
 @Parameters(commandDescription = "Split a runlist yaml file")
 public class Split {
 
