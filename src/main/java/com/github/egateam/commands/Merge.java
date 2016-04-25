@@ -29,9 +29,6 @@ public class Merge {
     @Parameter(names = {"--outfile", "-o"}, description = "Output filename. [stdout] for screen.")
     private String outfile;
 
-    @Parameter(names = "--help", help = true, hidden = true)
-    private boolean help;
-
     private void validateArgs() {
 //        if ( files.size() < 1 ) {
 //            throw new ParameterException("This command need one or more input files.");

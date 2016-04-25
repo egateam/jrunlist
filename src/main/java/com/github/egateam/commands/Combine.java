@@ -31,9 +31,6 @@ public class Combine {
     @Parameter(names = {"--remove", "-r"}, description = "Remove 'chr0' from chromosome names.")
     private Boolean remove = false;
 
-    @Parameter(names = "--help", help = true, hidden = true)
-    private boolean help;
-
     private void validateArgs() {
         if ( files.size() != 1 ) {
             throw new ParameterException("This command need one input file.");

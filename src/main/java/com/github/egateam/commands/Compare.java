@@ -17,7 +17,7 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 @SuppressWarnings({"CanBeFinal", "unused"})
-@Parameters(commandDescription = "Compare 2 YAML files."
+@Parameters(commandDescription = "Compare 2 YAML files.\n"
     + "\t\tOnly the *first* file can contain multiple sets of runlists.")
 public class Compare {
 
@@ -33,9 +33,6 @@ public class Compare {
 
     @Parameter(names = {"--remove", "-r"}, description = "Remove 'chr0' from chromosome names.")
     private Boolean remove = false;
-
-    @Parameter(names = "--help", help = true, hidden = true)
-    private boolean help;
 
     private void validateArgs() {
         if ( files.size() != 2 ) {

@@ -32,9 +32,6 @@ public class Split {
     @Parameter(names = {"--suffix", "-s"}, description = "Extension of output files.")
     private String suffix = ".yml";
 
-    @Parameter(names = "--help", help = true, hidden = true)
-    private boolean help;
-
     private void validateArgs() {
         if ( files.size() != 1 ) {
             throw new ParameterException("This command need one input file.");

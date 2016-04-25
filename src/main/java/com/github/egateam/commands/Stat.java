@@ -33,9 +33,6 @@ public class Stat {
     @Parameter(names = {"--all"}, description = "Only write whole genome stats.")
     private Boolean all = false;
 
-    @Parameter(names = "--help", help = true, hidden = true)
-    private boolean help;
-
     private void validateArgs() {
         if ( files.size() != 2 ) {
             throw new ParameterException("This command need two input files.");
