@@ -12,24 +12,24 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReadNames {
+public class ReadLines {
     private final File file;
 
-    public ReadNames(File file) {
+    public ReadLines(File file) {
         this.file = file;
     }
 
     public List<String> invoke() throws Exception {
-        List<String> names = new ArrayList<>();
+        List<String> lines = new ArrayList<>();
 
         try ( BufferedReader reader = new BufferedReader(new FileReader(file)) ) {
             String line;
             while ( (line = reader.readLine()) != null ) {
                 line = line.trim();
-                names.add(line);
+                lines.add(line);
             }
         }
 
-        return names;
+        return lines;
     }
 }

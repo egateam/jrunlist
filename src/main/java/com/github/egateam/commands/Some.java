@@ -10,7 +10,7 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
 import com.github.egateam.util.FileConverterIn;
-import com.github.egateam.util.ReadNames;
+import com.github.egateam.util.ReadLines;
 import com.github.egateam.util.ReadYAML;
 import com.github.egateam.util.WriteYAML;
 
@@ -47,17 +47,14 @@ public class Some {
         //----------------------------
         // Loading
         //----------------------------
-        File inFile = files.get(0);
-        File listFile = files.get(1);
+        Map<String, ?> master = new ReadYAML(files.get(0)).invoke();
 
         Set<String> allNames = new HashSet<>();
-        for ( String str : new ReadNames(listFile).invoke() ) {
+        for ( String str : new ReadLines(files.get(1)).invoke() ) {
             allNames.add(str);
         }
 
-        Map<String, ?> master = new ReadYAML(inFile).invoke();
         Map<String, Object> outMap = new HashMap<>();
-
         for ( Map.Entry<String, ?> entry : master.entrySet() ) {
             String key = entry.getKey();
 
