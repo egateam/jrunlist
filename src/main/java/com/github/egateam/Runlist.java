@@ -47,6 +47,7 @@ public class Runlist {
         jc.addCommand("combine", new Combine());
         jc.addCommand("stat", new Stat());
         jc.addCommand("compare", new Compare());
+        jc.addCommand("cover", new Cover());
 
         String parsedCommand;
         try {
@@ -58,10 +59,17 @@ public class Runlist {
                 return;
             }
 
-            if ( parsedCommand == null ) throw new ParameterException("No command specified");
+            if ( parsedCommand == null ) {
+                String jarName = new java.io.File(IntSpanBenchmark.class.getProtectionDomain()
+                    .getCodeSource()
+                    .getLocation()
+                    .getPath())
+                    .getName();
+                String prompt = String.format("java -jar path/to/%s --help", jarName);
+                throw new ParameterException("No command specified. For help, type\n" + prompt);
+            }
         } catch ( ParameterException e ) {
             System.err.println(e.getMessage());
-            jc.usage();
             return;
         } catch ( Exception e ) {
             e.printStackTrace();
@@ -91,6 +99,9 @@ public class Runlist {
                 commandNew.execute();
             } else if ( command instanceof Compare ) {
                 Compare commandNew = (Compare) command;
+                commandNew.execute();
+            } else if ( command instanceof Cover ) {
+                Cover commandNew = (Cover) command;
                 commandNew.execute();
             }
         } catch ( Exception e ) {
