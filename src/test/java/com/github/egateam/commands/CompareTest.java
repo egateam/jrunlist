@@ -30,6 +30,15 @@ public class CompareTest {
         System.setErr(new PrintStream(this.stderrContent));
     }
 
+    @Test
+    public void testCompareFailed() throws Exception {
+        String[] args = {"compare"};
+        Runlist.main(args);
+
+        Assert.assertTrue(this.stderrContent.toString().contains("Main parameters are required"),
+            "Except parameters");
+    }
+
     @Test(description = "Test command with intergenic.yml and repeat.yml")
     public void testExecute() throws Exception {
         String fileName1 = new ExpandResource("intergenic.yml").invoke();

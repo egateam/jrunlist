@@ -30,6 +30,15 @@ public class CombineTest {
         System.setErr(new PrintStream(this.stderrContent));
     }
 
+    @Test
+    public void testCombineFailed() throws Exception {
+        String[] args = {"combine"};
+        Runlist.main(args);
+
+        Assert.assertTrue(this.stderrContent.toString().contains("Main parameters are required"),
+            "Except parameters");
+    }
+
     @Test(description = "Test command with Atha.yml")
     public void testExecute1() throws Exception {
         String fileName = new ExpandResource("Atha.yml").invoke();

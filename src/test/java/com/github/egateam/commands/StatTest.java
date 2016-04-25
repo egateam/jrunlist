@@ -30,6 +30,15 @@ public class StatTest {
         System.setErr(new PrintStream(this.stderrContent));
     }
 
+    @Test
+    public void testStatFailed() throws Exception {
+        String[] args = {"stat"};
+        Runlist.main(args);
+
+        Assert.assertTrue(this.stderrContent.toString().contains("Main parameters are required"),
+            "Except parameters");
+    }
+
     @Test(description = "Test command with intergenic.yml")
     public void testExecute1() throws Exception {
         String fileName1 = new ExpandResource("chr.sizes").invoke();
