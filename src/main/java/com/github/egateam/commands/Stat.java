@@ -16,7 +16,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.util.*;
 
-@SuppressWarnings("CanBeFinal")
+@SuppressWarnings({"CanBeFinal", "unused"})
 @Parameters(commandDescription = "Coverage on chromosomes for runlists")
 public class Stat {
 

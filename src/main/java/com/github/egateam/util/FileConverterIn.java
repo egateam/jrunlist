@@ -10,7 +10,7 @@ import com.beust.jcommander.IStringConverter;
 
 import java.io.File;
 
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class FileConverterIn implements IStringConverter<File> {
     @Override
     public File convert(String value) {

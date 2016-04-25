@@ -15,7 +15,7 @@ import com.github.egateam.util.*;
 import java.io.File;
 import java.util.*;
 
-@SuppressWarnings("CanBeFinal")
+@SuppressWarnings({"CanBeFinal", "unused"})
 @Parameters(commandDescription = "Combine multiple sets of runlists in a yaml file.\n"
     + "\t\tIt's expected that the YAML file is --mk.\n"
     + "\t\tOtherwise this command will make no effects.")

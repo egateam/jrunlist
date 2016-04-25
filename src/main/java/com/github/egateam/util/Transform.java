@@ -20,7 +20,7 @@ public class Transform {
         this.remove = remove;
     }
 
-    public Map<String, IntSpan> toIntSpan() throws Exception, AssertionError {
+    public Map<String, IntSpan> toIntSpan() throws AssertionError {
         Map<String, IntSpan> setOf = new HashMap<>();
 
         for ( Map.Entry<?, ?> entry : map.entrySet() ) {
@@ -35,7 +35,7 @@ public class Transform {
         return setOf;
     }
 
-    public Map<String, String> toRunlist() throws Exception, AssertionError {
+    public Map<String, String> toRunlist() throws AssertionError {
         Map<String, String> runlistOf = new HashMap<>();
 
         for ( Map.Entry<?, ?> entry : map.entrySet() ) {

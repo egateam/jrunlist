@@ -17,7 +17,7 @@ import com.github.egateam.util.WriteYAML;
 import java.io.File;
 import java.util.*;
 
-@SuppressWarnings("CanBeFinal")
+@SuppressWarnings({"CanBeFinal", "unused"})
 @Parameters(commandDescription = "Extract some records from a runlist yaml file")
 public class Some {
 

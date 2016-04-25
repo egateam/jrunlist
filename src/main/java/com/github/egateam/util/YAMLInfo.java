@@ -12,8 +12,8 @@ import java.io.File;
 import java.util.*;
 
 public class YAMLInfo {
-    private Set<String> allChrs;
-    private Set<String> allNames;
+    private final Set<String> allChrs;
+    private final Set<String> allNames;
     private boolean isMultiKey;
     private static final String singleKey = "__single";
 
@@ -27,11 +27,11 @@ public class YAMLInfo {
         isMultiKey = false;
     }
 
-    public Set<String> getAllChrs() {
+    private Set<String> getAllChrs() {
         return allChrs;
     }
 
-    public Set<String> getAllNames() {
+    private Set<String> getAllNames() {
         return allNames;
     }
 
