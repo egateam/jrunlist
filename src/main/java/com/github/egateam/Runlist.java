@@ -42,6 +42,7 @@ public class Runlist {
         JCommander jc = new JCommander(this);
         jc.addCommand("genome", new Genome());
         jc.addCommand("merge", new Merge());
+        jc.addCommand("split", new Split());
 
         String parsedCommand;
         try {
@@ -71,6 +72,9 @@ public class Runlist {
                 commandNew.execute();
             } else if ( command instanceof Merge ) {
                 Merge commandNew = (Merge) command;
+                commandNew.execute();
+            } else if ( command instanceof Split ) {
+                Split commandNew = (Split) command;
                 commandNew.execute();
             }
         } catch ( Exception e ) {
