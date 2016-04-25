@@ -32,8 +32,8 @@ public class SomeTest {
 
     @Test(description = "Test command with Atha.yml and Atha.list")
     public void testExecute() throws Exception {
-        String fileName1 = new ExpandResource("Atha.yml").converter();
-        String fileName2 = new ExpandResource("Atha.list").converter();
+        String fileName1 = new ExpandResource("Atha.yml").invoke();
+        String fileName2 = new ExpandResource("Atha.list").invoke();
         String[] args = {"some", fileName1, fileName2, "--outfile", "stdout"};
         Runlist.main(args);
 

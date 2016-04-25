@@ -32,7 +32,7 @@ public class CombineTest {
 
     @Test(description = "Test command with Atha.yml")
     public void testExecute1() throws Exception {
-        String fileName = new ExpandResource("Atha.yml").converter();
+        String fileName = new ExpandResource("Atha.yml").invoke();
         String[] args = {"combine", fileName, "--outfile", "stdout"};
         Runlist.main(args);
 
@@ -42,7 +42,7 @@ public class CombineTest {
 
     @Test(description = "Test command with brca2.yml")
     public void testExecute2() throws Exception {
-        String fileName = new ExpandResource("brca2.yml").converter();
+        String fileName = new ExpandResource("brca2.yml").invoke();
         String[] args = {"combine", fileName, "--outfile", "stdout"};
         Runlist.main(args);
 

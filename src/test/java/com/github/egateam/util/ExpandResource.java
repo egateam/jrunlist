@@ -17,7 +17,7 @@ public class ExpandResource {
         this.value = value;
     }
 
-    public String converter() throws Exception {
+    public String invoke() throws Exception {
         // http://stackoverflow.com/questions/5529532/how-to-get-a-test-resource-file
         URL url = Thread.currentThread().getContextClassLoader().getResource(value);
         File file;

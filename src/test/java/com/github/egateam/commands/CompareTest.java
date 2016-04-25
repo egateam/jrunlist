@@ -32,8 +32,8 @@ public class CompareTest {
 
     @Test(description = "Test command with intergenic.yml and repeat.yml")
     public void testExecute() throws Exception {
-        String fileName1 = new ExpandResource("intergenic.yml").converter();
-        String fileName2 = new ExpandResource("repeat.yml").converter();
+        String fileName1 = new ExpandResource("intergenic.yml").invoke();
+        String fileName2 = new ExpandResource("repeat.yml").invoke();
         String[] args = {"compare", fileName1, fileName2, "--outfile", "stdout"};
         Runlist.main(args);
 

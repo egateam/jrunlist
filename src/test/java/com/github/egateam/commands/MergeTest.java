@@ -32,8 +32,8 @@ public class MergeTest {
 
     @Test(description = "Test command with I.yml and II.yml")
     public void testExecute() throws Exception {
-        String fileName1 = new ExpandResource("I.yml").converter();
-        String fileName2 = new ExpandResource("II.yml").converter();
+        String fileName1 = new ExpandResource("I.yml").invoke();
+        String fileName2 = new ExpandResource("II.yml").invoke();
         String[] args = {"merge", fileName1, fileName2, "--outfile", "stdout"};
         Runlist.main(args);
 

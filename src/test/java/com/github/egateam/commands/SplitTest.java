@@ -32,7 +32,7 @@ public class SplitTest {
 
     @Test(description = "Test command with I.II.yml")
     public void testExecute() throws Exception {
-        String fileName = new ExpandResource("I.II.yml").converter();
+        String fileName = new ExpandResource("I.II.yml").invoke();
         String[] args = {"split", fileName, "--outdir", "stdout"};
         Runlist.main(args);
 

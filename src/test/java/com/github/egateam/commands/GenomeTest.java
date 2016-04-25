@@ -32,7 +32,7 @@ public class GenomeTest {
 
     @Test(description = "Test command with chr.sizes")
     public void testExecute() throws Exception {
-        String fileName = new ExpandResource("chr.sizes").converter();
+        String fileName = new ExpandResource("chr.sizes").invoke();
         String[] args = {"genome", fileName, "--outfile", "stdout"};
         Runlist.main(args);
 

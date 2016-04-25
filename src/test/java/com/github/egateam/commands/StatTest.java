@@ -32,8 +32,8 @@ public class StatTest {
 
     @Test(description = "Test command with intergenic.yml")
     public void testExecute1() throws Exception {
-        String fileName1 = new ExpandResource("chr.sizes").converter();
-        String fileName2 = new ExpandResource("intergenic.yml").converter();
+        String fileName1 = new ExpandResource("chr.sizes").invoke();
+        String fileName2 = new ExpandResource("intergenic.yml").invoke();
         String[] args = {"stat", fileName1, fileName2, "--outfile", "stdout"};
         Runlist.main(args);
 
@@ -45,8 +45,8 @@ public class StatTest {
 
     @Test(description = "Test command with intergenic.yml and --all")
     public void testExecute2() throws Exception {
-        String fileName1 = new ExpandResource("chr.sizes").converter();
-        String fileName2 = new ExpandResource("intergenic.yml").converter();
+        String fileName1 = new ExpandResource("chr.sizes").invoke();
+        String fileName2 = new ExpandResource("intergenic.yml").invoke();
         String[] args = {"stat", fileName1, fileName2, "--all", "--outfile", "stdout"};
         Runlist.main(args);
 
