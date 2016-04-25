@@ -34,13 +34,13 @@ public class WriteYAML {
         // http://www.mkyong.com/java/how-to-convert-java-map-to-from-json-jackson/
         // http://stackoverflow.com/questions/4405078/how-to-write-to-standard-output-using-bufferedwriter
         ObjectWriter omw = new ObjectMapper(new YAMLFactory()).writer();
-        String yaml = omw.with(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS).writeValueAsString(map);
+        String yamlString = omw.with(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS).writeValueAsString(map);
 
         // write YAML to a file or stdout
         if ( fileName.equals("stdout") )
-            System.out.print(yaml);
+            System.out.print(yamlString);
         else {
-            FileUtils.writeStringToFile(new File(fileName), yaml, "UTF-8");
+            FileUtils.writeStringToFile(new File(fileName), yamlString, "UTF-8");
         }
     }
 }

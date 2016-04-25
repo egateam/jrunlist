@@ -58,11 +58,12 @@ public class Combine {
         Set<String> allChrs = new HashSet<>();
         Set<String> allNames = new HashSet<>();
 
+        // check depth of YAML
         // get one (maybe not first) value from Map
-        Object oneValue = yml.entrySet().iterator().next().getValue();
+        boolean notMultiKey = yml.entrySet().iterator().next().getValue() instanceof String;
 
         Map<String, Map<String, IntSpan>> setOf = new HashMap<>();
-        if ( oneValue instanceof String ) {
+        if ( notMultiKey ) {
             allChrs.addAll(yml.keySet());
             allNames.add("__single");
 
@@ -70,6 +71,7 @@ public class Combine {
         } else {
             for ( Map.Entry<String, ?> entry : yml.entrySet() ) {
                 String key = entry.getKey();
+                //noinspection unchecked
                 HashMap<String, String> value = (HashMap<String, String>) entry.getValue();
 
                 setOf.put(key, new Transform(value, remove).toIntSpan());
