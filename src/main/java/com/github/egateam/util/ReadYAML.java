@@ -26,9 +26,9 @@ public class ReadYAML {
         }
 
         // read YAML from a file
-        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+        ObjectMapper om = new ObjectMapper(new YAMLFactory());
 
-        return mapper.<Map<String, Object>>readValue(
+        return om.<Map<String, Object>>readValue(
             file,
             new TypeReference<Map<String, Object>>() {
             });
