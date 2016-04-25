@@ -15,7 +15,7 @@ public class ChrCoverage {
     private final String name;
     private final int length;
     private final int size;
-    private float coverage;
+    private final float coverage;
 
     public ChrCoverage(String name, int length, IntSpan intspan) {
         this.name = name;
