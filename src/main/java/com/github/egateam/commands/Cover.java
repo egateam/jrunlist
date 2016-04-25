@@ -19,9 +19,9 @@ import java.util.Map;
 
 @SuppressWarnings({"CanBeFinal", "unused"})
 @Parameters(commandDescription = "Output covers on chromosomes.\n"
-    + "\t\tLike `command combine`, but <infiles> are genome positions.\n"
+    + "\t\tLike `command combine`, but <infiles> are chromosome positions.\n"
     + "\t\tI:1-100\n"
-    + "\t\tI(+):90-150\n Strands will be omitted."
+    + "\t\tI(+):90-150\t Strands will be omitted.\n"
     + "\t\tS288c.I(-):190-200\tSpecies names will be omitted."
 )
 public class Cover {
