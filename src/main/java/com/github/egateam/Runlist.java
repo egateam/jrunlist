@@ -46,6 +46,7 @@ public class Runlist {
         jc.addCommand("some", new Some());
         jc.addCommand("combine", new Combine());
         jc.addCommand("stat", new Stat());
+        jc.addCommand("compare", new Compare());
 
         String parsedCommand;
         try {
@@ -88,6 +89,9 @@ public class Runlist {
             } else if ( command instanceof Stat ) {
                 Stat commandNew = (Stat) command;
                 commandNew.execute();
+            } else if ( command instanceof Compare ) {
+                Compare commandNew = (Compare) command;
+                commandNew.execute();
             }
         } catch ( Exception e ) {
             e.printStackTrace();
@@ -99,21 +103,24 @@ public class Runlist {
     mvn clean verify
 
     java -jar target/jrunlist-0.1.0-SNAPSHOT-jar-with-dependencies.jar \
-        genome \
-        src/test/resources/chr.sizes \
-        -o stdout
+        genome -o stdout \
+        src/test/resources/chr.sizes
 
     java -jar target/jrunlist-0.1.0-SNAPSHOT-jar-with-dependencies.jar \
-        merge \
+        merge -o stdout \
         src/test/resources/I.yml \
-        src/test/resources/II.yml \
-        -o stdout
+        src/test/resources/II.yml
+
 
     java -jar target/jrunlist-0.1.0-SNAPSHOT-jar-with-dependencies.jar \
-        stat \
+        stat -o stdout \
         src/test/resources/chr.sizes \
+        src/test/resources/intergenic.yml
+
+    java -jar target/jrunlist-0.1.0-SNAPSHOT-jar-with-dependencies.jar \
+        compare --op intersect -o stdout \
         src/test/resources/intergenic.yml \
-        -o stdout
+        src/test/resources/repeat.yml
      */
     public static void main(String[] args) throws Exception {
         new Runlist().execute(args);

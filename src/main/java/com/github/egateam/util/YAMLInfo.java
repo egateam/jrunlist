@@ -9,6 +9,11 @@ public class YAMLInfo {
     private Set<String> allChrs;
     private Set<String> allNames;
     private boolean isMultiKey;
+    private static final String singleKey = "__single";
+
+    public static String getSingleKey() {
+        return singleKey;
+    }
 
     public YAMLInfo() {
         allChrs = new HashSet<>();
@@ -64,10 +69,25 @@ public class YAMLInfo {
             }
         } else {
             allChrs.addAll(runlistOf.keySet());
-            allNames.add("__single");
-            setOf.put("__single", new Transform(runlistOf, remove).toIntSpan());
+            allNames.add(getSingleKey());
+            setOf.put(getSingleKey(), new Transform(runlistOf, remove).toIntSpan());
         }
 
         return setOf;
+    }
+
+    public Map<String, IntSpan> invokeSingle(File file, boolean remove) throws Exception {
+        Map<String, ?> runlistSingle = new ReadYAML(file).invoke();
+
+        // check depth of YAML
+        // get one (maybe not first) value from Map
+        if ( !(runlistSingle.entrySet().iterator().next().getValue() instanceof String) ) {
+            throw new RuntimeException(
+                String.format("File [%s] shouldn't be a multikey YAML.", file.toString())
+            );
+        }
+
+        allChrs.addAll(runlistSingle.keySet());
+        return new Transform(runlistSingle, remove).toIntSpan();
     }
 }
