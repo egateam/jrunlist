@@ -52,31 +52,10 @@ public class Stat {
         //----------------------------
         // Loading
         //----------------------------
-        Map<String, Integer> lengthOf = new ReadSizes(files.get(0), remove).read();
-        Map<String, ?> yml = new ReadYAML(files.get(1)).read();
-        Set<String> allNames = new HashSet<>();
+        Map<String, Integer> lengthOf = new ReadSizes(files.get(0), remove).invoke();
 
-        // check depth of YAML
-        // get one (maybe not first) value from Map
-        boolean notMultiKey = yml.entrySet().iterator().next().getValue() instanceof String;
-
-        Map<String, Map<String, IntSpan>> setOf = new HashMap<>();
-        if ( notMultiKey ) {
-            setOf.put("__single", new Transform(yml, remove).toIntSpan());
-            allNames.add("__single");
-        } else {
-            for ( Map.Entry<String, ?> entry : yml.entrySet() ) {
-                String key = entry.getKey();
-                //noinspection unchecked
-                HashMap<String, String> value = (HashMap<String, String>) entry.getValue();
-
-                setOf.put(key, new Transform(value, remove).toIntSpan());
-                allNames.add(key);
-            }
-        }
-
-        ArrayList<String> sortedNames = new ArrayList<>(allNames);
-        Collections.sort(sortedNames);
+        YAMLInfo yaml = new YAMLInfo();
+        Map<String, Map<String, IntSpan>> setOf = yaml.invoke(files.get(1), remove);
 
         //----------------------------
         // Calcing
@@ -84,11 +63,11 @@ public class Stat {
         List<String> lines = new ArrayList<>();
 
         String header = "key,chr,chr_length,size,coverage\n";
-        if ( notMultiKey ) header = header.replaceFirst("key,", "");
+        if ( !yaml.isMultiKey() ) header = header.replaceFirst("key,", "");
         if ( all ) header = header.replaceFirst("chr,", "");
         lines.add(header);
 
-        for ( String name : sortedNames ) {
+        for ( String name : yaml.getSortedNames() ) {
             Map<String, IntSpan> curSet = setOf.get(name);
             List<ChrCoverage> coverages = new ArrayList<>();
             List<String> curLines = new ArrayList<>();
@@ -97,14 +76,14 @@ public class Stat {
                 ChrCoverage coverage = new ChrCoverage(chr, lengthOf.get(chr), curSet.get(chr));
                 if ( !all ) {
                     String line = coverage.csvLine();
-                    if ( !notMultiKey ) line = name + "," + line;
+                    if ( yaml.isMultiKey() ) line = name + "," + line;
                     curLines.add(line);
                 }
                 coverages.add(coverage);
             }
 
             String allLine = ChrCoverage.allLine(coverages);
-            if ( !notMultiKey ) allLine = name + "," + allLine;
+            if ( yaml.isMultiKey() ) allLine = name + "," + allLine;
             if ( all ) allLine = allLine.replaceFirst("all,", "");
             curLines.add(allLine);
 
