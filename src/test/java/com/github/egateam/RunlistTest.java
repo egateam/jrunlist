@@ -97,6 +97,15 @@ public class RunlistTest {
             "Except parameters");
     }
 
+    @Test
+    public void testStatFailed() throws Exception {
+        String[] args = {"stat"};
+        Runlist.main(args);
+
+        Assert.assertTrue(this.stderrContent.toString().contains("Main parameters are required"),
+            "Except parameters");
+    }
+
     @AfterMethod
     public void afterTest() {
         // Put back the standard out.

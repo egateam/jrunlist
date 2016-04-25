@@ -45,6 +45,7 @@ public class Runlist {
         jc.addCommand("split", new Split());
         jc.addCommand("some", new Some());
         jc.addCommand("combine", new Combine());
+        jc.addCommand("stat", new Stat());
 
         String parsedCommand;
         try {
@@ -84,6 +85,9 @@ public class Runlist {
             } else if ( command instanceof Combine ) {
                 Combine commandNew = (Combine) command;
                 commandNew.execute();
+            } else if ( command instanceof Stat ) {
+                Stat commandNew = (Stat) command;
+                commandNew.execute();
             }
         } catch ( Exception e ) {
             e.printStackTrace();
@@ -103,6 +107,12 @@ public class Runlist {
         merge \
         src/test/resources/I.yml \
         src/test/resources/II.yml \
+        -o stdout
+
+    java -jar target/jrunlist-0.1.0-SNAPSHOT-jar-with-dependencies.jar \
+        stat \
+        src/test/resources/chr.sizes \
+        src/test/resources/intergenic.yml \
         -o stdout
      */
     public static void main(String[] args) throws Exception {
