@@ -141,9 +141,16 @@ This Java class is ported from the Perl module `App::RL`.
 
 Oracle/Open JDK 1.7 or higher.
 
+## BENCHMARK
+
+```bash
+cd benchmark
+bash run.sh
 ```
-$ cd benchmark
-$ bash run.sh
+
+### OSX 10.11 i7-6700k
+
+```
 ==> jrunlist
        11.33 real        15.37 user         0.64 sys
 1397743616  maximum resident set size
@@ -176,6 +183,59 @@ $ bash run.sh
         20  signals received
         56  voluntary context switches
      55700  involuntary context switches
+```
+
+### Ubuntu 14.04 E5-2690 v3
+
+```
+==> jrunlist
+        Command being timed: "java -jar ../target/jrunlist-0.1.1-jar-with-dependencies.jar statop chr.sizes sep-gene.yml paralog.yml --op intersect --all -o stdout"
+        User time (seconds): 23.07
+        System time (seconds): 0.70
+        Percent of CPU this job got: 126%
+        Elapsed (wall clock) time (h:mm:ss or m:ss): 0:18.76
+        Average shared text size (kbytes): 0
+        Average unshared data size (kbytes): 0
+        Average stack size (kbytes): 0
+        Average total size (kbytes): 0
+        Maximum resident set size (kbytes): 1120744
+        Average resident set size (kbytes): 0
+        Major (requiring I/O) page faults: 0
+        Minor (reclaiming a frame) page faults: 39604
+        Voluntary context switches: 1804
+        Involuntary context switches: 486
+        Swaps: 0
+        File system inputs: 0
+        File system outputs: 88
+        Socket messages sent: 0
+        Socket messages received: 0
+        Signals delivered: 0
+        Page size (bytes): 4096
+        Exit status: 0
+==> App::RL
+        Command being timed: "runlist stat2 -s chr.sizes sep-gene.yml paralog.yml --op intersect --all --mk -o stdout"
+        User time (seconds): 383.45
+        System time (seconds): 0.17
+        Percent of CPU this job got: 100%
+        Elapsed (wall clock) time (h:mm:ss or m:ss): 6:23.49
+        Average shared text size (kbytes): 0
+        Average unshared data size (kbytes): 0
+        Average stack size (kbytes): 0
+        Average total size (kbytes): 0
+        Maximum resident set size (kbytes): 115824
+        Average resident set size (kbytes): 0
+        Major (requiring I/O) page faults: 0
+        Minor (reclaiming a frame) page faults: 168542
+        Voluntary context switches: 93
+        Involuntary context switches: 5565
+        Swaps: 0
+        File system inputs: 0
+        File system outputs: 0
+        Socket messages sent: 0
+        Socket messages received: 0
+        Signals delivered: 0
+        Page size (bytes): 4096
+        Exit status: 0
 ```
 
 ## AUTHOR
