@@ -31,7 +31,7 @@ import com.github.egateam.commands.*;
 @Parameters
 public class Runlist {
     /**
-     * The only global options
+     * The only global option
      */
     @SuppressWarnings("CanBeFinal")
     @Parameter(names = {"--help", "-h"}, description = "Print this help and quit", help = true)
@@ -46,6 +46,7 @@ public class Runlist {
         jc.addCommand("some", new Some());
         jc.addCommand("combine", new Combine());
         jc.addCommand("stat", new Stat());
+        jc.addCommand("statop", new StatOp());
         jc.addCommand("compare", new Compare());
         jc.addCommand("span", new Span());
         jc.addCommand("cover", new Cover());
@@ -98,6 +99,9 @@ public class Runlist {
             } else if ( command instanceof Stat ) {
                 Stat commandNew = (Stat) command;
                 commandNew.execute();
+            } else if ( command instanceof StatOp ) {
+                StatOp commandNew = (StatOp) command;
+                commandNew.execute();
             } else if ( command instanceof Compare ) {
                 Compare commandNew = (Compare) command;
                 commandNew.execute();
@@ -126,6 +130,11 @@ public class Runlist {
         src/test/resources/I.yml \
         src/test/resources/II.yml
 
+    java -jar target/jrunlist-*-jar-with-dependencies.jar \
+        compare -o stdout \
+        --op intersect \
+        src/test/resources/intergenic.yml \
+        src/test/resources/repeat.yml
 
     java -jar target/jrunlist-*-jar-with-dependencies.jar \
         stat -o stdout \
@@ -133,8 +142,9 @@ public class Runlist {
         src/test/resources/intergenic.yml
 
     java -jar target/jrunlist-*-jar-with-dependencies.jar \
-        compare -o stdout \
+        statop -o stdout \
         --op intersect \
+        src/test/resources/chr.sizes \
         src/test/resources/intergenic.yml \
         src/test/resources/repeat.yml
 
