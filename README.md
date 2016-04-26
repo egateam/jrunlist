@@ -141,14 +141,31 @@ This Java class is ported from the Perl module `App::RL`.
 
 Oracle/Open JDK 1.7 or higher.
 
-## BENCHMARK
+## COMPARISON
+
+## CLOC
+
+```bash
+cd ~/Scripts/java/jrunlist/
+cloc src/main
+
+cd ~/Scripts/cpan/App-RL/
+cloc lib/ script/
+```
+
+| name     | cloc    |
+| :-----   | :-----: |
+| App::RL  | 961     |
+| jrunlist | 1132    |
+
+### BENCHMARK
 
 ```bash
 cd benchmark
 bash run.sh
 ```
 
-### OSX 10.11 i7-6700k
+* OSX 10.11 i7-6700k
 
 ```
 ==> jrunlist
@@ -185,7 +202,7 @@ bash run.sh
      55700  involuntary context switches
 ```
 
-### Ubuntu 14.04 E5-2690 v3
+* Ubuntu 14.04 E5-2690 v3
 
 ```
 ==> jrunlist
