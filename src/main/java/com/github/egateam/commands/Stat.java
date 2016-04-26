@@ -59,7 +59,7 @@ public class Stat {
         //----------------------------
         List<String> lines = new ArrayList<>();
 
-        String header = "key,chr,chr_length,size,coverage\n";
+        String header = "key,chr,chrLength,size,coverage\n";
         if ( !yaml.isMultiKey() ) header = header.replaceFirst("key,", "");
         if ( all ) header = header.replaceFirst("chr,", "");
         lines.add(header);
