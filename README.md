@@ -143,7 +143,7 @@ Oracle/Open JDK 1.7 or higher.
 
 ## COMPARISON
 
-## CLOC
+### CLOC
 
 ```bash
 cd ~/Scripts/java/jrunlist/
