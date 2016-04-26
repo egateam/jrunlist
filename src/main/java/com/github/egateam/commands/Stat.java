@@ -52,7 +52,7 @@ public class Stat {
         Map<String, Integer> lengthOf = new ReadSizes(files.get(0), remove).invoke();
 
         YAMLInfo yaml = new YAMLInfo();
-        Map<String, Map<String, IntSpan>> setOf = yaml.invoke(files.get(1), remove);
+        Map<String, Map<String, IntSpan>> setOf = yaml.load(files.get(1), remove);
 
         //----------------------------
         // Calcing

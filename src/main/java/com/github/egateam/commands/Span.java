@@ -10,12 +10,8 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
 import com.github.egateam.IntSpan;
-import com.github.egateam.util.FileConverterIn;
-import com.github.egateam.util.Transform;
-import com.github.egateam.util.WriteYAML;
-import com.github.egateam.util.YAMLInfo;
+import com.github.egateam.util.*;
 
-import javax.annotation.PostConstruct;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -55,21 +51,7 @@ public class Span {
             throw new ParameterException("This command need one input file.");
         }
 
-        if ( op.startsWith("cover") ) {
-            op = "cover";
-        } else if ( op.startsWith("hole") ) {
-            op = "holes";
-        } else if ( op.startsWith("trim") ) {
-            op = "trim";
-        } else if ( op.startsWith("pad") ) {
-            op = "pad";
-        } else if ( op.startsWith("excise") ) {
-            op = "excise";
-        } else if ( op.startsWith("fill") ) {
-            op = "fill";
-        } else {
-            throw new RuntimeException(String.format("op [%s] is invalid", op));
-        }
+        op = YAMLInfo.validateSpan(op);
 
         if ( outfile == null ) {
             outfile = files.get(0) + "." + op + ".yml";
@@ -83,7 +65,7 @@ public class Span {
         // Loading
         //----------------------------
         YAMLInfo                          yaml  = new YAMLInfo();
-        Map<String, Map<String, IntSpan>> setOf = yaml.invoke(files.get(0), remove);
+        Map<String, Map<String, IntSpan>> setOf = yaml.load(files.get(0), remove);
 
         //----------------------------
         // Operating

@@ -48,7 +48,7 @@ public class Combine {
         // Loading
         //----------------------------
         YAMLInfo yaml = new YAMLInfo();
-        Map<String, Map<String, IntSpan>> setOf = yaml.invoke(files.get(0), remove);
+        Map<String, Map<String, IntSpan>> setOf = yaml.load(files.get(0), remove);
 
         //----------------------------
         // Operating
