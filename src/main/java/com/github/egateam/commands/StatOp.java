@@ -127,6 +127,7 @@ public class StatOp {
                 System.out.print(line);
             }
         else {
+            // Fixme: extra empty lines
             FileUtils.writeLines(new File(outfile), "UTF-8", lines);
         }
     }

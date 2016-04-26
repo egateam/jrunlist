@@ -36,6 +36,8 @@ public class WriteYAML {
         ObjectWriter omw        = new ObjectMapper(new YAMLFactory()).writer();
         String       yamlString = omw.with(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS).writeValueAsString(map);
 
+        // Fixme: Fix multikey dump
+        // AT5G67550: "{1=-, 2=-, 3=-, 4=-, 5=-}"
         // write YAML to a file or stdout
         if ( fileName.equals("stdout") )
             System.out.print(yamlString);
