@@ -47,6 +47,7 @@ public class Runlist {
         jc.addCommand("combine", new Combine());
         jc.addCommand("stat", new Stat());
         jc.addCommand("compare", new Compare());
+        jc.addCommand("span", new Span());
         jc.addCommand("cover", new Cover());
 
         String parsedCommand;
@@ -100,6 +101,9 @@ public class Runlist {
             } else if ( command instanceof Compare ) {
                 Compare commandNew = (Compare) command;
                 commandNew.execute();
+            } else if ( command instanceof Span ) {
+                Span commandNew = (Span) command;
+                commandNew.execute();
             } else if ( command instanceof Cover ) {
                 Cover commandNew = (Cover) command;
                 commandNew.execute();
@@ -113,30 +117,36 @@ public class Runlist {
     /*
     mvn clean verify
 
-    java -jar target/jrunlist-0.1.0-SNAPSHOT-jar-with-dependencies.jar \
+    java -jar target/jrunlist-*-jar-with-dependencies.jar \
         genome -o stdout \
         src/test/resources/chr.sizes
 
-    java -jar target/jrunlist-0.1.0-SNAPSHOT-jar-with-dependencies.jar \
+    java -jar target/jrunlist-*-jar-with-dependencies.jar \
         merge -o stdout \
         src/test/resources/I.yml \
         src/test/resources/II.yml
 
 
-    java -jar target/jrunlist-0.1.0-SNAPSHOT-jar-with-dependencies.jar \
+    java -jar target/jrunlist-*-jar-with-dependencies.jar \
         stat -o stdout \
         src/test/resources/chr.sizes \
         src/test/resources/intergenic.yml
 
-    java -jar target/jrunlist-0.1.0-SNAPSHOT-jar-with-dependencies.jar \
-        compare --op intersect -o stdout \
+    java -jar target/jrunlist-*-jar-with-dependencies.jar \
+        compare -o stdout \
+        --op intersect \
         src/test/resources/intergenic.yml \
         src/test/resources/repeat.yml
 
-    java -jar target/jrunlist-0.1.0-SNAPSHOT-jar-with-dependencies.jar \
+    java -jar target/jrunlist-*-jar-with-dependencies.jar \
+        span -o stdout \
+        --op cover \
+        src/test/resources/brca2.yml
+
+    java -jar target/jrunlist-*-jar-with-dependencies.jar \
         cover -o stdout \
         src/test/resources/S288c.txt
-     */
+    */
     public static void main(String[] args) throws Exception {
         new Runlist().execute(args);
     }
