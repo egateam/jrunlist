@@ -6,22 +6,19 @@
 
 package com.github.egateam.util;
 
-
-import com.github.egateam.IntSpan;
-
 import java.util.List;
 
 public class ChrCoverage {
     private final String name;
     private final int    length;
     private final int    size;
-    private final float  coverage;
+    private final double coverage;
 
-    public ChrCoverage(String name, int length, IntSpan intspan) {
+    public ChrCoverage(String name, int length, int size) {
         this.name = name;
         this.length = length;
-        this.size = intspan.size();
-        this.coverage = (float) intspan.size() / (float) length;
+        this.size = size;
+        this.coverage = (double) size / (double) length;
     }
 
     public String csvLine() {
@@ -35,7 +32,7 @@ public class ChrCoverage {
             allLength += one.length;
             allSize += one.size;
         }
-        float allCoverage = (float) allSize / (float) allLength;
+        double allCoverage = (double) allSize / (double) allLength;
 
         return String.format("%s,%d,%d,%.4f\n", "all", allLength, allSize, allCoverage);
     }

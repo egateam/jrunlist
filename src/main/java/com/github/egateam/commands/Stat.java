@@ -51,7 +51,7 @@ public class Stat {
         //----------------------------
         Map<String, Integer> lengthOf = new ReadSizes(files.get(0), remove).invoke();
 
-        YAMLInfo yaml = new YAMLInfo();
+        YAMLInfo                          yaml  = new YAMLInfo();
         Map<String, Map<String, IntSpan>> setOf = yaml.load(files.get(1), remove);
 
         //----------------------------
@@ -65,12 +65,12 @@ public class Stat {
         lines.add(header);
 
         for ( String name : yaml.getSortedNames() ) {
-            Map<String, IntSpan> curSet = setOf.get(name);
-            List<ChrCoverage> coverages = new ArrayList<>();
-            List<String> curLines = new ArrayList<>();
+            Map<String, IntSpan> setOne    = setOf.get(name);
+            List<ChrCoverage>    coverages = new ArrayList<>();
+            List<String>         curLines  = new ArrayList<>();
 
-            for ( String chr : curSet.keySet() ) {
-                ChrCoverage coverage = new ChrCoverage(chr, lengthOf.get(chr), curSet.get(chr));
+            for ( String chr : setOne.keySet() ) {
+                ChrCoverage coverage = new ChrCoverage(chr, lengthOf.get(chr), setOne.get(chr).size());
                 if ( !all ) {
                     String line = coverage.csvLine();
                     if ( yaml.isMultiKey() ) line = name + "," + line;
