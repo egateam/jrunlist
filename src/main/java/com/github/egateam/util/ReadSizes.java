@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ReadSizes {
-    private final File file;
+    private final File    file;
     private final boolean remove;
 
     public ReadSizes(File file, boolean remove) {

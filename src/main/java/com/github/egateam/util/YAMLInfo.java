@@ -14,11 +14,11 @@ import java.util.*;
 public class YAMLInfo {
     private final Set<String> allChrs;
     private final Set<String> allNames;
-    private boolean isMultiKey;
-    private static final String singleKey = "__single";
+    private       boolean     isMultiKey;
+    private static final String SINGLE_KEY = "__single";
 
     public static String getSingleKey() {
-        return singleKey;
+        return SINGLE_KEY;
     }
 
     public YAMLInfo() {

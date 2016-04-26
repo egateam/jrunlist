@@ -18,10 +18,10 @@ public class ChrPosition {
     private String name;
     private String chrName;
     private String chrStrand;
-    private int chrStart;
-    private int chrEnd;
-    private Map<String, String> others = new HashMap<>();
-    private boolean isEmpty = true;
+    private int    chrStart;
+    private int    chrEnd;
+    private Map<String, String> others  = new HashMap<>();
+    private boolean             isEmpty = true;
 
     public String getName() {
         return name;
@@ -103,8 +103,8 @@ public class ChrPosition {
         }
 
         if ( header.contains("|") ) {
-            String nonEssential = header.replaceFirst(".+\\|", "");
-            String[] parts = nonEssential.split(";");
+            String   nonEssential = header.replaceFirst(".+\\|", "");
+            String[] parts        = nonEssential.split(";");
             for ( String part : parts ) {
                 String[] kv = part.split("=");
                 if ( kv.length == 2 ) {
@@ -139,8 +139,8 @@ public class ChrPosition {
                 parts.add(entry.getKey() + "=" + entry.getValue());
             }
 
-            String nonEssential = "";
-            boolean firstFlag = true;
+            String  nonEssential = "";
+            boolean firstFlag    = true;
             for ( String str : parts ) {
                 if ( firstFlag ) {
                     nonEssential += str;

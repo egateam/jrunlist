@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class Transform {
     private final Map<?, ?> map;
-    private final boolean remove;
+    private final boolean   remove;
 
     public Transform(Map<?, ?> map, boolean remove) {
         this.map = map;

@@ -16,7 +16,7 @@ import java.io.*;
 import java.util.Map;
 
 public class WriteYAML {
-    private final String fileName;
+    private final String    fileName;
     private final Map<?, ?> map;
 
     /**
@@ -33,8 +33,8 @@ public class WriteYAML {
     public void invoke() throws Exception {
         // http://www.mkyong.com/java/how-to-convert-java-map-to-from-json-jackson/
         // http://stackoverflow.com/questions/4405078/how-to-write-to-standard-output-using-bufferedwriter
-        ObjectWriter omw = new ObjectMapper(new YAMLFactory()).writer();
-        String yamlString = omw.with(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS).writeValueAsString(map);
+        ObjectWriter omw        = new ObjectMapper(new YAMLFactory()).writer();
+        String       yamlString = omw.with(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS).writeValueAsString(map);
 
         // invoke YAML to a file or stdout
         if ( fileName.equals("stdout") )

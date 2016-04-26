@@ -13,9 +13,9 @@ import java.util.List;
 
 public class ChrCoverage {
     private final String name;
-    private final int length;
-    private final int size;
-    private final float coverage;
+    private final int    length;
+    private final int    size;
+    private final float  coverage;
 
     public ChrCoverage(String name, int length, IntSpan intspan) {
         this.name = name;
@@ -30,7 +30,7 @@ public class ChrCoverage {
 
     public static String allLine(List<ChrCoverage> list) {
         int allLength = 0;
-        int allSize = 0;
+        int allSize   = 0;
         for ( ChrCoverage one : list ) {
             allLength += one.length;
             allSize += one.size;

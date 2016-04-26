@@ -66,6 +66,7 @@ public class Compare {
         Map<String, Map<String, IntSpan>> setOf = yaml.invoke(files.get(0), remove);
         Map<String, IntSpan> setSingle = yaml.invokeSingle(files.get(1), remove);
 
+        // fill setSingle with empty IntSpan for missing chromosomes
         for ( String chr : yaml.getSortedChrs() ) {
             if ( !setSingle.containsKey(chr) ) {
                 setSingle.put(chr, new IntSpan());
