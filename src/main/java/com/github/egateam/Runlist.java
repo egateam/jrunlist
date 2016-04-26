@@ -40,16 +40,16 @@ public class Runlist {
     public void execute(String[] args) {
 
         JCommander jc = new JCommander(this);
+        jc.addCommand("combine", new Combine());
+        jc.addCommand("compare", new Compare());
+        jc.addCommand("cover", new Cover());
         jc.addCommand("genome", new Genome());
         jc.addCommand("merge", new Merge());
-        jc.addCommand("split", new Split());
         jc.addCommand("some", new Some());
-        jc.addCommand("combine", new Combine());
+        jc.addCommand("span", new Span());
+        jc.addCommand("split", new Split());
         jc.addCommand("stat", new Stat());
         jc.addCommand("statop", new StatOp());
-        jc.addCommand("compare", new Compare());
-        jc.addCommand("span", new Span());
-        jc.addCommand("cover", new Cover());
 
         String parsedCommand;
         try {

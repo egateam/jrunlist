@@ -11,6 +11,43 @@ Usage: <main class> [options] [command] [command options]
        Print this help and quit
        Default: false
   Commands:
+    combine      Combine multiple sets of runlists in a yaml file.
+                It's expected that the YAML file is --mk.
+                Otherwise this command will make no effects.
+      Usage: combine [options] <infile>
+        Options:
+          --outfile, -o
+             Output filename. [stdout] for screen.
+          --remove, -r
+             Remove 'chr0' from chromosome names.
+             Default: false
+
+    compare      Compare 2 YAML files.
+                Only the *first* file can contain multiple sets of runlists.
+      Usage: compare [options] <infile1> <infile2>
+        Options:
+          --op
+             operations: intersect, union, diff or xor.
+             Default: intersect
+          --outfile, -o
+             Output filename. [stdout] for screen.
+          --remove, -r
+             Remove 'chr0' from chromosome names.
+             Default: false
+
+    cover      Output covers on chromosomes.
+                Like `command combine`, but <infiles> are chromosome positions.
+                I:1-100
+                I(+):90-150      Strands will be omitted.
+                S288c.I(-):190-200      Species names will be omitted.
+      Usage: cover [options] <infiles>
+        Options:
+          --outfile, -o
+             Output filename. [stdout] for screen.
+          --remove, -r
+             Remove 'chr0' from chromosome names.
+             Default: false
+
     genome      Convert chr.size to runlists
       Usage: genome [options] <infile>
         Options:
@@ -26,6 +63,74 @@ Usage: <main class> [options] [command] [command options]
           --outfile, -o
              Output filename. [stdout] for screen.
 
+    some      Extract some records from a runlist yaml file
+      Usage: some [options] <infile> <list.file>
+        Options:
+          --outfile, -o
+             Output filename. [stdout] for screen.
+
+    span      Operate spans in a YAML file.
+        List of operations
+                cover:  a single span from min to max;
+                holes:  all the holes in runlist;
+                trim:   remove N integers from each end of each span of runlist;
+                pad:    add N integers from each end of each span of runlist;
+                excise: remove all spans smaller than N;
+                fill:   fill in all holes smaller than or equals to N.
+      Usage: span [options] <infile>
+        Options:
+          --number, -n
+             Apply this number to trim, pad, excise or fill.
+             Default: 0
+          --op
+             operations: cover, holes, trim, pad, excise or fill.
+             Default: cover
+          --outfile, -o
+             Output filename. [stdout] for screen.
+          --remove, -r
+             Remove 'chr0' from chromosome names.
+             Default: false
+
+    split      Split a runlist yaml file
+      Usage: split [options] <infile>
+        Options:
+          --outdir, -o
+             Output location. [stdout] for screen.
+             Default: .
+          --suffix, -s
+             Extension of output files.
+             Default: .yml
+
+    stat      Coverage on chromosomes for runlists
+      Usage: stat [options] <chr.size> <infile>
+        Options:
+          --all
+             Only write whole genome stats.
+             Default: false
+          --outfile, -o
+             Output filename. [stdout] for screen.
+          --remove, -r
+             Remove 'chr0' from chromosome names.
+             Default: false
+
+    statop      Coverage on chromosomes for one YAML crossed another
+                Only the *first* file can contain multiple sets of runlists.
+      Usage: statop [options] <chr.size> <infile1> <infile2>
+        Options:
+          --all
+             Only write whole genome stats.
+             Default: false
+          --base, -b
+             basename of infile2
+          --op
+             operations: intersect, union, diff or xor.
+             Default: intersect
+          --outfile, -o
+             Output filename. [stdout] for screen.
+          --remove, -r
+             Remove 'chr0' from chromosome names.
+             Default: false
+
 ```
 
 ## DESCRIPTION
@@ -34,12 +139,7 @@ This Java class is ported from the Perl module `App::RL`.
 
 ## REQUIREMENTS
 
-Install jintspan to local repository.
-
-```bash
-cd ~/Scripts/java/jintspan
-mvn install
-```
+Oracle/Open JDK 1.7 or higher.
 
 ## AUTHOR
 
