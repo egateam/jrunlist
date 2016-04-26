@@ -36,7 +36,7 @@ public class WriteYAML {
         ObjectWriter omw        = new ObjectMapper(new YAMLFactory()).writer();
         String       yamlString = omw.with(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS).writeValueAsString(map);
 
-        // invoke YAML to a file or stdout
+        // write YAML to a file or stdout
         if ( fileName.equals("stdout") )
             System.out.print(yamlString);
         else {

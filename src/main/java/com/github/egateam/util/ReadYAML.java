@@ -26,7 +26,7 @@ public class ReadYAML {
             throw new IOException(String.format("YAML file [%s] doesn't exist", file));
         }
 
-        // invoke YAML from a file
+        // load YAML from a file
         ObjectMapper om = new ObjectMapper(new YAMLFactory());
 
         return om.<HashMap<String, Object>>readValue(
