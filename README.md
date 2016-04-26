@@ -141,6 +141,43 @@ This Java class is ported from the Perl module `App::RL`.
 
 Oracle/Open JDK 1.7 or higher.
 
+```
+$ cd benchmark
+$ bash run.sh
+==> jrunlist
+       11.33 real        15.37 user         0.64 sys
+1397743616  maximum resident set size
+         0  average shared memory size
+         0  average unshared data size
+         0  average unshared stack size
+    352760  page reclaims
+         0  page faults
+         0  swaps
+         0  block input operations
+         6  block output operations
+         0  messages sent
+         0  messages received
+         5  signals received
+         0  voluntary context switches
+     18048  involuntary context switches
+==> App::RL
+      352.19 real       350.19 user         1.60 sys
+ 115826688  maximum resident set size
+         0  average shared memory size
+         0  average unshared data size
+         0  average unshared stack size
+     42417  page reclaims
+         0  page faults
+         0  swaps
+         0  block input operations
+         6  block output operations
+         0  messages sent
+         0  messages received
+        20  signals received
+        56  voluntary context switches
+     55700  involuntary context switches
+```
+
 ## AUTHOR
 
 Qiang Wang &lt;wang-q@outlook.com&gt;
