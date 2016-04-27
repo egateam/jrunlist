@@ -11,7 +11,6 @@ import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
 import com.github.egateam.IntSpan;
 import com.github.egateam.util.*;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
@@ -82,7 +81,7 @@ public class StatOp {
         //----------------------------
         List<String> lines = new ArrayList<>();
 
-        String header = String.format("key,chr,chrLength,size,%sLength,%sSize,c1,c2,ratio\n", base, base);
+        String header = String.format("key,chr,chrLength,size,%sLength,%sSize,c1,c2,ratio", base, base);
         if ( !yaml.isMultiKey() ) header = header.replaceFirst("key,", "");
         if ( all ) header = header.replaceFirst("chr,", "");
         lines.add(header);
@@ -122,14 +121,6 @@ public class StatOp {
         //----------------------------
         // Output
         //----------------------------
-        if ( outfile.equals("stdout") )
-            for ( String line : lines ) {
-                System.out.print(line);
-            }
-        else {
-            // Fixme: extra empty lines
-            FileUtils.writeLines(new File(outfile), "UTF-8", lines);
-        }
+        ReadWrite.writeLines(outfile, lines);
     }
-
 }

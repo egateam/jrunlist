@@ -21,6 +21,20 @@ import java.util.Map;
 
 public class ReadWrite {
 
+    public static Map<String, ?> readYaml(File file) throws Exception {
+        if ( !file.isFile() ) {
+            throw new IOException(String.format("YAML file [%s] doesn't exist", file));
+        }
+
+        // load YAML from a file
+        ObjectMapper om = new ObjectMapper(new YAMLFactory());
+
+        return om.<HashMap<String, Object>>readValue(
+            file,
+            new TypeReference<Map<String, Object>>() {
+            });
+    }
+
     public static void writeYaml(String fileName, Map<String, ?> map) throws Exception {
         // http://www.mkyong.com/java/how-to-convert-java-map-to-from-json-jackson/
         // http://stackoverflow.com/questions/4405078/how-to-write-to-standard-output-using-bufferedwriter
@@ -37,20 +51,6 @@ public class ReadWrite {
         else {
             FileUtils.writeStringToFile(new File(fileName), yamlString, "UTF-8");
         }
-    }
-
-    public static Map<String, ?> readYaml(File file) throws Exception {
-        if ( !file.isFile() ) {
-            throw new IOException(String.format("YAML file [%s] doesn't exist", file));
-        }
-
-        // load YAML from a file
-        ObjectMapper om = new ObjectMapper(new YAMLFactory());
-
-        return om.<HashMap<String, Object>>readValue(
-            file,
-            new TypeReference<Map<String, Object>>() {
-            });
     }
 
     public static Map<String, Integer> readSizes(File file, boolean remove) throws Exception {
@@ -84,5 +84,15 @@ public class ReadWrite {
         }
 
         return lines;
+    }
+
+    public static void writeLines(String fileName, List<String> lines) throws Exception {
+        if ( fileName.equals("stdout") )
+            for ( String line : lines ) {
+                System.out.println(line);
+            }
+        else {
+            FileUtils.writeLines(new File(fileName), "UTF-8", lines, "\n");
+        }
     }
 }

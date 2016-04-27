@@ -11,7 +11,6 @@ import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
 import com.github.egateam.IntSpan;
 import com.github.egateam.util.*;
-import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.util.*;
@@ -59,7 +58,7 @@ public class Stat {
         //----------------------------
         List<String> lines = new ArrayList<>();
 
-        String header = "key,chr,chrLength,size,coverage\n";
+        String header = "key,chr,chrLength,size,coverage";
         if ( !yaml.isMultiKey() ) header = header.replaceFirst("key,", "");
         if ( all ) header = header.replaceFirst("chr,", "");
         lines.add(header);
@@ -91,12 +90,6 @@ public class Stat {
         //----------------------------
         // Output
         //----------------------------
-        if ( outfile.equals("stdout") )
-            for ( String line : lines ) {
-                System.out.print(line);
-            }
-        else {
-            FileUtils.writeLines(new File(outfile), "UTF-8", lines);
-        }
+        ReadWrite.writeLines(outfile, lines);
     }
 }

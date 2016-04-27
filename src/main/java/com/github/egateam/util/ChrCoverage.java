@@ -22,7 +22,7 @@ public class ChrCoverage {
     }
 
     public String csvLine() {
-        return String.format("%s,%d,%d,%.4f\n", name, length, size, coverage);
+        return String.format("%s,%d,%d,%.4f", name, length, size, coverage);
     }
 
     public static String allLine(List<ChrCoverage> list) {
@@ -34,6 +34,6 @@ public class ChrCoverage {
         }
         double allCoverage = (double) allSize / (double) allLength;
 
-        return String.format("%s,%d,%d,%.4f\n", "all", allLength, allSize, allCoverage);
+        return String.format("%s,%d,%d,%.4f", "all", allLength, allSize, allCoverage);
     }
 }

@@ -139,7 +139,7 @@ public class YAMLInfo {
     }
 
     // Create empty IntSpan for each name:chr
-    public void fillUp(Map<String, Map<String, IntSpan>> setOf) {
+    private void fillUp(Map<String, Map<String, IntSpan>> setOf) {
         for ( String name : getSortedNames() ) {
             Map<String, IntSpan> setOne = setOf.get(name);
 
@@ -152,7 +152,7 @@ public class YAMLInfo {
     }
 
     // Create empty IntSpan for each chr
-    public void fillUpSingle(Map<String, IntSpan> setSingle) {
+    private void fillUpSingle(Map<String, IntSpan> setSingle) {
         for ( String chr : getSortedChrs() ) {
             if ( !setSingle.containsKey(chr) ) {
                 setSingle.put(chr, new IntSpan());

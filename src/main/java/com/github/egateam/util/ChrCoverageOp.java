@@ -31,7 +31,7 @@ public class ChrCoverageOp {
     }
 
     public String csvLine() {
-        return String.format("%s,%d,%d,%d,%d,%.4f,%.4f,%.4f\n",
+        return String.format("%s,%d,%d,%d,%d,%.4f,%.4f,%.4f",
             name, length, size, length2, size2, c1, c2, ratio);
     }
 
@@ -50,7 +50,7 @@ public class ChrCoverageOp {
         double allC2    = allLength2 == 0 ? 0.0 : (double) allSize2 / (double) allLength2;
         double allRatio = allC1 == 0.0 ? 0.0 : allC2 / allC1;
 
-        return String.format("%s,%d,%d,%d,%d,%.4f,%.4f,%.4f\n",
+        return String.format("%s,%d,%d,%d,%d,%.4f,%.4f,%.4f",
             "all", allLength, allSize, allLength2, allSize2, allC1, allC2, allRatio);
     }
 }
