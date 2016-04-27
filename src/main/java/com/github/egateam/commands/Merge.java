@@ -44,7 +44,7 @@ public class Merge {
         //----------------------------
         // Loading
         //----------------------------
-        Map<String, Map> master = new HashMap<>();
+        Map<String, Map<String, ?>> master = new HashMap<>();
         for ( File inFile : files ) {
             Map<String, ?> map = ReadWrite.readYaml(inFile);
 

@@ -53,6 +53,25 @@ public class ReadWrite {
             });
     }
 
+    public static Map<String, Integer> readSizes(File file, boolean remove) throws Exception {
+        HashMap<String, Integer> lengthOf = new HashMap<>();
+
+        try ( BufferedReader reader = new BufferedReader(new FileReader(file)) ) {
+            String line;
+            while ( (line = reader.readLine()) != null ) {
+                line = line.trim();
+                String[] fields = line.split("\\t");
+                if ( fields.length == 2 ) {
+                    if ( remove ) fields[0] = fields[0].replaceFirst("chr0?", "");
+
+                    lengthOf.put(fields[0], Integer.parseInt(fields[1]));
+                }
+            }
+        }
+
+        return lengthOf;
+    }
+
     public static List<String> readLines(File file) throws Exception {
         List<String> lines = new ArrayList<>();
 

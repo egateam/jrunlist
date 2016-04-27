@@ -49,7 +49,7 @@ public class Stat {
         //----------------------------
         // Loading
         //----------------------------
-        Map<String, Integer> lengthOf = new ReadSizes(files.get(0), remove).invoke();
+        Map<String, Integer> lengthOf = ReadWrite.readSizes(files.get(0), remove);
 
         YAMLInfo                          yaml  = new YAMLInfo();
         Map<String, Map<String, IntSpan>> setOf = yaml.load(files.get(1), remove);
