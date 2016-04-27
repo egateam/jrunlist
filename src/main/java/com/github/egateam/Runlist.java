@@ -24,7 +24,6 @@ import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
-
 import com.github.egateam.commands.*;
 
 @SuppressWarnings("WeakerAccess")
@@ -36,6 +35,14 @@ public class Runlist {
     @SuppressWarnings("CanBeFinal")
     @Parameter(names = {"--help", "-h"}, description = "Print this help and quit", help = true)
     private boolean help = false;
+
+    private static String getJarName() {
+        return new java.io.File(IntSpanBenchmark.class.getProtectionDomain()
+            .getCodeSource()
+            .getLocation()
+            .getPath())
+            .getName();
+    }
 
     public void execute(String[] args) {
 
@@ -62,12 +69,7 @@ public class Runlist {
             }
 
             if ( parsedCommand == null ) {
-                String jarName = new java.io.File(IntSpanBenchmark.class.getProtectionDomain()
-                    .getCodeSource()
-                    .getLocation()
-                    .getPath())
-                    .getName();
-                String prompt = String.format("java -jar path/to/%s --help", jarName);
+                String prompt = String.format("java -jar path/to/%s --help", getJarName());
                 throw new ParameterException("No command specified. For help, type\n" + prompt);
             }
         } catch ( ParameterException e ) {
