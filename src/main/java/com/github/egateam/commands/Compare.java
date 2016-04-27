@@ -13,7 +13,7 @@ import com.github.egateam.IntSpan;
 import com.github.egateam.util.FileConverterIn;
 import com.github.egateam.util.Transform;
 import com.github.egateam.util.ReadWrite;
-import com.github.egateam.util.YAMLInfo;
+import com.github.egateam.util.RlInfo;
 
 import java.io.File;
 import java.util.List;
@@ -42,7 +42,7 @@ public class Compare {
             throw new ParameterException("This command need two input files.");
         }
 
-        op = YAMLInfo.validateOpCompare(op);
+        op = RlInfo.validateOpCompare(op);
 
         if ( outfile == null ) {
             outfile = files.get(0) + "." + op + ".yml";
@@ -55,7 +55,7 @@ public class Compare {
         //----------------------------
         // Loading
         //----------------------------
-        YAMLInfo                          yaml      = new YAMLInfo();
+        RlInfo                            yaml      = new RlInfo();
         Map<String, Map<String, IntSpan>> setOf     = yaml.load(files.get(0), remove);
         Map<String, IntSpan>              setSingle = yaml.loadSingle(files.get(1), remove);
 
@@ -67,15 +67,15 @@ public class Compare {
         //----------------------------
         // Output
         //----------------------------
-        if ( yaml.isMultiKey() ) {
+        if ( yaml.isMulti() ) {
             ReadWrite.writeYaml(
                 outfile,
-                new Transform(opResultOf, remove).toRunlist()
+                Transform.toRunlistMulti(opResultOf)
             );
         } else {
             ReadWrite.writeYaml(
                 outfile,
-                new Transform(opResultOf.get(YAMLInfo.getSingleKey()), remove).toRunlist()
+                Transform.toRunlist(opResultOf.get(RlInfo.getSingleKey()))
             );
         }
     }

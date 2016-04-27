@@ -47,29 +47,29 @@ public class Combine {
         //----------------------------
         // Loading
         //----------------------------
-        YAMLInfo                          yaml  = new YAMLInfo();
+        RlInfo                            yaml  = new RlInfo();
         Map<String, Map<String, IntSpan>> setOf = yaml.load(files.get(0), remove);
 
         //----------------------------
         // Operating
         //----------------------------
-        Map<String, IntSpan> opResultOf = new HashMap<>();
+        Map<String, IntSpan> opResult = new HashMap<>();
         for ( String chr : yaml.getSortedChrs() ) {
-            opResultOf.put(chr, new IntSpan());
+            opResult.put(chr, new IntSpan());
         }
 
         for ( String name : yaml.getSortedNames() ) {
             Map<String, IntSpan> curSet = setOf.get(name);
             for ( String chr : curSet.keySet() ) {
-                IntSpan curResult  = opResultOf.get(chr);
+                IntSpan curResult  = opResult.get(chr);
                 IntSpan curIntSpan = curSet.get(chr);
-                opResultOf.put(chr, curResult.add(curIntSpan));
+                opResult.put(chr, curResult.add(curIntSpan));
             }
         }
 
         //----------------------------
         // Output
         //----------------------------
-        ReadWrite.writeYaml(outfile, new Transform(opResultOf, remove).toRunlist());
+        ReadWrite.writeYaml(outfile, Transform.toRunlist(opResult));
     }
 }

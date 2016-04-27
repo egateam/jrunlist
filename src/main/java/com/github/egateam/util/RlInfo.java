@@ -13,20 +13,20 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
-public class YAMLInfo {
+public class RlInfo {
     private final Set<String> allChrs;
     private final Set<String> allNames;
-    private       boolean     isMultiKey;
+    private       boolean     isMulti;
     private static final String SINGLE_KEY = "__single";
 
     public static String getSingleKey() {
         return SINGLE_KEY;
     }
 
-    public YAMLInfo() {
+    public RlInfo() {
         allChrs = new HashSet<>();
         allNames = new HashSet<>();
-        isMultiKey = false;
+        isMulti = false;
     }
 
     private Set<String> getAllChrs() {
@@ -37,8 +37,8 @@ public class YAMLInfo {
         return allNames;
     }
 
-    public boolean isMultiKey() {
-        return isMultiKey;
+    public boolean isMulti() {
+        return isMulti;
     }
 
     public List<String> getSortedChrs() {
@@ -60,16 +60,16 @@ public class YAMLInfo {
 
         // check depth of YAML
         // get one (maybe not first) value from Map
-        isMultiKey = !(runlistOf.entrySet().iterator().next().getValue() instanceof String);
+        isMulti = !(runlistOf.entrySet().iterator().next().getValue() instanceof String);
 
         Map<String, Map<String, IntSpan>> setOf = new HashMap<>();
-        if ( isMultiKey ) {
+        if ( isMulti ) {
             for ( Map.Entry<String, ?> entry : runlistOf.entrySet() ) {
                 String key = entry.getKey();
                 //noinspection unchecked
                 HashMap<String, String> value = (HashMap<String, String>) entry.getValue();
 
-                setOf.put(key, new Transform(value, remove).toIntSpan());
+                setOf.put(key, Transform.toIntSpan(value));
                 allChrs.addAll(value.keySet());
 
                 allNames.add(key);
@@ -77,7 +77,7 @@ public class YAMLInfo {
         } else {
             allChrs.addAll(runlistOf.keySet());
             allNames.add(getSingleKey());
-            setOf.put(getSingleKey(), new Transform(runlistOf, remove).toIntSpan());
+            setOf.put(getSingleKey(), Transform.toIntSpan((Map<String, String>) runlistOf));
         }
 
         return setOf;
@@ -95,7 +95,7 @@ public class YAMLInfo {
         }
 
         allChrs.addAll(runlistSingle.keySet());
-        return new Transform(runlistSingle, remove).toIntSpan();
+        return Transform.toIntSpan((Map<String, String>) runlistSingle);
     }
 
     public static String validateOpCompare(String op) throws RuntimeException {

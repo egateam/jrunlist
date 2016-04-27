@@ -47,7 +47,7 @@ public class StatOp {
             throw new ParameterException("This command need three input files.");
         }
 
-        op = YAMLInfo.validateOpCompare(op);
+        op = RlInfo.validateOpCompare(op);
 
         if ( base == null ) {
             base = FilenameUtils.getBaseName(files.get(2).toString());
@@ -66,7 +66,7 @@ public class StatOp {
         //----------------------------
         Map<String, Integer> lengthOf = ReadWrite.readSizes(files.get(0), remove);
 
-        YAMLInfo                          yaml      = new YAMLInfo();
+        RlInfo                            yaml      = new RlInfo();
         Map<String, Map<String, IntSpan>> setOf     = yaml.load(files.get(1), remove);
         Map<String, IntSpan>              setSingle = yaml.loadSingle(files.get(2), remove);
 
@@ -81,7 +81,7 @@ public class StatOp {
         List<String> lines = new ArrayList<>();
 
         String header = String.format("key,chr,chrLength,size,%sLength,%sSize,c1,c2,ratio", base, base);
-        if ( !yaml.isMultiKey() ) header = header.replaceFirst("key,", "");
+        if ( !yaml.isMulti() ) header = header.replaceFirst("key,", "");
         if ( all ) header = header.replaceFirst("chr,", "");
         lines.add(header);
 
@@ -103,7 +103,7 @@ public class StatOp {
                     );
                     if ( !all ) {
                         String line = coverage.csvLine();
-                        if ( yaml.isMultiKey() ) line = name + "," + line;
+                        if ( yaml.isMulti() ) line = name + "," + line;
                         curLines.add(line);
                     }
                     coverages.add(coverage);
@@ -111,7 +111,7 @@ public class StatOp {
             }
 
             String allLine = ChrCoverageOp.allLine(coverages);
-            if ( yaml.isMultiKey() ) allLine = name + "," + allLine;
+            if ( yaml.isMulti() ) allLine = name + "," + allLine;
             if ( all ) allLine = allLine.replaceFirst("all,", "");
             curLines.add(allLine);
 

@@ -52,7 +52,7 @@ public class Stat {
         //----------------------------
         Map<String, Integer> lengthOf = ReadWrite.readSizes(files.get(0), remove);
 
-        YAMLInfo                          yaml  = new YAMLInfo();
+        RlInfo                            yaml  = new RlInfo();
         Map<String, Map<String, IntSpan>> setOf = yaml.load(files.get(1), remove);
 
         //----------------------------
@@ -61,7 +61,7 @@ public class Stat {
         List<String> lines = new ArrayList<>();
 
         String header = "key,chr,chrLength,size,coverage";
-        if ( !yaml.isMultiKey() ) header = header.replaceFirst("key,", "");
+        if ( !yaml.isMulti() ) header = header.replaceFirst("key,", "");
         if ( all ) header = header.replaceFirst("chr,", "");
         lines.add(header);
 
@@ -75,7 +75,7 @@ public class Stat {
                     ChrCoverage coverage = new ChrCoverage(chr, lengthOf.get(chr), setOne.get(chr).size());
                     if ( !all ) {
                         String line = coverage.csvLine();
-                        if ( yaml.isMultiKey() ) line = name + "," + line;
+                        if ( yaml.isMulti() ) line = name + "," + line;
                         curLines.add(line);
                     }
                     coverages.add(coverage);
@@ -83,7 +83,7 @@ public class Stat {
             }
 
             String allLine = ChrCoverage.allLine(coverages);
-            if ( yaml.isMultiKey() ) allLine = name + "," + allLine;
+            if ( yaml.isMulti() ) allLine = name + "," + allLine;
             if ( all ) allLine = allLine.replaceFirst("all,", "");
             curLines.add(allLine);
 
