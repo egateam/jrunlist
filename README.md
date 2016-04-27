@@ -1,3 +1,6 @@
+[![Travis](https://img.shields.io/travis/wang-q/jrunlist.svg)](https://travis-ci.org/wang-q/jrunlist)
+[![Codecov branch](https://img.shields.io/codecov/c/github/wang-q/jrunlist/master.svg)](https://codecov.io/github/wang-q/jrunlist?branch=master)
+
 # NAME
 
 `jrunlist` operates chromosome runlist files
