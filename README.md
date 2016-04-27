@@ -221,7 +221,7 @@ cloc lib/ script/
 | name     | cloc    |
 | :-----   | :-----: |
 | App::RL  | 961     |
-| jrunlist | 1132    |
+| jrunlist | 1083    |
 
 ### BENCHMARK
 
