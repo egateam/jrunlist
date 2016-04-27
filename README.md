@@ -160,13 +160,13 @@ java -jar target/jrunlist-*-jar-with-dependencies.jar \
     src/test/resources/II.yml
 
 java -jar target/jrunlist-*-jar-with-dependencies.jar \
+    cover -o stdout \
+    src/test/resources/S288c.txt
+
+java -jar target/jrunlist-*-jar-with-dependencies.jar \
     span -o stdout \
     --op cover \
     src/test/resources/brca2.yml
-
-java -jar target/jrunlist-*-jar-with-dependencies.jar \
-    cover -o stdout \
-    src/test/resources/S288c.txt
 
 java -jar target/jrunlist-*-jar-with-dependencies.jar \
     compare -o stdout \

@@ -31,11 +31,21 @@ public class GenomeTest {
     }
 
     @Test
-    public void testGenomeFailed() throws Exception {
+    public void testNoArgs() throws Exception {
         String[] args = {"genome"};
         Runlist.main(args);
 
         Assert.assertTrue(this.stderrContent.toString().contains("Main parameters are required"),
+            "Except parameters");
+    }
+
+    @Test
+    public void testRedundantArgs() throws Exception {
+        String fileName = new ExpandResource("chr.sizes").invoke();
+        String[] args = {"genome", fileName, fileName, "--outfile", "stdout"};
+        Runlist.main(args);
+
+        Assert.assertTrue(this.stderrContent.toString().contains("input file"),
             "Except parameters");
     }
 
