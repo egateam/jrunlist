@@ -211,11 +211,8 @@ java -jar target/jrunlist-*-jar-with-dependencies.jar \
 ### CLOC
 
 ```bash
-cd ~/Scripts/java/jrunlist/
-cloc src/main
-
-cd ~/Scripts/cpan/App-RL/
-cloc lib/ script/
+cloc ~/Scripts/java/jrunlist/src/main
+cloc ~/Scripts/cpan/App-RL/lib/ ~/Scripts/cpan/App-RL/script/
 ```
 
 | name     | cloc    |
