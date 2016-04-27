@@ -18,10 +18,10 @@ import java.io.PrintStream;
 
 public class CompareTest {
     // Store the original standard out before changing it.
-    private final PrintStream originalStdout = System.out;
-    private final PrintStream originalStderr = System.err;
-    private ByteArrayOutputStream stdoutContent = new ByteArrayOutputStream();
-    private ByteArrayOutputStream stderrContent = new ByteArrayOutputStream();
+    private final PrintStream           originalStdout = System.out;
+    private final PrintStream           originalStderr = System.err;
+    private       ByteArrayOutputStream stdoutContent  = new ByteArrayOutputStream();
+    private       ByteArrayOutputStream stderrContent  = new ByteArrayOutputStream();
 
     @BeforeMethod
     public void beforeTest() {
@@ -31,19 +31,29 @@ public class CompareTest {
     }
 
     @Test
-    public void testCompareFailed() throws Exception {
+    public void testNoArgs() throws Exception {
         String[] args = {"compare"};
         Runlist.main(args);
 
         Assert.assertTrue(this.stderrContent.toString().contains("Main parameters are required"),
-            "Except parameters");
+            "Expect parameters");
     }
 
-    @Test(description = "Test command with intergenic.yml and repeat.yml")
+    @Test
+    public void testInsufficientArgs() throws Exception {
+        String   fileName1 = new ExpandResource("intergenic.yml").invoke();
+        String[] args      = {"compare", fileName1};
+        Runlist.main(args);
+
+        Assert.assertTrue(this.stderrContent.toString().contains("input file"),
+            "Expect parameters");
+    }
+
+    @Test(description = "intergenic.yml and repeat.yml")
     public void testExecute() throws Exception {
-        String fileName1 = new ExpandResource("intergenic.yml").invoke();
-        String fileName2 = new ExpandResource("repeat.yml").invoke();
-        String[] args = {"compare", fileName1, fileName2, "--outfile", "stdout"};
+        String   fileName1 = new ExpandResource("intergenic.yml").invoke();
+        String   fileName2 = new ExpandResource("repeat.yml").invoke();
+        String[] args      = {"compare", fileName1, fileName2, "--outfile", "stdout"};
         Runlist.main(args);
 
         Assert.assertEquals(this.stdoutContent.toString().split("\r\n|\r|\n").length, 17, "line count");
