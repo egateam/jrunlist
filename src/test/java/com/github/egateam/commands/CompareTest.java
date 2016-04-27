@@ -68,9 +68,8 @@ public class CompareTest {
         String[] args      = {"compare", fileName1, fileName2, "--outfile", "stdout"};
         Runlist.main(args);
 
-//        Assert.assertEquals(this.stdoutContent.toString().split("\r\n|\r|\n").length, 17, "line count");
-//        Assert.assertTrue(this.stdoutContent.toString().contains("878539-878709"), "runlist exists");
-//        Assert.assertTrue(this.stdoutContent.toString().matches("(?s).*I:.+XVI:.*"), "chromosomes exists");
+        String lines = this.stdoutContent.toString();
+        Assert.assertEquals(lines.split("\r\n|\r|\n").length, 35, "line count");
     }
 
     @AfterMethod
