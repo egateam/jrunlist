@@ -141,6 +141,10 @@ This Java class is ported from the Perl module `App::RL`.
 
 Oracle/Open JDK 1.7 or higher.
 
+Optional:
+
+* yamljs: `npm install -g yamljs`
+
 ## EXAMPLES
 
 ```bash
@@ -169,6 +173,12 @@ java -jar target/jrunlist-*-jar-with-dependencies.jar \
     --op intersect \
     src/test/resources/intergenic.yml \
     src/test/resources/repeat.yml
+
+java -jar target/jrunlist-*-jar-with-dependencies.jar \
+    compare -o stdout \
+    --op intersect \
+    src/test/resources/I.II.yml \
+    src/test/resources/intergenic.yml
 
 java -jar target/jrunlist-*-jar-with-dependencies.jar \
     stat -o stdout \

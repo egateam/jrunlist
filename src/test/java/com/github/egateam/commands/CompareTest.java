@@ -50,7 +50,7 @@ public class CompareTest {
     }
 
     @Test(description = "intergenic.yml and repeat.yml")
-    public void testExecute() throws Exception {
+    public void testExecute1() throws Exception {
         String   fileName1 = new ExpandResource("intergenic.yml").invoke();
         String   fileName2 = new ExpandResource("repeat.yml").invoke();
         String[] args      = {"compare", fileName1, fileName2, "--outfile", "stdout"};
@@ -59,6 +59,18 @@ public class CompareTest {
         Assert.assertEquals(this.stdoutContent.toString().split("\r\n|\r|\n").length, 17, "line count");
         Assert.assertTrue(this.stdoutContent.toString().contains("878539-878709"), "runlist exists");
         Assert.assertTrue(this.stdoutContent.toString().matches("(?s).*I:.+XVI:.*"), "chromosomes exists");
+    }
+
+    @Test(description = "I.II.yml and intergenic.yml")
+    public void testExecute2() throws Exception {
+        String   fileName1 = new ExpandResource("I.II.yml").invoke();
+        String   fileName2 = new ExpandResource("intergenic.yml").invoke();
+        String[] args      = {"compare", fileName1, fileName2, "--outfile", "stdout"};
+        Runlist.main(args);
+
+//        Assert.assertEquals(this.stdoutContent.toString().split("\r\n|\r|\n").length, 17, "line count");
+//        Assert.assertTrue(this.stdoutContent.toString().contains("878539-878709"), "runlist exists");
+//        Assert.assertTrue(this.stdoutContent.toString().matches("(?s).*I:.+XVI:.*"), "chromosomes exists");
     }
 
     @AfterMethod
