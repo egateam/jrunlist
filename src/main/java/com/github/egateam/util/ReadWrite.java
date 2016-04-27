@@ -14,7 +14,9 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import org.apache.commons.io.FileUtils;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ReadWrite {
@@ -49,5 +51,19 @@ public class ReadWrite {
             file,
             new TypeReference<Map<String, Object>>() {
             });
+    }
+
+    public static List<String> readLines(File file) throws Exception {
+        List<String> lines = new ArrayList<>();
+
+        try ( BufferedReader reader = new BufferedReader(new FileReader(file)) ) {
+            String line;
+            while ( (line = reader.readLine()) != null ) {
+                line = line.trim();
+                lines.add(line);
+            }
+        }
+
+        return lines;
     }
 }
