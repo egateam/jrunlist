@@ -9,7 +9,7 @@ then
 fi
 
 echo "==> jrunlist"
-${COMAMND_TIME} java -jar ../target/jrunlist-*-jar-with-dependencies.jar \
+${COMMAND_TIME} java -jar ../target/jrunlist-*-jar-with-dependencies.jar \
     statop \
     chr.sizes sep-gene.yml paralog.yml  \
     --op intersect --all \
@@ -17,7 +17,7 @@ ${COMAMND_TIME} java -jar ../target/jrunlist-*-jar-with-dependencies.jar \
     > /dev/null
 
 echo "==> App::RL"
-${COMAMND_TIME} runlist \
+${COMMAND_TIME} runlist \
     stat2 \
     -s chr.sizes sep-gene.yml paralog.yml  \
     --op intersect --all --mk \
