@@ -13,7 +13,9 @@ import com.github.egateam.IntSpan;
 import com.github.egateam.util.*;
 
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @SuppressWarnings({"CanBeFinal"})
 @Parameters(commandDescription = "Coverage on chromosomes for runlists")
@@ -68,14 +70,16 @@ public class Stat {
             List<ChrCoverage>    coverages = new ArrayList<>();
             List<String>         curLines  = new ArrayList<>();
 
-            for ( String chr : setOne.keySet() ) {
-                ChrCoverage coverage = new ChrCoverage(chr, lengthOf.get(chr), setOne.get(chr).size());
-                if ( !all ) {
-                    String line = coverage.csvLine();
-                    if ( yaml.isMultiKey() ) line = name + "," + line;
-                    curLines.add(line);
+            for ( String chr : yaml.getSortedChrs() ) {
+                if ( setOne.containsKey(chr) ) {
+                    ChrCoverage coverage = new ChrCoverage(chr, lengthOf.get(chr), setOne.get(chr).size());
+                    if ( !all ) {
+                        String line = coverage.csvLine();
+                        if ( yaml.isMultiKey() ) line = name + "," + line;
+                        curLines.add(line);
+                    }
+                    coverages.add(coverage);
                 }
-                coverages.add(coverage);
             }
 
             String allLine = ChrCoverage.allLine(coverages);
@@ -83,7 +87,6 @@ public class Stat {
             if ( all ) allLine = allLine.replaceFirst("all,", "");
             curLines.add(allLine);
 
-            Collections.sort(curLines);
             lines.addAll(curLines);
         }
 

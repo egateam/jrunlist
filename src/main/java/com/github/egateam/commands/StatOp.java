@@ -15,7 +15,6 @@ import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -93,20 +92,22 @@ public class StatOp {
             List<ChrCoverageOp> coverages = new ArrayList<>();
             List<String>        curLines  = new ArrayList<>();
 
-            for ( String chr : setOne.keySet() ) {
-                ChrCoverageOp coverage = new ChrCoverageOp(
-                    chr,
-                    lengthOf.get(chr),
-                    setOne.get(chr).size(),
-                    setSingle.get(chr).size(),
-                    resultOne.get(chr).size()
-                );
-                if ( !all ) {
-                    String line = coverage.csvLine();
-                    if ( yaml.isMultiKey() ) line = name + "," + line;
-                    curLines.add(line);
+            for ( String chr : yaml.getSortedChrs() ) {
+                if ( setOne.containsKey(chr) ) {
+                    ChrCoverageOp coverage = new ChrCoverageOp(
+                        chr,
+                        lengthOf.get(chr),
+                        setOne.get(chr).size(),
+                        setSingle.get(chr).size(),
+                        resultOne.get(chr).size()
+                    );
+                    if ( !all ) {
+                        String line = coverage.csvLine();
+                        if ( yaml.isMultiKey() ) line = name + "," + line;
+                        curLines.add(line);
+                    }
+                    coverages.add(coverage);
                 }
-                coverages.add(coverage);
             }
 
             String allLine = ChrCoverageOp.allLine(coverages);
@@ -114,7 +115,6 @@ public class StatOp {
             if ( all ) allLine = allLine.replaceFirst("all,", "");
             curLines.add(allLine);
 
-            Collections.sort(curLines);
             lines.addAll(curLines);
         }
 

@@ -217,7 +217,7 @@ cd benchmark
 bash run.sh
 ```
 
-* OSX 10.11 i7-6700k
+* OSX 10.11 i7-6700k oracleJDK8
 
 ```
 ==> jrunlist
@@ -254,7 +254,7 @@ bash run.sh
      55700  involuntary context switches
 ```
 
-* Ubuntu 14.04 E5-2690 v3
+* Ubuntu 14.04 E5-2690 v3 openJDK7
 
 ```
 ==> jrunlist
