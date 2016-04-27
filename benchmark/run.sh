@@ -2,10 +2,10 @@
 
 cpanm App::RL
 
-COMAMND_TIME="command time -v"
+COMMAND_TIME="command time -v"
 if [[ `uname` == 'Darwin' ]];
 then
-    COMAMND_TIME="command time -l"
+    COMMAND_TIME="command time -l"
 fi
 
 echo "==> jrunlist"
