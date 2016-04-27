@@ -56,7 +56,7 @@ public class RlInfo {
     }
 
     public Map<String, Map<String, IntSpan>> load(File file, boolean remove) throws Exception {
-        Map<String, ?> runlistOf = ReadWrite.readYaml(file);
+        Map<String, ?> runlistOf = ReadWrite.readRl(file);
 
         // check depth of YAML
         // get one (maybe not first) value from Map
@@ -84,7 +84,7 @@ public class RlInfo {
     }
 
     public Map<String, IntSpan> loadSingle(File file, boolean remove) throws Exception {
-        Map<String, ?> runlistSingle = ReadWrite.readYaml(file);
+        Map<String, ?> runlistSingle = ReadWrite.readRl(file);
 
         // check depth of YAML
         // get one (maybe not first) value from Map

@@ -70,6 +70,6 @@ public class Combine {
         //----------------------------
         // Output
         //----------------------------
-        ReadWrite.writeYaml(outfile, Transform.toRunlist(opResult));
+        ReadWrite.writeRl(outfile, Transform.toRunlist(opResult));
     }
 }

@@ -42,7 +42,7 @@ public class Some {
         //----------------------------
         // Loading
         //----------------------------
-        Map<String, ?> master = ReadWrite.readYaml(files.get(0));
+        Map<String, ?> master = ReadWrite.readRl(files.get(0));
 
         Set<String> allNames = new HashSet<>();
         for ( String str : ReadWrite.readLines(files.get(1)) ) {
@@ -62,6 +62,6 @@ public class Some {
         //----------------------------
         // Output
         //----------------------------
-        ReadWrite.writeYaml(outfile, outMap);
+        ReadWrite.writeRl(outfile, outMap);
     }
 }

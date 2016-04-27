@@ -43,7 +43,7 @@ public class Split {
         //----------------------------
         // Loading
         //----------------------------
-        Map<String, ?> master = ReadWrite.readYaml(files.get(0));
+        Map<String, ?> master = ReadWrite.readRl(files.get(0));
 
         for ( Map.Entry<String, ?> entry : master.entrySet() ) {
             String key   = entry.getKey();
@@ -59,11 +59,11 @@ public class Split {
             // Output
             //----------------------------
             if ( outdir.equals("stdout") ) {
-                ReadWrite.writeYaml("stdout", map);
+                ReadWrite.writeRl("stdout", map);
             } else {
                 String filename = key + suffix;
                 String fullPath = FilenameUtils.concat(outdir, filename);
-                ReadWrite.writeYaml(fullPath, map);
+                ReadWrite.writeRl(fullPath, map);
             }
         }
     }

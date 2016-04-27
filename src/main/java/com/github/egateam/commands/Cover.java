@@ -75,6 +75,6 @@ public class Cover {
         //----------------------------
         // Output
         //----------------------------
-        ReadWrite.writeYaml(outfile, Transform.toRunlist(setSingle));
+        ReadWrite.writeRl(outfile, Transform.toRunlist(setSingle));
     }
 }

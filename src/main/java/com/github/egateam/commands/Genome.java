@@ -64,6 +64,6 @@ public class Genome {
         //----------------------------
         // Output
         //----------------------------
-        ReadWrite.writeYaml(outfile, runlistOf);
+        ReadWrite.writeRl(outfile, runlistOf);
     }
 }

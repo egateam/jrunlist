@@ -96,12 +96,12 @@ public class Span {
         // Output
         //----------------------------
         if ( yaml.isMulti() ) {
-            ReadWrite.writeYaml(
+            ReadWrite.writeRl(
                 outfile,
                 Transform.toRunlistMulti(opResultOf)
             );
         } else {
-            ReadWrite.writeYaml(
+            ReadWrite.writeRl(
                 outfile,
                 Transform.toRunlist(opResultOf.get(RlInfo.getSingleKey()))
             );
