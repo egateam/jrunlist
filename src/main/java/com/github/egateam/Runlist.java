@@ -118,45 +118,6 @@ public class Runlist {
         }
     }
 
-    /*
-    mvn clean verify
-
-    java -jar target/jrunlist-*-jar-with-dependencies.jar \
-        genome -o stdout \
-        src/test/resources/chr.sizes
-
-    java -jar target/jrunlist-*-jar-with-dependencies.jar \
-        merge -o stdout \
-        src/test/resources/I.yml \
-        src/test/resources/II.yml
-
-    java -jar target/jrunlist-*-jar-with-dependencies.jar \
-        compare -o stdout \
-        --op intersect \
-        src/test/resources/intergenic.yml \
-        src/test/resources/repeat.yml
-
-    java -jar target/jrunlist-*-jar-with-dependencies.jar \
-        stat -o stdout \
-        src/test/resources/chr.sizes \
-        src/test/resources/intergenic.yml
-
-    java -jar target/jrunlist-*-jar-with-dependencies.jar \
-        statop -o stdout \
-        --op intersect \
-        src/test/resources/chr.sizes \
-        src/test/resources/intergenic.yml \
-        src/test/resources/repeat.yml
-
-    java -jar target/jrunlist-*-jar-with-dependencies.jar \
-        span -o stdout \
-        --op cover \
-        src/test/resources/brca2.yml
-
-    java -jar target/jrunlist-*-jar-with-dependencies.jar \
-        cover -o stdout \
-        src/test/resources/S288c.txt
-    */
     public static void main(String[] args) throws Exception {
         new Runlist().execute(args);
     }
