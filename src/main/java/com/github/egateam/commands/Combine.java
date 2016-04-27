@@ -47,7 +47,7 @@ public class Combine {
         //----------------------------
         // Loading
         //----------------------------
-        YAMLInfo yaml = new YAMLInfo();
+        YAMLInfo                          yaml  = new YAMLInfo();
         Map<String, Map<String, IntSpan>> setOf = yaml.load(files.get(0), remove);
 
         //----------------------------
@@ -61,7 +61,7 @@ public class Combine {
         for ( String name : yaml.getSortedNames() ) {
             Map<String, IntSpan> curSet = setOf.get(name);
             for ( String chr : curSet.keySet() ) {
-                IntSpan curResult = opResultOf.get(chr);
+                IntSpan curResult  = opResultOf.get(chr);
                 IntSpan curIntSpan = curSet.get(chr);
                 opResultOf.put(chr, curResult.add(curIntSpan));
             }
@@ -70,6 +70,6 @@ public class Combine {
         //----------------------------
         // Output
         //----------------------------
-        new WriteYAML(outfile, new Transform(opResultOf, remove).toRunlist()).invoke();
+        ReadWrite.writeYaml(outfile, new Transform(opResultOf, remove).toRunlist());
     }
 }

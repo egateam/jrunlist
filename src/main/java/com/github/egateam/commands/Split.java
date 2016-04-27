@@ -10,8 +10,7 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
 import com.github.egateam.util.FileConverterIn;
-import com.github.egateam.util.ReadYAML;
-import com.github.egateam.util.WriteYAML;
+import com.github.egateam.util.ReadWrite;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
@@ -44,29 +43,27 @@ public class Split {
         //----------------------------
         // Loading
         //----------------------------
-        File inFile = files.get(0);
-        Map<String, ?> master = new ReadYAML(inFile).invoke();
+        Map<String, ?> master = ReadWrite.readYaml(files.get(0));
 
         for ( Map.Entry<String, ?> entry : master.entrySet() ) {
-            String key = entry.getKey();
+            String key   = entry.getKey();
             Object value = entry.getValue();
 
             if ( !(value instanceof Map<?, ?>) ) {
                 throw new Exception("Not a valid multi-key runlist yaml file");
             }
 
-            Map<?, ?> map = (Map<?, ?>) value;
+            Map<String, ?> map = (Map<String, ?>) value;
 
             //----------------------------
             // Output
             //----------------------------
             if ( outdir.equals("stdout") ) {
-                new WriteYAML("stdout", map).invoke();
+                ReadWrite.writeYaml("stdout", map);
             } else {
                 String filename = key + suffix;
                 String fullPath = FilenameUtils.concat(outdir, filename);
-
-                new WriteYAML(fullPath, map).invoke();
+                ReadWrite.writeYaml(fullPath, map);
             }
         }
     }

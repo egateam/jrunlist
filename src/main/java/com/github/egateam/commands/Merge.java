@@ -9,8 +9,7 @@ package com.github.egateam.commands;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
 import com.github.egateam.util.FileConverterIn;
-import com.github.egateam.util.ReadYAML;
-import com.github.egateam.util.WriteYAML;
+import com.github.egateam.util.ReadWrite;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
@@ -47,7 +46,7 @@ public class Merge {
         //----------------------------
         Map<String, Map> master = new HashMap<>();
         for ( File inFile : files ) {
-            Map<String, ?> map = new ReadYAML(inFile).invoke();
+            Map<String, ?> map = ReadWrite.readYaml(inFile);
 
             String basename = FilenameUtils.getBaseName(inFile.toString());
             master.put(basename, map);
@@ -56,6 +55,6 @@ public class Merge {
         //----------------------------
         // Output
         //----------------------------
-        new WriteYAML(outfile, master).invoke();
+        ReadWrite.writeYaml(outfile, master);
     }
 }

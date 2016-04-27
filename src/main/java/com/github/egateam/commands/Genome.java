@@ -13,7 +13,8 @@ import com.beust.jcommander.Parameters;
 import com.github.egateam.IntSpan;
 import com.github.egateam.util.FileConverterIn;
 import com.github.egateam.util.ReadSizes;
-import com.github.egateam.util.WriteYAML;
+import com.github.egateam.util.ReadWrite;
+import com.github.egateam.util.Transform;
 
 import java.io.*;
 import java.util.HashMap;
@@ -50,7 +51,7 @@ public class Genome {
         //----------------------------
         // Loading
         //----------------------------
-        File inFile = files.get(0);
+        File                 inFile   = files.get(0);
         Map<String, Integer> lengthOf = new ReadSizes(inFile, remove).invoke();
 
         //----------------------------
@@ -66,6 +67,6 @@ public class Genome {
         //----------------------------
         // Output
         //----------------------------
-        new WriteYAML(outfile, runlistOf).invoke();
+        ReadWrite.writeYaml(outfile, runlistOf);
     }
 }

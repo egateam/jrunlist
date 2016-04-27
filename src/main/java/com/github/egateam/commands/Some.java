@@ -11,8 +11,7 @@ import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
 import com.github.egateam.util.FileConverterIn;
 import com.github.egateam.util.ReadLines;
-import com.github.egateam.util.ReadYAML;
-import com.github.egateam.util.WriteYAML;
+import com.github.egateam.util.ReadWrite;
 
 import java.io.File;
 import java.util.*;
@@ -44,7 +43,7 @@ public class Some {
         //----------------------------
         // Loading
         //----------------------------
-        Map<String, ?> master = new ReadYAML(files.get(0)).invoke();
+        Map<String, ?> master = ReadWrite.readYaml(files.get(0));
 
         Set<String> allNames = new HashSet<>();
         for ( String str : new ReadLines(files.get(1)).invoke() ) {
@@ -64,6 +63,6 @@ public class Some {
         //----------------------------
         // Output
         //----------------------------
-        new WriteYAML(outfile, outMap).invoke();
+        ReadWrite.writeYaml(outfile, outMap);
     }
 }

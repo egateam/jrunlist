@@ -56,7 +56,7 @@ public class YAMLInfo {
     }
 
     public Map<String, Map<String, IntSpan>> load(File file, boolean remove) throws Exception {
-        Map<String, ?> runlistOf = new ReadYAML(file).invoke();
+        Map<String, ?> runlistOf = ReadWrite.readYaml(file);
 
         // check depth of YAML
         // get one (maybe not first) value from Map
@@ -84,7 +84,7 @@ public class YAMLInfo {
     }
 
     public Map<String, IntSpan> loadSingle(File file, boolean remove) throws Exception {
-        Map<String, ?> runlistSingle = new ReadYAML(file).invoke();
+        Map<String, ?> runlistSingle = ReadWrite.readYaml(file);
 
         // check depth of YAML
         // get one (maybe not first) value from Map
@@ -98,7 +98,7 @@ public class YAMLInfo {
         return new Transform(runlistSingle, remove).toIntSpan();
     }
 
-    public static String validateCompare(String op) throws RuntimeException {
+    public static String validateOpCompare(String op) throws RuntimeException {
         String result;
 
         if ( op.startsWith("dif") ) {
@@ -116,7 +116,7 @@ public class YAMLInfo {
         return result;
     }
 
-    public static String validateSpan(String op) throws RuntimeException {
+    public static String validateOpSpan(String op) throws RuntimeException {
         String result;
 
         if ( op.startsWith("cover") ) {

@@ -49,7 +49,7 @@ public class StatOp {
             throw new ParameterException("This command need three input files.");
         }
 
-        op = YAMLInfo.validateCompare(op);
+        op = YAMLInfo.validateOpCompare(op);
 
         if ( base == null ) {
             base = FilenameUtils.getBaseName(files.get(2).toString());

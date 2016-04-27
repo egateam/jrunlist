@@ -12,7 +12,7 @@ import com.beust.jcommander.Parameters;
 import com.github.egateam.IntSpan;
 import com.github.egateam.util.FileConverterIn;
 import com.github.egateam.util.Transform;
-import com.github.egateam.util.WriteYAML;
+import com.github.egateam.util.ReadWrite;
 import com.github.egateam.util.YAMLInfo;
 
 import java.io.File;
@@ -42,7 +42,7 @@ public class Compare {
             throw new ParameterException("This command need two input files.");
         }
 
-        op = YAMLInfo.validateCompare(op);
+        op = YAMLInfo.validateOpCompare(op);
 
         if ( outfile == null ) {
             outfile = files.get(0) + "." + op + ".yml";
@@ -68,16 +68,15 @@ public class Compare {
         // Output
         //----------------------------
         if ( yaml.isMultiKey() ) {
-            new WriteYAML(
+            ReadWrite.writeYaml(
                 outfile,
                 new Transform(opResultOf, remove).toRunlist()
-            ).invoke();
+            );
         } else {
-            new WriteYAML(
+            ReadWrite.writeYaml(
                 outfile,
                 new Transform(opResultOf.get(YAMLInfo.getSingleKey()), remove).toRunlist()
-            ).invoke();
+            );
         }
     }
-
 }

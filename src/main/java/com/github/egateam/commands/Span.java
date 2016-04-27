@@ -51,7 +51,7 @@ public class Span {
             throw new ParameterException("This command need one input file.");
         }
 
-        op = YAMLInfo.validateSpan(op);
+        op = YAMLInfo.validateOpSpan(op);
 
         if ( outfile == null ) {
             outfile = files.get(0) + "." + op + ".yml";
@@ -96,15 +96,15 @@ public class Span {
         // Output
         //----------------------------
         if ( yaml.isMultiKey() ) {
-            new WriteYAML(
+            ReadWrite.writeYaml(
                 outfile,
                 new Transform(opResultOf, remove).toRunlist()
-            ).invoke();
+            );
         } else {
-            new WriteYAML(
+            ReadWrite.writeYaml(
                 outfile,
                 new Transform(opResultOf.get(YAMLInfo.getSingleKey()), remove).toRunlist()
-            ).invoke();
+            );
         }
     }
 }
