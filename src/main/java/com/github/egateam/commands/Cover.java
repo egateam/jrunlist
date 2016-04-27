@@ -55,7 +55,7 @@ public class Cover {
         // Loading
         //----------------------------
         for ( File infile : files ) {
-            for ( String str : ReadWrite.readLines(infile) ) {
+            for ( String str : StaticUtils.readLines(infile) ) {
 
                 //----------------------------
                 // Operating
@@ -75,6 +75,6 @@ public class Cover {
         //----------------------------
         // Output
         //----------------------------
-        ReadWrite.writeRl(outfile, Transform.toRunlist(setSingle));
+        StaticUtils.writeRl(outfile, StaticUtils.toRunlist(setSingle));
     }
 }

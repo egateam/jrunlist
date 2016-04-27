@@ -10,7 +10,7 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
 import com.github.egateam.util.FileConverterIn;
-import com.github.egateam.util.ReadWrite;
+import com.github.egateam.util.StaticUtils;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
@@ -43,7 +43,7 @@ public class Split {
         //----------------------------
         // Loading
         //----------------------------
-        Map<String, ?> master = ReadWrite.readRl(files.get(0));
+        Map<String, ?> master = StaticUtils.readRl(files.get(0));
 
         for ( Map.Entry<String, ?> entry : master.entrySet() ) {
             String key   = entry.getKey();
@@ -59,11 +59,11 @@ public class Split {
             // Output
             //----------------------------
             if ( outdir.equals("stdout") ) {
-                ReadWrite.writeRl("stdout", map);
+                StaticUtils.writeRl("stdout", map);
             } else {
                 String filename = key + suffix;
                 String fullPath = FilenameUtils.concat(outdir, filename);
-                ReadWrite.writeRl(fullPath, map);
+                StaticUtils.writeRl(fullPath, map);
             }
         }
     }

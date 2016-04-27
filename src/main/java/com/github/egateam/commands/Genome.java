@@ -12,7 +12,7 @@ import com.beust.jcommander.Parameters;
 
 import com.github.egateam.IntSpan;
 import com.github.egateam.util.FileConverterIn;
-import com.github.egateam.util.ReadWrite;
+import com.github.egateam.util.StaticUtils;
 
 import java.io.*;
 import java.util.HashMap;
@@ -49,7 +49,7 @@ public class Genome {
         //----------------------------
         // Loading
         //----------------------------
-        Map<String, Integer> lengthOf = ReadWrite.readSizes(files.get(0), remove);
+        Map<String, Integer> lengthOf = StaticUtils.readSizes(files.get(0), remove);
 
         //----------------------------
         // Operating
@@ -64,6 +64,6 @@ public class Genome {
         //----------------------------
         // Output
         //----------------------------
-        ReadWrite.writeRl(outfile, runlistOf);
+        StaticUtils.writeRl(outfile, runlistOf);
     }
 }

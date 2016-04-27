@@ -10,7 +10,7 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
 import com.github.egateam.util.FileConverterIn;
-import com.github.egateam.util.ReadWrite;
+import com.github.egateam.util.StaticUtils;
 
 import java.io.File;
 import java.util.*;
@@ -42,10 +42,10 @@ public class Some {
         //----------------------------
         // Loading
         //----------------------------
-        Map<String, ?> master = ReadWrite.readRl(files.get(0));
+        Map<String, ?> master = StaticUtils.readRl(files.get(0));
 
         Set<String> allNames = new HashSet<>();
-        for ( String str : ReadWrite.readLines(files.get(1)) ) {
+        for ( String str : StaticUtils.readLines(files.get(1)) ) {
             allNames.add(str);
         }
 
@@ -62,6 +62,6 @@ public class Some {
         //----------------------------
         // Output
         //----------------------------
-        ReadWrite.writeRl(outfile, outMap);
+        StaticUtils.writeRl(outfile, outMap);
     }
 }

@@ -70,6 +70,6 @@ public class Combine {
         //----------------------------
         // Output
         //----------------------------
-        ReadWrite.writeRl(outfile, Transform.toRunlist(opResult));
+        StaticUtils.writeRl(outfile, StaticUtils.toRunlist(opResult));
     }
 }

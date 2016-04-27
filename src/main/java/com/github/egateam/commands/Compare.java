@@ -11,8 +11,7 @@ import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
 import com.github.egateam.IntSpan;
 import com.github.egateam.util.FileConverterIn;
-import com.github.egateam.util.Transform;
-import com.github.egateam.util.ReadWrite;
+import com.github.egateam.util.StaticUtils;
 import com.github.egateam.util.RlInfo;
 
 import java.io.File;
@@ -42,7 +41,7 @@ public class Compare {
             throw new ParameterException("This command need two input files.");
         }
 
-        op = RlInfo.validateOpCompare(op);
+        op = StaticUtils.validateOpCompare(op);
 
         if ( outfile == null ) {
             outfile = files.get(0) + "." + op + ".yml";
@@ -68,14 +67,14 @@ public class Compare {
         // Output
         //----------------------------
         if ( yaml.isMulti() ) {
-            ReadWrite.writeRl(
+            StaticUtils.writeRl(
                 outfile,
-                Transform.toRunlistMulti(opResultOf)
+                StaticUtils.toRunlistMulti(opResultOf)
             );
         } else {
-            ReadWrite.writeRl(
+            StaticUtils.writeRl(
                 outfile,
-                Transform.toRunlist(opResultOf.get(RlInfo.getSingleKey()))
+                StaticUtils.toRunlist(opResultOf.get(RlInfo.getSingleKey()))
             );
         }
     }

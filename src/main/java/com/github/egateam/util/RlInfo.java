@@ -56,7 +56,7 @@ public class RlInfo {
     }
 
     public Map<String, Map<String, IntSpan>> load(File file, boolean remove) throws Exception {
-        Map<String, ?> runlistOf = ReadWrite.readRl(file);
+        Map<String, ?> runlistOf = StaticUtils.readRl(file);
 
         // check depth of YAML
         // get one (maybe not first) value from Map
@@ -69,7 +69,7 @@ public class RlInfo {
                 //noinspection unchecked
                 HashMap<String, String> value = (HashMap<String, String>) entry.getValue();
 
-                setOf.put(key, Transform.toIntSpan(value));
+                setOf.put(key, StaticUtils.toIntSpan(value));
                 allChrs.addAll(value.keySet());
 
                 allNames.add(key);
@@ -77,14 +77,14 @@ public class RlInfo {
         } else {
             allChrs.addAll(runlistOf.keySet());
             allNames.add(getSingleKey());
-            setOf.put(getSingleKey(), Transform.toIntSpan((Map<String, String>) runlistOf));
+            setOf.put(getSingleKey(), StaticUtils.toIntSpan((Map<String, String>) runlistOf));
         }
 
         return setOf;
     }
 
     public Map<String, IntSpan> loadSingle(File file, boolean remove) throws Exception {
-        Map<String, ?> runlistSingle = ReadWrite.readRl(file);
+        Map<String, ?> runlistSingle = StaticUtils.readRl(file);
 
         // check depth of YAML
         // get one (maybe not first) value from Map
@@ -95,47 +95,7 @@ public class RlInfo {
         }
 
         allChrs.addAll(runlistSingle.keySet());
-        return Transform.toIntSpan((Map<String, String>) runlistSingle);
-    }
-
-    public static String validateOpCompare(String op) throws RuntimeException {
-        String result;
-
-        if ( op.startsWith("dif") ) {
-            result = "diff";
-        } else if ( op.startsWith("uni") ) {
-            result = "union";
-        } else if ( op.startsWith("int") ) {
-            result = "intersect";
-        } else if ( op.startsWith("xor") ) {
-            result = "xor";
-        } else {
-            throw new RuntimeException(String.format("op [%s] is invalid", op));
-        }
-
-        return result;
-    }
-
-    public static String validateOpSpan(String op) throws RuntimeException {
-        String result;
-
-        if ( op.startsWith("cover") ) {
-            result = "cover";
-        } else if ( op.startsWith("hole") ) {
-            result = "holes";
-        } else if ( op.startsWith("trim") ) {
-            result = "trim";
-        } else if ( op.startsWith("pad") ) {
-            result = "pad";
-        } else if ( op.startsWith("excise") ) {
-            result = "excise";
-        } else if ( op.startsWith("fill") ) {
-            result = "fill";
-        } else {
-            throw new RuntimeException(String.format("op [%s] is invalid", op));
-        }
-
-        return result;
+        return StaticUtils.toIntSpan((Map<String, String>) runlistSingle);
     }
 
     // Create empty IntSpan for each name:chr

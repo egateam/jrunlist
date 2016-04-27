@@ -51,7 +51,7 @@ public class Span {
             throw new ParameterException("This command need one input file.");
         }
 
-        op = RlInfo.validateOpSpan(op);
+        op = StaticUtils.validateOpSpan(op);
 
         if ( outfile == null ) {
             outfile = files.get(0) + "." + op + ".yml";
@@ -96,14 +96,14 @@ public class Span {
         // Output
         //----------------------------
         if ( yaml.isMulti() ) {
-            ReadWrite.writeRl(
+            StaticUtils.writeRl(
                 outfile,
-                Transform.toRunlistMulti(opResultOf)
+                StaticUtils.toRunlistMulti(opResultOf)
             );
         } else {
-            ReadWrite.writeRl(
+            StaticUtils.writeRl(
                 outfile,
-                Transform.toRunlist(opResultOf.get(RlInfo.getSingleKey()))
+                StaticUtils.toRunlist(opResultOf.get(RlInfo.getSingleKey()))
             );
         }
     }

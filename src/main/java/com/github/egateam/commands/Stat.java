@@ -50,7 +50,7 @@ public class Stat {
         //----------------------------
         // Loading
         //----------------------------
-        Map<String, Integer> lengthOf = ReadWrite.readSizes(files.get(0), remove);
+        Map<String, Integer> lengthOf = StaticUtils.readSizes(files.get(0), remove);
 
         RlInfo                            yaml  = new RlInfo();
         Map<String, Map<String, IntSpan>> setOf = yaml.load(files.get(1), remove);
@@ -93,6 +93,6 @@ public class Stat {
         //----------------------------
         // Output
         //----------------------------
-        ReadWrite.writeLines(outfile, lines);
+        StaticUtils.writeLines(outfile, lines);
     }
 }
