@@ -61,7 +61,7 @@
         <dependency>
             <groupId>com.github.egateam</groupId>
             <artifactId>jintspan</artifactId>
-            <version>0.1.4</version>
+            <version>0.1.5</version>
         </dependency>
 
     </dependencies>

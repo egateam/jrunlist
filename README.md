@@ -200,10 +200,28 @@ java -jar target/jrunlist-*-jar-with-dependencies.jar \
     benchmark/chr.sizes benchmark/sep-gene.yml \
     --all -o stdout
 
-java -jar target/jrunlist-*-jar-with-dependencies.jar \
+time java -jar target/jrunlist-*-jar-with-dependencies.jar \
     statop \
     benchmark/chr.sizes benchmark/sep-gene.yml benchmark/paralog.yml \
-    --op intersect --all -o stdout
+    --op intersect --all -o stdout > /dev/null
+
+# 4g
+# real	1m54.431s
+# user	10m37.026s
+# sys	0m4.820s
+# 8g
+# real	1m2.622s
+# user	2m58.087s
+# sys	0m7.783s
+# 16g
+# real	0m52.443s
+# user	1m30.462s
+# sys	0m8.424s
+time java -Xmx16g -jar target/jrunlist-*-jar-with-dependencies.jar \
+    statop \
+    benchmark/chr.sizes benchmark/sep-gene.yml benchmark/dust.yml \
+    --op intersect --all -o stdout > /dev/null
+
 ```
 
 ## COMPARISON
