@@ -204,24 +204,6 @@ time java -jar target/jrunlist-*-jar-with-dependencies.jar \
     statop \
     benchmark/chr.sizes benchmark/sep-gene.yml benchmark/paralog.yml \
     --op intersect --all -o stdout > /dev/null
-
-# 4g
-# real	1m54.431s
-# user	10m37.026s
-# sys	0m4.820s
-# 8g
-# real	1m2.622s
-# user	2m58.087s
-# sys	0m7.783s
-# 16g
-# real	0m52.443s
-# user	1m30.462s
-# sys	0m8.424s
-time java -Xmx16g -jar target/jrunlist-*-jar-with-dependencies.jar \
-    statop \
-    benchmark/chr.sizes benchmark/sep-gene.yml benchmark/dust.yml \
-    --op intersect --all -o stdout > /dev/null
-
 ```
 
 ## COMPARISON
@@ -264,6 +246,22 @@ bash run.sh
          5  signals received
          0  voluntary context switches
      18048  involuntary context switches
+==> jrunlist with IntArrayList
+        3.12 real         8.17 user         0.91 sys
+1064009728  maximum resident set size
+         0  average shared memory size
+         0  average unshared data size
+         0  average unshared stack size
+    270271  page reclaims
+         0  page faults
+         0  swaps
+         0  block input operations
+         5  block output operations
+         0  messages sent
+         0  messages received
+         2  signals received
+         2  voluntary context switches
+     40022  involuntary context switches
 ==> App::RL
       352.19 real       350.19 user         1.60 sys
  115826688  maximum resident set size
@@ -333,6 +331,47 @@ bash run.sh
         Signals delivered: 0
         Page size (bytes): 4096
         Exit status: 0
+```
+
+### Different implementations of IntSpan
+
+```
+time java -Xmx16g -jar target/jrunlist-*-jar-with-dependencies.jar \
+    statop \
+    benchmark/chr.sizes benchmark/sep-gene.yml benchmark/dust.yml \
+    --op intersect --all -o stdout > /dev/null
+```
+
+* IntSpan with `ArrayList<Integer>`
+
+```
+# 4g
+real	1m54.431s
+user    10m37.026s
+sys	    0m4.820s
+# 8g
+real	1m2.622s
+user	2m58.087s
+sys	    0m7.783s
+# 16g
+real	0m52.443s
+user	1m30.462s
+sys	    0m8.424s
+```
+
+* IntSpan with HPPC `IntArrayList`
+
+```
+# 4g
+java.lang.OutOfMemoryError
+# 8g
+real	0m26.901s
+user	0m37.996s
+sys	    0m10.456s
+# 16g
+real	0m31.387s
+user	0m49.367s
+sys	    0m12.870s
 ```
 
 ## AUTHOR
