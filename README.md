@@ -231,22 +231,6 @@ bash run.sh
 
 ```
 ==> jrunlist
-       11.33 real        15.37 user         0.64 sys
-1397743616  maximum resident set size
-         0  average shared memory size
-         0  average unshared data size
-         0  average unshared stack size
-    352760  page reclaims
-         0  page faults
-         0  swaps
-         0  block input operations
-         6  block output operations
-         0  messages sent
-         0  messages received
-         5  signals received
-         0  voluntary context switches
-     18048  involuntary context switches
-==> jrunlist with IntArrayList
         3.12 real         8.17 user         0.91 sys
 1064009728  maximum resident set size
          0  average shared memory size
@@ -284,24 +268,24 @@ bash run.sh
 
 ```
 ==> jrunlist
-        Command being timed: "java -jar ../target/jrunlist-0.1.1-jar-with-dependencies.jar statop chr.sizes sep-gene.yml paralog.yml --op intersect --all -o stdout"
-        User time (seconds): 23.07
-        System time (seconds): 0.70
-        Percent of CPU this job got: 126%
-        Elapsed (wall clock) time (h:mm:ss or m:ss): 0:18.76
+        Command being timed: "java -jar ../target/jrunlist-0.1.2-jar-with-dependencies.jar statop chr.sizes sep-gene.yml paralog.yml --op intersect --all -o stdout"
+        User time (seconds): 7.57
+        System time (seconds): 0.90
+        Percent of CPU this job got: 186%
+        Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.53
         Average shared text size (kbytes): 0
         Average unshared data size (kbytes): 0
         Average stack size (kbytes): 0
         Average total size (kbytes): 0
-        Maximum resident set size (kbytes): 1120744
+        Maximum resident set size (kbytes): 1113040
         Average resident set size (kbytes): 0
         Major (requiring I/O) page faults: 0
-        Minor (reclaiming a frame) page faults: 39604
-        Voluntary context switches: 1804
-        Involuntary context switches: 486
+        Minor (reclaiming a frame) page faults: 29505
+        Voluntary context switches: 801
+        Involuntary context switches: 194
         Swaps: 0
         File system inputs: 0
-        File system outputs: 88
+        File system outputs: 64
         Socket messages sent: 0
         Socket messages received: 0
         Signals delivered: 0
