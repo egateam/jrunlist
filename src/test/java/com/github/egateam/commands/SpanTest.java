@@ -40,7 +40,7 @@ public class SpanTest {
     }
 
     @Test(description = "Test command with cover brca2.yml")
-    public void testExecute1() throws Exception {
+    public void testExecuteCover() throws Exception {
         String   fileName = new ExpandResource("brca2.yml").invoke();
         String[] args     = {"span", fileName, "--op", "cover", "--outfile", "stdout"};
         Runlist.main(args);
@@ -51,7 +51,7 @@ public class SpanTest {
     }
 
     @Test(description = "Test command with fill brca2.yml")
-    public void testExecute2() throws Exception {
+    public void testExecuteFill() throws Exception {
         String   fileName = new ExpandResource("brca2.yml").invoke();
         String[] args     = {"span", "--op", "fill", "-n", "1000", fileName, "--outfile", "stdout"};
         Runlist.main(args);
@@ -61,6 +61,42 @@ public class SpanTest {
         Assert.assertTrue(lines.contains("32325076-32326613"), "emerged");
         Assert.assertTrue(lines.length() - lines.replace(",", "").length() != 25, "original");
         Assert.assertTrue(lines.length() - lines.replace(",", "").length() == 18, "new");
+    }
+
+    @Test(description = "Test command with trim brca2.yml")
+    public void testExecuteTrim() throws Exception {
+        String   fileName = new ExpandResource("brca2.yml").invoke();
+        String[] args     = {"span", "--op", "trim", "-n", "200", fileName, "--outfile", "stdout"};
+        Runlist.main(args);
+
+        String lines = this.stdoutContent.toString();
+        Assert.assertEquals(lines.split("\r\n|\r|\n").length, 2, "line count");
+        Assert.assertTrue(lines.length() - lines.replace(",", "").length() != 25, "original");
+        Assert.assertTrue(lines.length() - lines.replace(",", "").length() == 3, "new");
+    }
+
+    @Test(description = "Test command with pad brca2.yml")
+    public void testExecutePad() throws Exception {
+        String   fileName = new ExpandResource("brca2.yml").invoke();
+        String[] args     = {"span", "--op", "pad", "-n", "2000", fileName, "--outfile", "stdout"};
+        Runlist.main(args);
+
+        String lines = this.stdoutContent.toString();
+        Assert.assertEquals(lines.split("\r\n|\r|\n").length, 2, "line count");
+        Assert.assertTrue(lines.length() - lines.replace(",", "").length() != 25, "original");
+        Assert.assertTrue(lines.length() - lines.replace(",", "").length() == 6, "new");
+    }
+
+    @Test(description = "Test command with excise brca2.yml")
+    public void testExecuteExcise() throws Exception {
+        String   fileName = new ExpandResource("brca2.yml").invoke();
+        String[] args     = {"span", "--op", "excise", "-n", "400", fileName, "--outfile", "stdout"};
+        Runlist.main(args);
+
+        String lines = this.stdoutContent.toString();
+        Assert.assertEquals(lines.split("\r\n|\r|\n").length, 2, "line count");
+        Assert.assertTrue(lines.length() - lines.replace(",", "").length() != 25, "original");
+        Assert.assertTrue(lines.length() - lines.replace(",", "").length() == 3, "new");
     }
 
     @AfterMethod

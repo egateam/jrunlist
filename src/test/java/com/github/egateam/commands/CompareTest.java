@@ -49,11 +49,11 @@ public class CompareTest {
             "Expect parameters");
     }
 
-    @Test(description = "intergenic.yml and repeat.yml")
-    public void testExecute1() throws Exception {
+    @Test(description = "Intersect of intergenic.yml and repeat.yml")
+    public void testExecuteIntersect1() throws Exception {
         String   fileName1 = new ExpandResource("intergenic.yml").invoke();
         String   fileName2 = new ExpandResource("repeat.yml").invoke();
-        String[] args      = {"compare", fileName1, fileName2, "--outfile", "stdout"};
+        String[] args      = {"compare", "--op", "intersect", fileName1, fileName2, "--outfile", "stdout"};
         Runlist.main(args);
 
         Assert.assertEquals(this.stdoutContent.toString().split("\r\n|\r|\n").length, 17, "line count");
@@ -61,8 +61,20 @@ public class CompareTest {
         Assert.assertTrue(this.stdoutContent.toString().matches("(?s).*I:.+XVI:.*"), "chromosomes exists");
     }
 
+    @Test(description = "Union of intergenic.yml and repeat.yml")
+    public void testExecuteUnion() throws Exception {
+        String   fileName1 = new ExpandResource("intergenic.yml").invoke();
+        String   fileName2 = new ExpandResource("repeat.yml").invoke();
+        String[] args      = {"compare", "--op", "union", fileName1, fileName2, "--outfile", "stdout"};
+        Runlist.main(args);
+
+        Assert.assertEquals(this.stdoutContent.toString().split("\r\n|\r|\n").length, 17, "line count");
+        Assert.assertFalse(this.stdoutContent.toString().contains("\"-\""), "no empty runlists");
+        Assert.assertTrue(this.stdoutContent.toString().matches("(?s).*I:.+XVI:.*"), "chromosomes exists");
+    }
+
     @Test(description = "I.II.yml and intergenic.yml")
-    public void testExecute2() throws Exception {
+    public void testExecuteIntersect2() throws Exception {
         String   fileName1 = new ExpandResource("I.II.yml").invoke();
         String   fileName2 = new ExpandResource("intergenic.yml").invoke();
         String[] args      = {"compare", fileName1, fileName2, "--outfile", "stdout"};
