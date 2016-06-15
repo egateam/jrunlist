@@ -14,12 +14,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @SuppressWarnings({"unused", "CanBeFinal"})
-public class ChrPosition {
-    private String name;
-    private String chrName;
-    private String chrStrand;
-    private int    chrStart;
-    private int    chrEnd;
+public class ChrRange {
+    private String  name;
+    private String  chrName;
+    private String  chrStrand;
+    private Integer chrStart;
+    private Integer chrEnd;
     private Map<String, String> others  = new HashMap<>();
     private boolean             isEmpty = true;
 
@@ -47,19 +47,27 @@ public class ChrPosition {
         return others;
     }
 
-    public ChrPosition(String header) throws RuntimeException {
-        decode(header);
-    }
-
     public boolean isEmpty() {
         return isEmpty;
     }
 
-    public ChrPosition(String chrName, int chrStart, int chrEnd) {
+    public ChrRange(String header) throws RuntimeException {
+        decode(header);
+    }
+
+    public ChrRange(String chrName, int chrStart, int chrEnd) {
         this.chrName = chrName;
         this.chrStart = chrStart;
         this.chrEnd = chrEnd;
         isEmpty = false;
+    }
+
+    private static Integer tryParse(String text) {
+        try {
+            return Integer.parseInt(text);
+        } catch ( NumberFormatException e ) {
+            return null;
+        }
     }
 
     public void decode(String header) throws RuntimeException {
@@ -69,8 +77,8 @@ public class ChrPosition {
             "(?:\\((?<chrStrand>.+)\\))?" +
             "[:]" +
             "(?<chrStart>\\d+)" +
-            "[_\\-]" +
-            "(?<chrEnd>\\d+)"
+            "[_\\-]?" +
+            "(?<chrEnd>\\d+)?"
         );
         Matcher m = p.matcher(header);
 
@@ -78,17 +86,16 @@ public class ChrPosition {
             name = m.group("name");
             chrName = m.group("chrName");
             chrStrand = m.group("chrStrand");
-            chrStart = Integer.parseInt(m.group("chrStart"));
-            chrEnd = Integer.parseInt(m.group("chrEnd"));
+            chrStart = tryParse(m.group("chrStart"));
+            chrEnd = tryParse(m.group("chrEnd"));
             isEmpty = false;
+        }
 
-            if ( chrStrand == null || !chrStrand.equals("-") ) {
-                chrStrand = "+";
-            }
+        if ( chrName != null && chrStart != null ) {
 
             // make sure chrStart <= chrEnd
-            if ( chrStart < 1 || chrEnd < 1 ) {
-                throw new NumberFormatException("Positions at chromosome can't less than 1");
+            if ( chrEnd == null ) {
+                chrEnd = chrStart;
             } else if ( chrStart > chrEnd ) {
                 int temp = chrStart;
                 chrStart = chrEnd;
@@ -100,6 +107,10 @@ public class ChrPosition {
                     chrStrand = "+";
                 }
             }
+        } else {
+            String[] parts = header.split("\\s+");
+            name = parts[0];
+            isEmpty = false;
         }
 
         if ( header.contains("|") ) {
@@ -116,22 +127,26 @@ public class ChrPosition {
 
     public String encode(boolean onlyEssential) {
         String header = "";
-        if ( chrName == null ) {
-            return header;
-        }
 
         if ( name != null ) {
-            header += name + ".";
+            header += name;
+            if ( chrName != null ) {
+                header += "." + chrName;
+            }
+        } else if ( chrName != null ) {
+            header += chrName;
         }
-
-        header += chrName;
 
         if ( chrStrand != null ) {
             header += "(" + chrStrand + ")";
         }
 
-        header += ":" + chrStart;
-        header += "-" + chrEnd;
+        if ( chrStart != null ) {
+            header += ":" + chrStart;
+            if ( !chrStart.equals(chrEnd) ) {
+                header += "-" + chrEnd;
+            }
+        }
 
         if ( !onlyEssential && !others.isEmpty() ) {
             List<String> parts = new ArrayList<>();

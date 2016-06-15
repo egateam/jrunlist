@@ -60,14 +60,14 @@ public class Cover {
                 //----------------------------
                 // Operating
                 //----------------------------
-                ChrPosition chrPos = new ChrPosition(str);
-                if ( !chrPos.isEmpty() ) {
-                    String chrName = chrPos.getChrName();
+                ChrRange chrRange = new ChrRange(str);
+                if ( !chrRange.isEmpty() ) {
+                    String chrName = chrRange.getChrName();
                     if ( !setSingle.containsKey(chrName) ) {
                         setSingle.put(chrName, new IntSpan());
                     }
 
-                    setSingle.get(chrName).addPair(chrPos.getChrStart(), chrPos.getChrEnd());
+                    setSingle.get(chrName).addPair(chrRange.getChrStart(), chrRange.getChrEnd());
                 }
             }
         }
