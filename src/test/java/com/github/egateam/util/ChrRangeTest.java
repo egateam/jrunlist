@@ -68,6 +68,35 @@ public class ChrRangeTest {
             }}),
         };
 
+    private static final TestData[] faTests =
+        {
+            new TestData("S288c", new HashMap<String, String>() {{
+                put("name", "S288c");
+            }}),
+            new TestData("S288c The baker's yeast", new HashMap<String, String>() {{
+                put("name", "S288c");
+            }}),
+            new TestData("1:-100", new HashMap<String, String>() {{
+                put("name", "1:-100");
+            }}),
+        };
+
+    private static class TestData2 {
+        String   header;
+        ChrRange expected;
+
+        TestData2(String header, ChrRange expected) {
+            this.header = header;
+            this.expected = expected;
+        }
+    }
+
+    private static final TestData2[] fasTests2 =
+        {
+            new TestData2("I:1-100", new ChrRange("I", 1, 100)),
+            new TestData2("I:100", new ChrRange("I", 100, 100)),
+        };
+
     @Test(description = "fas headers")
     public void testFasHeader() throws Exception {
         for ( TestData t : fasTests ) {
@@ -99,18 +128,15 @@ public class ChrRangeTest {
         }
     }
 
-    private static final TestData[] faTests =
-        {
-            new TestData("S288c", new HashMap<String, String>() {{
-                put("name", "S288c");
-            }}),
-            new TestData("S288c The baker's yeast", new HashMap<String, String>() {{
-                put("name", "S288c");
-            }}),
-            new TestData("1:-100", new HashMap<String, String>() {{
-                put("name", "1:-100");
-            }}),
-        };
+    @Test(description = "fas headers take 2")
+    public void testFasHeader2() throws Exception {
+        for ( TestData2 t : fasTests2 ) {
+            ChrRange chrRange = new ChrRange(t.header);
+            ChrRange expected = t.expected;
+
+            Assert.assertEquals(chrRange.toString(), expected.toString());
+        }
+    }
 
     @Test(description = "fa headers")
     public void testFaHeader() throws Exception {
