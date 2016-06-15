@@ -92,20 +92,8 @@ public class ChrRange {
         }
 
         if ( chrName != null && chrStart != null ) {
-
-            // make sure chrStart <= chrEnd
             if ( chrEnd == null ) {
                 chrEnd = chrStart;
-            } else if ( chrStart > chrEnd ) {
-                int temp = chrStart;
-                chrStart = chrEnd;
-                chrEnd = temp;
-
-                if ( chrStrand.equals("+") ) {
-                    chrStrand = "-";
-                } else {
-                    chrStrand = "+";
-                }
             }
         } else {
             String[] parts = header.split("\\s+");
