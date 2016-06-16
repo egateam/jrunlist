@@ -10,6 +10,8 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
 import com.github.egateam.IntSpan;
+import com.github.egateam.commons.ChrRange;
+import com.github.egateam.commons.Utils;
 import com.github.egateam.util.*;
 
 import java.io.File;
@@ -75,6 +77,6 @@ public class Cover {
         //----------------------------
         // Output
         //----------------------------
-        StaticUtils.writeRl(outfile, StaticUtils.toRunlist(setSingle));
+        StaticUtils.writeRl(outfile, Utils.toRunlist(setSingle));
     }
 }

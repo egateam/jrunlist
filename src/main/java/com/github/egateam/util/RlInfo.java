@@ -7,6 +7,7 @@
 package com.github.egateam.util;
 
 import com.github.egateam.IntSpan;
+import com.github.egateam.commons.Utils;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
@@ -69,7 +70,7 @@ public class RlInfo {
                 //noinspection unchecked
                 HashMap<String, String> value = (HashMap<String, String>) entry.getValue();
 
-                setOf.put(key, StaticUtils.toIntSpan(value));
+                setOf.put(key, Utils.toIntSpan(value));
                 allChrs.addAll(value.keySet());
 
                 allNames.add(key);
@@ -77,7 +78,7 @@ public class RlInfo {
         } else {
             allChrs.addAll(runlistOf.keySet());
             allNames.add(getSingleKey());
-            setOf.put(getSingleKey(), StaticUtils.toIntSpan((Map<String, String>) runlistOf));
+            setOf.put(getSingleKey(), Utils.toIntSpan((Map<String, String>) runlistOf));
         }
 
         return setOf;
@@ -95,7 +96,7 @@ public class RlInfo {
         }
 
         allChrs.addAll(runlistSingle.keySet());
-        return StaticUtils.toIntSpan((Map<String, String>) runlistSingle);
+        return Utils.toIntSpan((Map<String, String>) runlistSingle);
     }
 
     // Create empty IntSpan for each name:chr

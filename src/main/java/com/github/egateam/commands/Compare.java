@@ -10,6 +10,7 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
 import com.github.egateam.IntSpan;
+import com.github.egateam.commons.Utils;
 import com.github.egateam.util.FileConverterIn;
 import com.github.egateam.util.StaticUtils;
 import com.github.egateam.util.RlInfo;
@@ -74,7 +75,7 @@ public class Compare {
         } else {
             StaticUtils.writeRl(
                 outfile,
-                StaticUtils.toRunlist(opResultOf.get(RlInfo.getSingleKey()))
+                Utils.toRunlist(opResultOf.get(RlInfo.getSingleKey()))
             );
         }
     }

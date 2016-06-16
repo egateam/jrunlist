@@ -10,6 +10,7 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
 import com.github.egateam.IntSpan;
+import com.github.egateam.commons.Utils;
 import com.github.egateam.util.*;
 
 import java.io.File;
@@ -70,6 +71,6 @@ public class Combine {
         //----------------------------
         // Output
         //----------------------------
-        StaticUtils.writeRl(outfile, StaticUtils.toRunlist(opResult));
+        StaticUtils.writeRl(outfile, Utils.toRunlist(opResult));
     }
 }

@@ -95,32 +95,6 @@ public class StaticUtils {
         }
     }
 
-    public static Map<String, IntSpan> toIntSpan(Map<String, String> map) throws AssertionError {
-        Map<String, IntSpan> setOf = new HashMap<>();
-
-        for ( Map.Entry<?, ?> entry : map.entrySet() ) {
-            String chr = entry.getKey().toString();
-
-            IntSpan intspan = new IntSpan(entry.getValue().toString());
-            setOf.put(chr, intspan);
-        }
-
-        return setOf;
-    }
-
-    public static Map<String, String> toRunlist(Map<String, IntSpan> map) throws AssertionError {
-        Map<String, String> runlistOf = new HashMap<>();
-
-        for ( Map.Entry<?, ?> entry : map.entrySet() ) {
-            String chr = entry.getKey().toString();
-
-            String runlist = entry.getValue().toString();
-            runlistOf.put(chr, runlist);
-        }
-
-        return runlistOf;
-    }
-
     public static Map<String, Map<String, String>>
     toRunlistMulti(Map<String, Map<String, IntSpan>> setOf) throws AssertionError {
         Map<String, Map<String, String>> runlistOf = new HashMap<>();
