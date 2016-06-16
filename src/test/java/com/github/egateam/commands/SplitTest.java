@@ -7,7 +7,7 @@
 package com.github.egateam.commands;
 
 import com.github.egateam.Runlist;
-import com.github.egateam.util.ExpandResource;
+import com.github.egateam.commons.Utils;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -41,7 +41,7 @@ public class SplitTest {
 
     @Test(description = "Test command with I.II.yml")
     public void testExecute() throws Exception {
-        String fileName = new ExpandResource("I.II.yml").invoke();
+        String fileName = Utils.expendResource("I.II.yml");
         String[] args = {"split", fileName, "--outdir", "stdout"};
         Runlist.main(args);
 

@@ -7,7 +7,7 @@
 package com.github.egateam.commands;
 
 import com.github.egateam.Runlist;
-import com.github.egateam.util.ExpandResource;
+import com.github.egateam.commons.Utils;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -41,8 +41,8 @@ public class StatTest {
 
     @Test(description = "Test command with intergenic.yml")
     public void testExecute1() throws Exception {
-        String fileName1 = new ExpandResource("chr.sizes").invoke();
-        String fileName2 = new ExpandResource("intergenic.yml").invoke();
+        String fileName1 = Utils.expendResource("chr.sizes");
+        String fileName2 = Utils.expendResource("intergenic.yml");
         String[] args = {"stat", fileName1, fileName2, "--outfile", "stdout"};
         Runlist.main(args);
 
@@ -54,8 +54,8 @@ public class StatTest {
 
     @Test(description = "Test command with intergenic.yml and --all")
     public void testExecute2() throws Exception {
-        String fileName1 = new ExpandResource("chr.sizes").invoke();
-        String fileName2 = new ExpandResource("intergenic.yml").invoke();
+        String fileName1 = Utils.expendResource("chr.sizes");
+        String fileName2 = Utils.expendResource("intergenic.yml");
         String[] args = {"stat", fileName1, fileName2, "--all", "--outfile", "stdout"};
         Runlist.main(args);
 

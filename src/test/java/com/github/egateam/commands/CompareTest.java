@@ -7,7 +7,7 @@
 package com.github.egateam.commands;
 
 import com.github.egateam.Runlist;
-import com.github.egateam.util.ExpandResource;
+import com.github.egateam.commons.Utils;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -41,7 +41,7 @@ public class CompareTest {
 
     @Test
     public void testInsufficientArgs() throws Exception {
-        String   fileName1 = new ExpandResource("intergenic.yml").invoke();
+        String   fileName1 = Utils.expendResource("intergenic.yml");
         String[] args      = {"compare", fileName1};
         Runlist.main(args);
 
@@ -51,8 +51,8 @@ public class CompareTest {
 
     @Test(description = "Intersect of intergenic.yml and repeat.yml")
     public void testExecuteIntersect1() throws Exception {
-        String   fileName1 = new ExpandResource("intergenic.yml").invoke();
-        String   fileName2 = new ExpandResource("repeat.yml").invoke();
+        String   fileName1 = Utils.expendResource("intergenic.yml");
+        String   fileName2 = Utils.expendResource("repeat.yml");
         String[] args      = {"compare", "--op", "intersect", fileName1, fileName2, "--outfile", "stdout"};
         Runlist.main(args);
 
@@ -63,8 +63,8 @@ public class CompareTest {
 
     @Test(description = "Union of intergenic.yml and repeat.yml")
     public void testExecuteUnion() throws Exception {
-        String   fileName1 = new ExpandResource("intergenic.yml").invoke();
-        String   fileName2 = new ExpandResource("repeat.yml").invoke();
+        String   fileName1 = Utils.expendResource("intergenic.yml");
+        String   fileName2 = Utils.expendResource("repeat.yml");
         String[] args      = {"compare", "--op", "union", fileName1, fileName2, "--outfile", "stdout"};
         Runlist.main(args);
 
@@ -75,8 +75,8 @@ public class CompareTest {
 
     @Test(description = "I.II.yml and intergenic.yml")
     public void testExecuteIntersect2() throws Exception {
-        String   fileName1 = new ExpandResource("I.II.yml").invoke();
-        String   fileName2 = new ExpandResource("intergenic.yml").invoke();
+        String   fileName1 = Utils.expendResource("I.II.yml");
+        String   fileName2 = Utils.expendResource("intergenic.yml");
         String[] args      = {"compare", fileName1, fileName2, "--outfile", "stdout"};
         Runlist.main(args);
 

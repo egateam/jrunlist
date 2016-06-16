@@ -7,7 +7,7 @@
 package com.github.egateam.commands;
 
 import com.github.egateam.Runlist;
-import com.github.egateam.util.ExpandResource;
+import com.github.egateam.commons.Utils;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -41,7 +41,7 @@ public class SpanTest {
 
     @Test(description = "Test command with cover brca2.yml")
     public void testExecuteCover() throws Exception {
-        String   fileName = new ExpandResource("brca2.yml").invoke();
+        String   fileName = Utils.expendResource("brca2.yml");
         String[] args     = {"span", fileName, "--op", "cover", "--outfile", "stdout"};
         Runlist.main(args);
 
@@ -52,7 +52,7 @@ public class SpanTest {
 
     @Test(description = "Test command with fill brca2.yml")
     public void testExecuteFill() throws Exception {
-        String   fileName = new ExpandResource("brca2.yml").invoke();
+        String   fileName = Utils.expendResource("brca2.yml");
         String[] args     = {"span", "--op", "fill", "-n", "1000", fileName, "--outfile", "stdout"};
         Runlist.main(args);
 
@@ -65,7 +65,7 @@ public class SpanTest {
 
     @Test(description = "Test command with trim brca2.yml")
     public void testExecuteTrim() throws Exception {
-        String   fileName = new ExpandResource("brca2.yml").invoke();
+        String   fileName = Utils.expendResource("brca2.yml");
         String[] args     = {"span", "--op", "trim", "-n", "200", fileName, "--outfile", "stdout"};
         Runlist.main(args);
 
@@ -77,7 +77,7 @@ public class SpanTest {
 
     @Test(description = "Test command with pad brca2.yml")
     public void testExecutePad() throws Exception {
-        String   fileName = new ExpandResource("brca2.yml").invoke();
+        String   fileName = Utils.expendResource("brca2.yml");
         String[] args     = {"span", "--op", "pad", "-n", "2000", fileName, "--outfile", "stdout"};
         Runlist.main(args);
 
@@ -89,7 +89,7 @@ public class SpanTest {
 
     @Test(description = "Test command with excise brca2.yml")
     public void testExecuteExcise() throws Exception {
-        String   fileName = new ExpandResource("brca2.yml").invoke();
+        String   fileName = Utils.expendResource("brca2.yml");
         String[] args     = {"span", "--op", "excise", "-n", "400", fileName, "--outfile", "stdout"};
         Runlist.main(args);
 

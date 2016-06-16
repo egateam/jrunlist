@@ -7,7 +7,7 @@
 package com.github.egateam.commands;
 
 import com.github.egateam.Runlist;
-import com.github.egateam.util.ExpandResource;
+import com.github.egateam.commons.Utils;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -41,9 +41,9 @@ public class StatOpTest {
 
     @Test(description = "Test command with intergenic.yml and repeat.yml")
     public void testExecute1() throws Exception {
-        String fileName1 = new ExpandResource("chr.sizes").invoke();
-        String fileName2 = new ExpandResource("intergenic.yml").invoke();
-        String fileName3 = new ExpandResource("repeat.yml").invoke();
+        String fileName1 = Utils.expendResource("chr.sizes");
+        String fileName2 = Utils.expendResource("intergenic.yml");
+        String fileName3 = Utils.expendResource("repeat.yml");
 
         String[] args = {"statop", fileName1, fileName2, fileName3, "--op", "intersect", "--outfile", "stdout"};
         Runlist.main(args);
@@ -57,9 +57,9 @@ public class StatOpTest {
 
     @Test(description = "Test command with intergenic.yml, repeat.yml and --all")
     public void testExecute2() throws Exception {
-        String fileName1 = new ExpandResource("chr.sizes").invoke();
-        String fileName2 = new ExpandResource("intergenic.yml").invoke();
-        String fileName3 = new ExpandResource("repeat.yml").invoke();
+        String fileName1 = Utils.expendResource("chr.sizes");
+        String fileName2 = Utils.expendResource("intergenic.yml");
+        String fileName3 = Utils.expendResource("repeat.yml");
 
         String[] args = {"statop", fileName1, fileName2, fileName3, "--all", "--op", "intersect", "--outfile", "stdout"};
         Runlist.main(args);

@@ -7,7 +7,7 @@
 package com.github.egateam.commands;
 
 import com.github.egateam.Runlist;
-import com.github.egateam.util.ExpandResource;
+import com.github.egateam.commons.Utils;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -41,7 +41,7 @@ public class CombineTest {
 
     @Test(description = "Test command with Atha.yml")
     public void testExecute1() throws Exception {
-        String fileName = new ExpandResource("Atha.yml").invoke();
+        String fileName = Utils.expendResource("Atha.yml");
         String[] args = {"combine", fileName, "--outfile", "stdout"};
         Runlist.main(args);
 
@@ -51,7 +51,7 @@ public class CombineTest {
 
     @Test(description = "Test command with brca2.yml")
     public void testExecute2() throws Exception {
-        String fileName = new ExpandResource("brca2.yml").invoke();
+        String fileName = Utils.expendResource("brca2.yml");
         String[] args = {"combine", fileName, "--outfile", "stdout"};
         Runlist.main(args);
 

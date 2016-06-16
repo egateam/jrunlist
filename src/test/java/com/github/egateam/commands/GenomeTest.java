@@ -7,7 +7,7 @@
 package com.github.egateam.commands;
 
 import com.github.egateam.Runlist;
-import com.github.egateam.util.ExpandResource;
+import com.github.egateam.commons.Utils;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -41,7 +41,7 @@ public class GenomeTest {
 
     @Test
     public void testRedundantArgs() throws Exception {
-        String fileName = new ExpandResource("chr.sizes").invoke();
+        String fileName = Utils.expendResource("chr.sizes");
         String[] args = {"genome", fileName, fileName, "--outfile", "stdout"};
         Runlist.main(args);
 
@@ -51,7 +51,7 @@ public class GenomeTest {
 
     @Test(description = "Test command with chr.sizes")
     public void testExecute() throws Exception {
-        String fileName = new ExpandResource("chr.sizes").invoke();
+        String fileName = Utils.expendResource("chr.sizes");
         String[] args = {"genome", fileName, "--outfile", "stdout"};
         Runlist.main(args);
 

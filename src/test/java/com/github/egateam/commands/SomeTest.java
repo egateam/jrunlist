@@ -7,7 +7,7 @@
 package com.github.egateam.commands;
 
 import com.github.egateam.Runlist;
-import com.github.egateam.util.ExpandResource;
+import com.github.egateam.commons.Utils;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -41,8 +41,8 @@ public class SomeTest {
 
     @Test(description = "Test command with Atha.yml and Atha.list")
     public void testExecute() throws Exception {
-        String fileName1 = new ExpandResource("Atha.yml").invoke();
-        String fileName2 = new ExpandResource("Atha.list").invoke();
+        String fileName1 = Utils.expendResource("Atha.yml");
+        String fileName2 = Utils.expendResource("Atha.list");
         String[] args = {"some", fileName1, fileName2, "--outfile", "stdout"};
         Runlist.main(args);
 

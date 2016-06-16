@@ -7,7 +7,7 @@
 package com.github.egateam.commands;
 
 import com.github.egateam.Runlist;
-import com.github.egateam.util.ExpandResource;
+import com.github.egateam.commons.Utils;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -41,7 +41,7 @@ public class CoverTest {
 
     @Test(description = "Test command with S288c.txt")
     public void testExecute() throws Exception {
-        String fileName = new ExpandResource("S288c.txt").invoke();
+        String fileName = Utils.expendResource("S288c.txt");
         String[] args = {"cover", fileName, "--outfile", "stdout"};
         Runlist.main(args);
 

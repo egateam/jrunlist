@@ -7,7 +7,7 @@
 package com.github.egateam.commands;
 
 import com.github.egateam.Runlist;
-import com.github.egateam.util.ExpandResource;
+import com.github.egateam.commons.Utils;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -41,8 +41,8 @@ public class MergeTest {
 
     @Test(description = "Test command with I.yml and II.yml")
     public void testExecute() throws Exception {
-        String fileName1 = new ExpandResource("I.yml").invoke();
-        String fileName2 = new ExpandResource("II.yml").invoke();
+        String fileName1 = Utils.expendResource("I.yml");
+        String fileName2 = Utils.expendResource("II.yml");
         String[] args = {"merge", fileName1, fileName2, "--outfile", "stdout"};
         Runlist.main(args);
 
