@@ -52,49 +52,6 @@ public class StaticUtils {
         }
     }
 
-    public static Map<String, Integer> readSizes(File file, boolean remove) throws Exception {
-        HashMap<String, Integer> lengthOf = new HashMap<>();
-
-        try ( BufferedReader reader = new BufferedReader(new FileReader(file)) ) {
-            String line;
-            while ( (line = reader.readLine()) != null ) {
-                line = line.trim();
-                String[] fields = line.split("\\t");
-                if ( fields.length == 2 ) {
-                    if ( remove ) fields[0] = fields[0].replaceFirst("chr0?", "");
-
-                    lengthOf.put(fields[0], Integer.parseInt(fields[1]));
-                }
-            }
-        }
-
-        return lengthOf;
-    }
-
-    public static List<String> readLines(File file) throws Exception {
-        List<String> lines = new ArrayList<>();
-
-        try ( BufferedReader reader = new BufferedReader(new FileReader(file)) ) {
-            String line;
-            while ( (line = reader.readLine()) != null ) {
-                line = line.trim();
-                lines.add(line);
-            }
-        }
-
-        return lines;
-    }
-
-    public static void writeLines(String fileName, List<String> lines) throws Exception {
-        if ( fileName.equals("stdout") )
-            for ( String line : lines ) {
-                System.out.println(line);
-            }
-        else {
-            FileUtils.writeLines(new File(fileName), "UTF-8", lines, "\n");
-        }
-    }
-
     public static Map<String, Map<String, String>>
     toRunlistMulti(Map<String, Map<String, IntSpan>> setOf) throws AssertionError {
         Map<String, Map<String, String>> runlistOf = new HashMap<>();

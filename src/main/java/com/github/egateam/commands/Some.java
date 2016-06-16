@@ -9,6 +9,7 @@ package com.github.egateam.commands;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
+import com.github.egateam.commons.Utils;
 import com.github.egateam.util.FileConverterIn;
 import com.github.egateam.util.StaticUtils;
 
@@ -45,7 +46,7 @@ public class Some {
         Map<String, ?> master = StaticUtils.readRl(files.get(0));
 
         Set<String> allNames = new HashSet<>();
-        for ( String str : StaticUtils.readLines(files.get(1)) ) {
+        for ( String str : Utils.readLines(files.get(1)) ) {
             allNames.add(str);
         }
 

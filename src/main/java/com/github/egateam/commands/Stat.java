@@ -10,6 +10,7 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
 import com.github.egateam.IntSpan;
+import com.github.egateam.commons.Utils;
 import com.github.egateam.util.*;
 
 import java.io.File;
@@ -50,7 +51,7 @@ public class Stat {
         //----------------------------
         // Loading
         //----------------------------
-        Map<String, Integer> lengthOf = StaticUtils.readSizes(files.get(0), remove);
+        Map<String, Integer> lengthOf = Utils.readSizes(files.get(0), remove);
 
         RlInfo                            yaml  = new RlInfo();
         Map<String, Map<String, IntSpan>> setOf = yaml.load(files.get(1), remove);
@@ -93,6 +94,6 @@ public class Stat {
         //----------------------------
         // Output
         //----------------------------
-        StaticUtils.writeLines(outfile, lines);
+        Utils.writeLines(outfile, lines);
     }
 }

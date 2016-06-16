@@ -57,7 +57,7 @@ public class Cover {
         // Loading
         //----------------------------
         for ( File infile : files ) {
-            for ( String str : StaticUtils.readLines(infile) ) {
+            for ( String str : Utils.readLines(infile) ) {
 
                 //----------------------------
                 // Operating

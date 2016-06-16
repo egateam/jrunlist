@@ -11,6 +11,7 @@ import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
 
 import com.github.egateam.IntSpan;
+import com.github.egateam.commons.Utils;
 import com.github.egateam.util.FileConverterIn;
 import com.github.egateam.util.StaticUtils;
 
@@ -49,7 +50,7 @@ public class Genome {
         //----------------------------
         // Loading
         //----------------------------
-        Map<String, Integer> lengthOf = StaticUtils.readSizes(files.get(0), remove);
+        Map<String, Integer> lengthOf = Utils.readSizes(files.get(0), remove);
 
         //----------------------------
         // Operating
