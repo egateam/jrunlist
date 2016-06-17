@@ -9,11 +9,9 @@ package com.github.egateam.commands;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
-import com.github.egateam.util.FileConverterIn;
 import com.github.egateam.util.StaticUtils;
 import org.apache.commons.io.FilenameUtils;
 
-import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -22,8 +20,8 @@ import java.util.Map;
 public class Split {
 
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
-    @Parameter(description = "<infile>", converter = FileConverterIn.class, required = true)
-    private List<File> files;
+    @Parameter(description = "<infile>", required = true)
+    private List<String> files;
 
     @Parameter(names = {"--outdir", "-o"}, description = "Output location. [stdout] for screen.")
     private String outdir = ".";

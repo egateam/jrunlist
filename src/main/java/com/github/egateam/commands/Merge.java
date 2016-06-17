@@ -8,11 +8,9 @@ package com.github.egateam.commands;
 
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
-import com.github.egateam.util.FileConverterIn;
 import com.github.egateam.util.StaticUtils;
 import org.apache.commons.io.FilenameUtils;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,8 +20,8 @@ import java.util.Map;
 public class Merge {
 
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
-    @Parameter(description = "<infiles>", converter = FileConverterIn.class, required = true)
-    private List<File> files;
+    @Parameter(description = "<infiles>", required = true)
+    private List<String> files;
 
     @Parameter(names = {"--outfile", "-o"}, description = "Output filename. [stdout] for screen.")
     private String outfile;
@@ -45,10 +43,10 @@ public class Merge {
         // Loading
         //----------------------------
         Map<String, Map<String, ?>> master = new HashMap<>();
-        for ( File inFile : files ) {
+        for ( String inFile : files ) {
             Map<String, ?> map = StaticUtils.readRl(inFile);
 
-            String basename = FilenameUtils.getBaseName(inFile.toString());
+            String basename = FilenameUtils.getBaseName(inFile);
             master.put(basename, map);
         }
 

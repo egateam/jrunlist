@@ -22,9 +22,10 @@ import java.util.Map;
 
 public class StaticUtils {
 
-    public static Map<String, ?> readRl(File file) throws Exception {
+    public static Map<String, ?> readRl(String fileName) throws Exception {
+        File file = new File(fileName);
         if ( !file.isFile() ) {
-            throw new IOException(String.format("YAML file [%s] doesn't exist", file));
+            throw new IOException(String.format("YAML file [%s] doesn't exist", fileName));
         }
 
         // load YAML from a file

@@ -32,8 +32,8 @@ import java.util.Map;
 public class Span {
 
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
-    @Parameter(description = "<infile>", converter = FileConverterIn.class, required = true)
-    private List<File> files;
+    @Parameter(description = "<infile>", required = true)
+    private List<String> files;
 
     @Parameter(names = {"--outfile", "-o"}, description = "Output filename. [stdout] for screen.")
     private String outfile;

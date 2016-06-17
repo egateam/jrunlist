@@ -12,10 +12,8 @@ import com.beust.jcommander.Parameters;
 
 import com.github.egateam.IntSpan;
 import com.github.egateam.commons.Utils;
-import com.github.egateam.util.FileConverterIn;
 import com.github.egateam.util.StaticUtils;
 
-import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,8 +23,8 @@ import java.util.Map;
 public class Genome {
 
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
-    @Parameter(description = "<infile>", converter = FileConverterIn.class, required = true)
-    private List<File> files;
+    @Parameter(description = "<infile>", required = true)
+    private List<String> files;
 
     @Parameter(names = {"--outfile", "-o"}, description = "Output filename. [stdout] for screen.")
     private String outfile;

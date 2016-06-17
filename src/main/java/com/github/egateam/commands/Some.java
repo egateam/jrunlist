@@ -10,10 +10,8 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
 import com.github.egateam.commons.Utils;
-import com.github.egateam.util.FileConverterIn;
 import com.github.egateam.util.StaticUtils;
 
-import java.io.File;
 import java.util.*;
 
 @SuppressWarnings({"CanBeFinal"})
@@ -21,8 +19,8 @@ import java.util.*;
 public class Some {
 
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
-    @Parameter(description = "<infile> <list.file>", converter = FileConverterIn.class, required = true)
-    private List<File> files;
+    @Parameter(description = "<infile> <list.file>", required = true)
+    private List<String> files;
 
     @Parameter(names = {"--outfile", "-o"}, description = "Output filename. [stdout] for screen.")
     private String outfile;

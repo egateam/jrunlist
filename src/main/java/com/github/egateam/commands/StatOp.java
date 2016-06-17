@@ -25,8 +25,8 @@ import java.util.Map;
 public class StatOp {
 
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
-    @Parameter(description = "<chr.size> <infile1> <infile2>", converter = FileConverterIn.class, required = true)
-    private List<File> files;
+    @Parameter(description = "<chr.size> <infile1> <infile2>", required = true)
+    private List<String> files;
 
     @Parameter(names = {"--outfile", "-o"}, description = "Output filename. [stdout] for screen.")
     private String outfile;
@@ -51,7 +51,7 @@ public class StatOp {
         op = StaticUtils.validateOpCompare(op);
 
         if ( base == null ) {
-            base = FilenameUtils.getBaseName(files.get(2).toString());
+            base = FilenameUtils.getBaseName(files.get(2));
         }
 
         if ( outfile == null ) {

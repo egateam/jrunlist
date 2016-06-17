@@ -56,8 +56,8 @@ public class RlInfo {
         return sorted;
     }
 
-    public Map<String, Map<String, IntSpan>> load(File file, boolean remove) throws Exception {
-        Map<String, ?> runlistOf = StaticUtils.readRl(file);
+    public Map<String, Map<String, IntSpan>> load(String fileName, boolean remove) throws Exception {
+        Map<String, ?> runlistOf = StaticUtils.readRl(fileName);
 
         // check depth of YAML
         // get one (maybe not first) value from Map
@@ -84,14 +84,14 @@ public class RlInfo {
         return setOf;
     }
 
-    public Map<String, IntSpan> loadSingle(File file, boolean remove) throws Exception {
-        Map<String, ?> runlistSingle = StaticUtils.readRl(file);
+    public Map<String, IntSpan> loadSingle(String fileName, boolean remove) throws Exception {
+        Map<String, ?> runlistSingle = StaticUtils.readRl(fileName);
 
         // check depth of YAML
         // get one (maybe not first) value from Map
         if ( !(runlistSingle.entrySet().iterator().next().getValue() instanceof String) ) {
             throw new RuntimeException(
-                String.format("File [%s] shouldn't be a multikey YAML.", file.toString())
+                String.format("File [%s] shouldn't be a multikey YAML.", fileName)
             );
         }
 

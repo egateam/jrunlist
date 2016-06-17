@@ -23,8 +23,8 @@ import java.util.*;
 public class Combine {
 
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
-    @Parameter(description = "<infile>", converter = FileConverterIn.class, required = true)
-    private List<File> files;
+    @Parameter(description = "<infile>", required = true)
+    private List<String> files;
 
     @Parameter(names = {"--outfile", "-o"}, description = "Output filename. [stdout] for screen.")
     private String outfile;

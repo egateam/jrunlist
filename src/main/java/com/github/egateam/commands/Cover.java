@@ -29,8 +29,8 @@ import java.util.Map;
 public class Cover {
 
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
-    @Parameter(description = "<infiles>", converter = FileConverterIn.class, required = true)
-    private List<File> files;
+    @Parameter(description = "<infiles>", required = true)
+    private List<String> files;
 
     @Parameter(names = {"--outfile", "-o"}, description = "Output filename. [stdout] for screen.")
     private String outfile;
@@ -56,7 +56,7 @@ public class Cover {
         //----------------------------
         // Loading
         //----------------------------
-        for ( File infile : files ) {
+        for ( String infile : files ) {
             for ( String str : Utils.readLines(infile) ) {
 
                 //----------------------------
@@ -64,12 +64,12 @@ public class Cover {
                 //----------------------------
                 ChrRange chrRange = new ChrRange(str);
                 if ( !chrRange.isEmpty() ) {
-                    String chrName = chrRange.getChrName();
+                    String chrName = chrRange.getChr();
                     if ( !setSingle.containsKey(chrName) ) {
                         setSingle.put(chrName, new IntSpan());
                     }
 
-                    setSingle.get(chrName).addPair(chrRange.getChrStart(), chrRange.getChrEnd());
+                    setSingle.get(chrName).addPair(chrRange.getStart(), chrRange.getEnd());
                 }
             }
         }

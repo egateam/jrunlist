@@ -11,11 +11,9 @@ import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
 import com.github.egateam.IntSpan;
 import com.github.egateam.commons.Utils;
-import com.github.egateam.util.FileConverterIn;
 import com.github.egateam.util.StaticUtils;
 import com.github.egateam.util.RlInfo;
 
-import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -25,8 +23,8 @@ import java.util.Map;
 public class Compare {
 
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
-    @Parameter(description = "<infile1> <infile2>", converter = FileConverterIn.class, required = true)
-    private List<File> files;
+    @Parameter(description = "<infile1> <infile2>", required = true)
+    private List<String> files;
 
     @Parameter(names = {"--outfile", "-o"}, description = "Output filename. [stdout] for screen.")
     private String outfile;
