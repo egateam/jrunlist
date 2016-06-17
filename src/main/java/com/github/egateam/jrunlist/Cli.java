@@ -18,17 +18,17 @@
  * @since 1.7
  */
 
-package com.github.egateam;
+package com.github.egateam.jrunlist;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
-import com.github.egateam.commands.*;
+import com.github.egateam.jrunlist.commands.*;
 
 @SuppressWarnings("WeakerAccess")
 @Parameters
-public class Runlist {
+public class Cli {
     /**
      * The only global option
      */
@@ -37,11 +37,13 @@ public class Runlist {
     private boolean help = false;
 
     private static String getJarName() {
-        return new java.io.File(IntSpanBenchmark.class.getProtectionDomain()
-            .getCodeSource()
-            .getLocation()
-            .getPath())
-            .getName();
+        return new java.io.File(
+            Cli.class
+                .getProtectionDomain()
+                .getCodeSource()
+                .getLocation()
+                .getPath()
+        ).getName();
     }
 
     public void execute(String[] args) {
@@ -120,6 +122,6 @@ public class Runlist {
     }
 
     public static void main(String[] args) throws Exception {
-        new Runlist().execute(args);
+        new Cli().execute(args);
     }
 }

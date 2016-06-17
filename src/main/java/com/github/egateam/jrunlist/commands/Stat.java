@@ -4,16 +4,16 @@
  * PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY DISCLAIMED.
  */
 
-package com.github.egateam.commands;
+package com.github.egateam.jrunlist.commands;
 
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
 import com.github.egateam.IntSpan;
 import com.github.egateam.commons.Utils;
-import com.github.egateam.util.*;
+import com.github.egateam.jrunlist.util.ChrCoverage;
+import com.github.egateam.jrunlist.util.RlInfo;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

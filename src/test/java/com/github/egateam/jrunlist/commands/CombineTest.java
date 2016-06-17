@@ -4,8 +4,10 @@
  * PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY DISCLAIMED.
  */
 
-package com.github.egateam;
+package com.github.egateam.jrunlist.commands;
 
+import com.github.egateam.commons.Utils;
+import com.github.egateam.jrunlist.Cli;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -14,7 +16,7 @@ import org.testng.annotations.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-public class RunlistTest {
+public class CombineTest {
     // Store the original standard out before changing it.
     private final PrintStream originalStdout = System.out;
     private final PrintStream originalStderr = System.err;
@@ -28,28 +30,33 @@ public class RunlistTest {
         System.setErr(new PrintStream(this.stderrContent));
     }
 
-    @Test(description = "Test no command")
-    public void testMain() throws Exception {
-        String[] args = {};
-        Runlist.main(args);
+    @Test
+    public void testCombineFailed() throws Exception {
+        String[] args = {"combine"};
+        Cli.main(args);
 
-        Assert.assertTrue(this.stderrContent.toString().contains("No command specified"), "No command");
+        Assert.assertTrue(this.stderrContent.toString().contains("Main parameters are required"),
+            "Except parameters");
     }
 
-    @Test(description = "Test usage")
-    public void testUsage() throws Exception {
-        String[] args = {"--help"};
-        Runlist.main(args);
+    @Test(description = "Test command with Atha.yml")
+    public void testExecute1() throws Exception {
+        String fileName = Utils.expendResource("Atha.yml");
+        String[] args = {"combine", fileName, "--outfile", "stdout"};
+        Cli.main(args);
 
-        Assert.assertTrue(this.stdoutContent.toString().contains("Options:"), "Usage");
+        Assert.assertEquals(this.stdoutContent.toString().split("\r\n|\r|\n").length, 3, "line count");
+        Assert.assertFalse(this.stdoutContent.toString().contains("7232,7384"), "combined");
     }
 
-    @Test(description = "Test non-existing")
-    public void testNonExisting() throws Exception {
-        String[] args = {"non-existing"};
-        Runlist.main(args);
+    @Test(description = "Test command with brca2.yml")
+    public void testExecute2() throws Exception {
+        String fileName = Utils.expendResource("brca2.yml");
+        String[] args = {"combine", fileName, "--outfile", "stdout"};
+        Cli.main(args);
 
-        Assert.assertTrue(this.stderrContent.toString().contains("Expected a command"), "Non-existing command");
+        Assert.assertEquals(this.stdoutContent.toString().split("\r\n|\r|\n").length, 2, "line count");
+        Assert.assertTrue(this.stdoutContent.toString().contains("32316461-32316527"), "no changes");
     }
 
     @AfterMethod
@@ -62,5 +69,4 @@ public class RunlistTest {
         this.stdoutContent = new ByteArrayOutputStream();
         this.stderrContent = new ByteArrayOutputStream();
     }
-
 }

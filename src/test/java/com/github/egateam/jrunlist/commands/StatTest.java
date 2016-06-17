@@ -4,10 +4,10 @@
  * PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY DISCLAIMED.
  */
 
-package com.github.egateam.commands;
+package com.github.egateam.jrunlist.commands;
 
-import com.github.egateam.Runlist;
 import com.github.egateam.commons.Utils;
+import com.github.egateam.jrunlist.Cli;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-public class MergeTest {
+public class StatTest {
     // Store the original standard out before changing it.
     private final PrintStream originalStdout = System.out;
     private final PrintStream originalStderr = System.err;
@@ -31,24 +31,38 @@ public class MergeTest {
     }
 
     @Test
-    public void testMergeFailed() throws Exception {
-        String[] args = {"merge"};
-        Runlist.main(args);
+    public void testStatFailed() throws Exception {
+        String[] args = {"stat"};
+        Cli.main(args);
 
         Assert.assertTrue(this.stderrContent.toString().contains("Main parameters are required"),
             "Except parameters");
     }
 
-    @Test(description = "Test command with I.yml and II.yml")
-    public void testExecute() throws Exception {
-        String fileName1 = Utils.expendResource("I.yml");
-        String fileName2 = Utils.expendResource("II.yml");
-        String[] args = {"merge", fileName1, fileName2, "--outfile", "stdout"};
-        Runlist.main(args);
+    @Test(description = "Test command with intergenic.yml")
+    public void testExecute1() throws Exception {
+        String fileName1 = Utils.expendResource("chr.sizes");
+        String fileName2 = Utils.expendResource("intergenic.yml");
+        String[] args = {"stat", fileName1, fileName2, "--outfile", "stdout"};
+        Cli.main(args);
 
-        Assert.assertEquals(this.stdoutContent.toString().split("\r\n|\r|\n").length, 5, "line count");
-        Assert.assertTrue(this.stdoutContent.toString().contains("28547-29194"), "runlist exists");
-        Assert.assertTrue(this.stdoutContent.toString().matches("(?s).*I:.+II:.*"), "chromosomes exist");
+        String[] lines = this.stdoutContent.toString().split("\r\n|\r|\n");
+        Assert.assertEquals(lines.length, 18, "line count");
+        Assert.assertEquals(lines[1].split(",").length, 4, "field count");
+        Assert.assertTrue(this.stdoutContent.toString().contains("all,12071326,1059702,"), "result calced");
+    }
+
+    @Test(description = "Test command with intergenic.yml and --all")
+    public void testExecute2() throws Exception {
+        String fileName1 = Utils.expendResource("chr.sizes");
+        String fileName2 = Utils.expendResource("intergenic.yml");
+        String[] args = {"stat", fileName1, fileName2, "--all", "--outfile", "stdout"};
+        Cli.main(args);
+
+        String[] lines = this.stdoutContent.toString().split("\r\n|\r|\n");
+        Assert.assertEquals(lines.length, 2, "line count");
+        Assert.assertEquals(lines[1].split(",").length, 3, "field count");
+        Assert.assertFalse(this.stdoutContent.toString().contains("all"), "no literal all");
     }
 
     @AfterMethod

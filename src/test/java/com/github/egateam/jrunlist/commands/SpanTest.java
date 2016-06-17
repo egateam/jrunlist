@@ -4,10 +4,10 @@
  * PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY DISCLAIMED.
  */
 
-package com.github.egateam.commands;
+package com.github.egateam.jrunlist.commands;
 
-import com.github.egateam.Runlist;
 import com.github.egateam.commons.Utils;
+import com.github.egateam.jrunlist.Cli;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -33,7 +33,7 @@ public class SpanTest {
     @Test
     public void testSpanFailed() throws Exception {
         String[] args = {"span"};
-        Runlist.main(args);
+        Cli.main(args);
 
         Assert.assertTrue(this.stderrContent.toString().contains("Main parameters are required"),
             "Except parameters");
@@ -43,7 +43,7 @@ public class SpanTest {
     public void testExecuteCover() throws Exception {
         String   fileName = Utils.expendResource("brca2.yml");
         String[] args     = {"span", fileName, "--op", "cover", "--outfile", "stdout"};
-        Runlist.main(args);
+        Cli.main(args);
 
         String lines = this.stdoutContent.toString();
         Assert.assertEquals(lines.split("\r\n|\r|\n").length, 2, "line count");
@@ -54,7 +54,7 @@ public class SpanTest {
     public void testExecuteFill() throws Exception {
         String   fileName = Utils.expendResource("brca2.yml");
         String[] args     = {"span", "--op", "fill", "-n", "1000", fileName, "--outfile", "stdout"};
-        Runlist.main(args);
+        Cli.main(args);
 
         String lines = this.stdoutContent.toString();
         Assert.assertEquals(lines.split("\r\n|\r|\n").length, 2, "line count");
@@ -67,7 +67,7 @@ public class SpanTest {
     public void testExecuteTrim() throws Exception {
         String   fileName = Utils.expendResource("brca2.yml");
         String[] args     = {"span", "--op", "trim", "-n", "200", fileName, "--outfile", "stdout"};
-        Runlist.main(args);
+        Cli.main(args);
 
         String lines = this.stdoutContent.toString();
         Assert.assertEquals(lines.split("\r\n|\r|\n").length, 2, "line count");
@@ -79,7 +79,7 @@ public class SpanTest {
     public void testExecutePad() throws Exception {
         String   fileName = Utils.expendResource("brca2.yml");
         String[] args     = {"span", "--op", "pad", "-n", "2000", fileName, "--outfile", "stdout"};
-        Runlist.main(args);
+        Cli.main(args);
 
         String lines = this.stdoutContent.toString();
         Assert.assertEquals(lines.split("\r\n|\r|\n").length, 2, "line count");
@@ -91,7 +91,7 @@ public class SpanTest {
     public void testExecuteExcise() throws Exception {
         String   fileName = Utils.expendResource("brca2.yml");
         String[] args     = {"span", "--op", "excise", "-n", "400", fileName, "--outfile", "stdout"};
-        Runlist.main(args);
+        Cli.main(args);
 
         String lines = this.stdoutContent.toString();
         Assert.assertEquals(lines.split("\r\n|\r|\n").length, 2, "line count");

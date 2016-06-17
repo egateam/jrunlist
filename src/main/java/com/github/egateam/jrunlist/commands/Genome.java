@@ -4,23 +4,23 @@
  * PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY DISCLAIMED.
  */
 
-package com.github.egateam.commands;
+package com.github.egateam.jrunlist.commands;
 
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
+
 import com.github.egateam.IntSpan;
 import com.github.egateam.commons.Utils;
-import com.github.egateam.util.*;
+import com.github.egateam.jrunlist.util.StaticUtils;
 
-import java.io.File;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @SuppressWarnings({"CanBeFinal"})
-@Parameters(commandDescription = "Combine multiple sets of runlists in a yaml file.\n"
-    + "\t\tIt's expected that the YAML file is --mk.\n"
-    + "\t\tOtherwise this command will make no effects.")
-public class Combine {
+@Parameters(commandDescription = "Convert chr.size to runlists")
+public class Genome {
 
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     @Parameter(description = "<infile>", required = true)
@@ -32,13 +32,13 @@ public class Combine {
     @Parameter(names = {"--remove", "-r"}, description = "Remove 'chr0' from chromosome names.")
     private Boolean remove = false;
 
-    private void validateArgs() {
+    private void validateArgs() throws ParameterException {
         if ( files.size() != 1 ) {
             throw new ParameterException("This command need one input file.");
         }
 
         if ( outfile == null ) {
-            outfile = files.get(0) + ".combine.yml";
+            outfile = files.get(0) + ".yml";
         }
     }
 
@@ -48,29 +48,21 @@ public class Combine {
         //----------------------------
         // Loading
         //----------------------------
-        RlInfo                            yaml  = new RlInfo();
-        Map<String, Map<String, IntSpan>> setOf = yaml.load(files.get(0), remove);
+        Map<String, Integer> lengthOf = Utils.readSizes(files.get(0), remove);
 
         //----------------------------
         // Operating
         //----------------------------
-        Map<String, IntSpan> opResult = new HashMap<>();
-        for ( String chr : yaml.getSortedChrs() ) {
-            opResult.put(chr, new IntSpan());
-        }
-
-        for ( String name : yaml.getSortedNames() ) {
-            Map<String, IntSpan> curSet = setOf.get(name);
-            for ( String chr : curSet.keySet() ) {
-                IntSpan curResult  = opResult.get(chr);
-                IntSpan curIntSpan = curSet.get(chr);
-                opResult.put(chr, curResult.add(curIntSpan));
-            }
+        Map<String, String> runlistOf = new HashMap<>();
+        for ( Map.Entry<String, Integer> entry : lengthOf.entrySet() ) {
+            IntSpan set = new IntSpan();
+            set.addPair(1, entry.getValue());
+            runlistOf.put(entry.getKey(), set.toString());
         }
 
         //----------------------------
         // Output
         //----------------------------
-        StaticUtils.writeRl(outfile, Utils.toRunlist(opResult));
+        StaticUtils.writeRl(outfile, runlistOf);
     }
 }

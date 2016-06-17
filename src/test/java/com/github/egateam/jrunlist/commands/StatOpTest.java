@@ -4,10 +4,10 @@
  * PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY DISCLAIMED.
  */
 
-package com.github.egateam.commands;
+package com.github.egateam.jrunlist.commands;
 
-import com.github.egateam.Runlist;
 import com.github.egateam.commons.Utils;
+import com.github.egateam.jrunlist.Cli;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -33,7 +33,7 @@ public class StatOpTest {
     @Test
     public void testStatOpFailed() throws Exception {
         String[] args = {"statop"};
-        Runlist.main(args);
+        Cli.main(args);
 
         Assert.assertTrue(this.stderrContent.toString().contains("Main parameters are required"),
             "Except parameters");
@@ -46,7 +46,7 @@ public class StatOpTest {
         String fileName3 = Utils.expendResource("repeat.yml");
 
         String[] args = {"statop", fileName1, fileName2, fileName3, "--op", "intersect", "--outfile", "stdout"};
-        Runlist.main(args);
+        Cli.main(args);
 
         String[] lines = this.stdoutContent.toString().split("\r\n|\r|\n");
         Assert.assertEquals(lines.length, 18, "line count");
@@ -62,7 +62,7 @@ public class StatOpTest {
         String fileName3 = Utils.expendResource("repeat.yml");
 
         String[] args = {"statop", fileName1, fileName2, fileName3, "--all", "--op", "intersect", "--outfile", "stdout"};
-        Runlist.main(args);
+        Cli.main(args);
 
         String[] lines = this.stdoutContent.toString().split("\r\n|\r|\n");
         Assert.assertEquals(lines.length, 2, "line count");

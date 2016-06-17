@@ -98,7 +98,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.github.egateam.Runlist</mainClass>
+                            <mainClass>com.github.egateam.jrunlist.Cli</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

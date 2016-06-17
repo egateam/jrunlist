@@ -4,10 +4,10 @@
  * PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY DISCLAIMED.
  */
 
-package com.github.egateam.commands;
+package com.github.egateam.jrunlist.commands;
 
-import com.github.egateam.Runlist;
 import com.github.egateam.commons.Utils;
+import com.github.egateam.jrunlist.Cli;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-public class CoverTest {
+public class MergeTest {
     // Store the original standard out before changing it.
     private final PrintStream originalStdout = System.out;
     private final PrintStream originalStderr = System.err;
@@ -31,24 +31,24 @@ public class CoverTest {
     }
 
     @Test
-    public void testCoverFailed() throws Exception {
-        String[] args = {"cover"};
-        Runlist.main(args);
+    public void testMergeFailed() throws Exception {
+        String[] args = {"merge"};
+        Cli.main(args);
 
         Assert.assertTrue(this.stderrContent.toString().contains("Main parameters are required"),
             "Except parameters");
     }
 
-    @Test(description = "Test command with S288c.txt")
+    @Test(description = "Test command with I.yml and II.yml")
     public void testExecute() throws Exception {
-        String fileName = Utils.expendResource("S288c.txt");
-        String[] args = {"cover", fileName, "--outfile", "stdout"};
-        Runlist.main(args);
+        String fileName1 = Utils.expendResource("I.yml");
+        String fileName2 = Utils.expendResource("II.yml");
+        String[] args = {"merge", fileName1, fileName2, "--outfile", "stdout"};
+        Cli.main(args);
 
-        Assert.assertEquals(this.stdoutContent.toString().split("\r\n|\r|\n").length, 3, "line count");
-        Assert.assertFalse(this.stdoutContent.toString().contains("S288c"), "species name");
-        Assert.assertFalse(this.stdoutContent.toString().contains("1-100"), "merged");
-        Assert.assertTrue(this.stdoutContent.toString().contains("1-150"), "covered");
+        Assert.assertEquals(this.stdoutContent.toString().split("\r\n|\r|\n").length, 5, "line count");
+        Assert.assertTrue(this.stdoutContent.toString().contains("28547-29194"), "runlist exists");
+        Assert.assertTrue(this.stdoutContent.toString().matches("(?s).*I:.+II:.*"), "chromosomes exist");
     }
 
     @AfterMethod

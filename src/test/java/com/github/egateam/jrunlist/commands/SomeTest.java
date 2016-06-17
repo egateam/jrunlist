@@ -4,10 +4,10 @@
  * PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY DISCLAIMED.
  */
 
-package com.github.egateam.commands;
+package com.github.egateam.jrunlist.commands;
 
-import com.github.egateam.Runlist;
 import com.github.egateam.commons.Utils;
+import com.github.egateam.jrunlist.Cli;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -33,7 +33,7 @@ public class SomeTest {
     @Test
     public void testSomeFailed() throws Exception {
         String[] args = {"some"};
-        Runlist.main(args);
+        Cli.main(args);
 
         Assert.assertTrue(this.stderrContent.toString().contains("Main parameters are required"),
             "Except parameters");
@@ -44,7 +44,7 @@ public class SomeTest {
         String fileName1 = Utils.expendResource("Atha.yml");
         String fileName2 = Utils.expendResource("Atha.list");
         String[] args = {"some", fileName1, fileName2, "--outfile", "stdout"};
-        Runlist.main(args);
+        Cli.main(args);
 
         Assert.assertEquals(this.stdoutContent.toString().split("\r\n|\r|\n").length, 7, "line count");
         Assert.assertTrue(this.stdoutContent.toString().contains("AT2G01008"), "present");

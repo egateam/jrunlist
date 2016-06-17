@@ -4,11 +4,11 @@
  * PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY DISCLAIMED.
  */
 
-package com.github.egateam.commands;
+package com.github.egateam.jrunlist.commands;
 
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
-import com.github.egateam.util.StaticUtils;
+import com.github.egateam.jrunlist.util.StaticUtils;
 import org.apache.commons.io.FilenameUtils;
 
 import java.util.HashMap;

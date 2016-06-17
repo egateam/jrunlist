@@ -4,10 +4,10 @@
  * PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY DISCLAIMED.
  */
 
-package com.github.egateam.commands;
+package com.github.egateam.jrunlist.commands;
 
-import com.github.egateam.Runlist;
 import com.github.egateam.commons.Utils;
+import com.github.egateam.jrunlist.Cli;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-public class SplitTest {
+public class GenomeTest {
     // Store the original standard out before changing it.
     private final PrintStream originalStdout = System.out;
     private final PrintStream originalStderr = System.err;
@@ -31,23 +31,32 @@ public class SplitTest {
     }
 
     @Test
-    public void testSplitFailed() throws Exception {
-        String[] args = {"split"};
-        Runlist.main(args);
+    public void testNoArgs() throws Exception {
+        String[] args = {"genome"};
+        Cli.main(args);
 
         Assert.assertTrue(this.stderrContent.toString().contains("Main parameters are required"),
             "Except parameters");
     }
 
-    @Test(description = "Test command with I.II.yml")
-    public void testExecute() throws Exception {
-        String fileName = Utils.expendResource("I.II.yml");
-        String[] args = {"split", fileName, "--outdir", "stdout"};
-        Runlist.main(args);
+    @Test
+    public void testRedundantArgs() throws Exception {
+        String fileName = Utils.expendResource("chr.sizes");
+        String[] args = {"genome", fileName, fileName, "--outfile", "stdout"};
+        Cli.main(args);
 
-        Assert.assertEquals(this.stdoutContent.toString().split("\r\n|\r|\n").length, 4, "line count");
-        Assert.assertTrue(this.stdoutContent.toString().contains("28547-29194"), "runlist exists");
-        Assert.assertTrue(this.stdoutContent.toString().matches("(?s).*I:.+II:.*"), "chromosomes exist");
+        Assert.assertTrue(this.stderrContent.toString().contains("input file"),
+            "Except parameters");
+    }
+
+    @Test(description = "Test command with chr.sizes")
+    public void testExecute() throws Exception {
+        String fileName = Utils.expendResource("chr.sizes");
+        String[] args = {"genome", fileName, "--outfile", "stdout"};
+        Cli.main(args);
+
+        Assert.assertEquals(this.stdoutContent.toString().split("\r\n|\r|\n").length, 17, "line count");
+        Assert.assertTrue(this.stdoutContent.toString().contains("I: \"1-230218\""), "first chromosome");
     }
 
     @AfterMethod
@@ -60,4 +69,5 @@ public class SplitTest {
         this.stdoutContent = new ByteArrayOutputStream();
         this.stderrContent = new ByteArrayOutputStream();
     }
+
 }

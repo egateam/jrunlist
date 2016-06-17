@@ -4,10 +4,10 @@
  * PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY DISCLAIMED.
  */
 
-package com.github.egateam.commands;
+package com.github.egateam.jrunlist.commands;
 
-import com.github.egateam.Runlist;
 import com.github.egateam.commons.Utils;
+import com.github.egateam.jrunlist.Cli;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -33,7 +33,7 @@ public class CompareTest {
     @Test
     public void testNoArgs() throws Exception {
         String[] args = {"compare"};
-        Runlist.main(args);
+        Cli.main(args);
 
         Assert.assertTrue(this.stderrContent.toString().contains("Main parameters are required"),
             "Expect parameters");
@@ -43,7 +43,7 @@ public class CompareTest {
     public void testInsufficientArgs() throws Exception {
         String   fileName1 = Utils.expendResource("intergenic.yml");
         String[] args      = {"compare", fileName1};
-        Runlist.main(args);
+        Cli.main(args);
 
         Assert.assertTrue(this.stderrContent.toString().contains("input file"),
             "Expect parameters");
@@ -54,7 +54,7 @@ public class CompareTest {
         String   fileName1 = Utils.expendResource("intergenic.yml");
         String   fileName2 = Utils.expendResource("repeat.yml");
         String[] args      = {"compare", "--op", "intersect", fileName1, fileName2, "--outfile", "stdout"};
-        Runlist.main(args);
+        Cli.main(args);
 
         Assert.assertEquals(this.stdoutContent.toString().split("\r\n|\r|\n").length, 17, "line count");
         Assert.assertTrue(this.stdoutContent.toString().contains("878539-878709"), "runlist exists");
@@ -66,7 +66,7 @@ public class CompareTest {
         String   fileName1 = Utils.expendResource("intergenic.yml");
         String   fileName2 = Utils.expendResource("repeat.yml");
         String[] args      = {"compare", "--op", "union", fileName1, fileName2, "--outfile", "stdout"};
-        Runlist.main(args);
+        Cli.main(args);
 
         Assert.assertEquals(this.stdoutContent.toString().split("\r\n|\r|\n").length, 17, "line count");
         Assert.assertFalse(this.stdoutContent.toString().contains("\"-\""), "no empty runlists");
@@ -78,7 +78,7 @@ public class CompareTest {
         String   fileName1 = Utils.expendResource("I.II.yml");
         String   fileName2 = Utils.expendResource("intergenic.yml");
         String[] args      = {"compare", fileName1, fileName2, "--outfile", "stdout"};
-        Runlist.main(args);
+        Cli.main(args);
 
         String lines = this.stdoutContent.toString();
         Assert.assertEquals(lines.split("\r\n|\r|\n").length, 35, "line count");
