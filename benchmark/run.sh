@@ -14,7 +14,7 @@ ${COMMAND_TIME} java -jar ../target/jrunlist-*-jar-with-dependencies.jar \
     chr.sizes sep-gene.yml paralog.yml  \
     --op intersect --all \
     -o stdout \
-    > /dev/null
+    > jstatop.csv.tmp
 
 echo "==> App::RL"
 ${COMMAND_TIME} runlist \
@@ -22,4 +22,5 @@ ${COMMAND_TIME} runlist \
     -s chr.sizes sep-gene.yml paralog.yml  \
     --op intersect --all --mk \
     -o stdout \
-    > /dev/null
+    > pstatop.csv.tmp
+
