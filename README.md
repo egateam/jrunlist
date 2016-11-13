@@ -1,5 +1,5 @@
-[![Travis](https://img.shields.io/travis/wang-q/jrunlist.svg)](https://travis-ci.org/wang-q/jrunlist)
-[![Codecov branch](https://img.shields.io/codecov/c/github/wang-q/jrunlist/master.svg)](https://codecov.io/github/wang-q/jrunlist?branch=master)
+[![Travis](https://img.shields.io/travis/egateam/jrunlist.svg)](https://travis-ci.org/egateam/jrunlist)
+[![Codecov branch](https://img.shields.io/codecov/c/github/egateam/jrunlist/master.svg)](https://codecov.io/github/egateam/jrunlist?branch=master)
 
 # NAME
 
