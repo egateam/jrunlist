@@ -1,5 +1,6 @@
 [![Travis](https://img.shields.io/travis/egateam/jrunlist.svg)](https://travis-ci.org/egateam/jrunlist)
 [![Codecov branch](https://img.shields.io/codecov/c/github/egateam/jrunlist/master.svg)](https://codecov.io/github/egateam/jrunlist?branch=master)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.egateam/jrunlist.svg)](http://search.maven.org/#search|ga|1|g%3A%22com.github.egateam%22%20AND%20a%3A%22jrunlist%22)
 
 # NAME
 
