@@ -28,6 +28,7 @@ Commands:
 
 ### 1. combine        
 
+```bash
    Combine multiple sets of runlists in a yaml file.
    It's expected that the YAML file is --mk.
    Otherwise this command will make no effects.
@@ -42,10 +43,10 @@ Commands:
              Default: false
              
       Example：
-      ```bash
+
       jrunlist combine t/Atha.yml -o stdout
       jrunlist combine t/brca2.yml -o stdout
-      ```
+
       Explanation：
       Atha.yml：
         ---
@@ -65,9 +66,11 @@ Commands:
 	2: "1025-1272,1458-1510,1873-2810,3706-5513,5782-5945,6571-6672"
     
         同理brca2.yml
-
+	
+```
 ### 2. compare   
 
+```bash
    Compare 2 YAML files.
    Only the *first* file can contain multiple sets of runlists.
    --比较两个YAML文件
@@ -85,9 +88,9 @@ Commands:
              Default: false
              
       Example：
-      ```bash
+
       jrunlist compare --op intersect t/intergenic.yml t/repeat.yml -o stdout
-      ```
+ 
       Explanation:
       
       intergenic.yml
@@ -144,7 +147,8 @@ IV: 5262-5984,9757-10559,21007-22470,25877-26402,48267-51093,56347-56921,65766-6
             XIV: "-"
             XV: "-"
             XVI: "-"
-
+	    
+```
 ### 3. cover      
    
    Output covers on chromosomes.
