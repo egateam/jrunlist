@@ -250,7 +250,7 @@ Commands:
 		jrunlist some t/Atha.yml t/Atha.list -o stdout
 		```
 		Explanation:
-					Atha.yml:
+				Atha.yml:
 								---
 								AT1G01010.1:
 								1: 3631-3913,3996-4276,4486-4605,4706-5095,5174-5326,5439-5899
@@ -262,7 +262,7 @@ Commands:
 								2: 1025-1272,1458-1510,1873-2810,3706-5513,5782-5945
 								AT2G01021.1:
 								2: 6571-6672
-					Atha.list:
+				Atha.list:
 								AT1G01010.1
 								AT1G01020.1
 								AT2G01008.1
