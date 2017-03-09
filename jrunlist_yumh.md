@@ -204,16 +204,23 @@ Usage: cover [options] <infiles>
 
 * Example:
 
-jrunlist cover t/S288c.txt -o stdout
+      jrunlist cover t/S288c.txt -o stdout
 
-Explanation:
+* Explanation:
+
 S288c.txt:
+
+```bash
 I:1-100
 I(+):90-150
 S288c.I(-):190-200
 II:21294-22075
 II:23537-24097
+```
+
 经过cover后可以得到:
+
+```bash
 ---
 I: "1-150,190-200"
 II: "21294-22075,23537-24097"
