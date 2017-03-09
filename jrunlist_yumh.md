@@ -1,14 +1,15 @@
 # runlist 
+   
+`jrunlist` operates chromosome runlist files
 
-		`jrunlist` operates chromosome runlist files
-		`jrunlist`可操作染色体runlist文件
+`jrunlist`可操作染色体runlist文件
 
 
 ## Compile
 编译
 
     brew install wang-q/tap/jrunlist
-    利用homebrew进行下载安装
+利用homebrew进行下载安装
 
 ## Example
 例子
@@ -27,7 +28,7 @@ Usage: <main class> [options] [command] [command options]
     命令：
 ```
 
-* 1. combine
+### 1. combine
 
 Combine multiple sets of runlists in a yaml file.
 
