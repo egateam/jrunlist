@@ -51,8 +51,10 @@ Usage: combine [options] <infile>
 
 * Example:
 
-      jrunlist combine t/Atha.yml -o stdout
-      jrunlist combine t/brca2.yml -o stdout
+```bash
+jrunlist combine t/Atha.yml -o stdout
+jrunlist combine t/brca2.yml -o stdout
+```
 
 * Explanation:
 
@@ -106,7 +108,9 @@ Usage: compare [options] <infile1> <infile2>
 
 * Example:
 
-      jrunlist compare --op intersect t/intergenic.yml t/repeat.yml -o stdout
+```bash
+jrunlist compare --op intersect t/intergenic.yml t/repeat.yml -o stdout
+```
 
 * Explanation:
 
@@ -205,7 +209,9 @@ Usage: cover [options] <infiles>
 
 * Example:
 
-      jrunlist cover t/S288c.txt -o stdout
+```bash
+jrunlist cover t/S288c.txt -o stdout
+```
 
 * Explanation:
 
@@ -246,7 +252,9 @@ Usage: genome [options] <infile>
 
 * Example:
 
-      jrunlist genome t/chr.sizes -o stdout
+```bash
+jrunlist genome t/chr.sizes -o stdout
+```
 
 * Explanation:
 
@@ -309,7 +317,9 @@ Usage: merge [options] <infiles>
 
 * Example:
 
-      jrunlist merge t/I.yml t/II.yml -o stdout
+```bash
+jrunlist merge t/I.yml t/II.yml -o stdout
+```
 
 * Explanation:
 
@@ -349,7 +359,9 @@ Usage: some [options] <infile> <list.file>
 
 * Example:
 
-      jrunlist some t/Atha.yml t/Atha.list -o stdout
+```bash
+jrunlist some t/Atha.yml t/Atha.list -o stdout
+```
 
 * Explanation:
 
@@ -426,11 +438,13 @@ Usage: span [options] <infile>
 
 * Example:
 
-      jrunlist span t/brca2.yml --op cover -o stdout
-      jrunlist span t/brca2.yml --op fill -n 1000 -o stdout
-      runlist span --op holes --mk t/Atha.yml -o stdout (App::RL)
-      runlist span --op excise -n 100 --mk t/Atha.yml -o stdout (App::RL)
-      runlist span --op trim -n 50 --mk t/Atha.yml -o stdout (App::RL)  		
+```bash
+jrunlist span t/brca2.yml --op cover -o stdout
+jrunlist span t/brca2.yml --op fill -n 1000 -o stdout
+runlist span --op holes --mk t/Atha.yml -o stdout (App::RL)
+runlist span --op excise -n 100 --mk t/Atha.yml -o stdout (App::RL)
+runlist span --op trim -n 50 --mk t/Atha.yml -o stdout (App::RL)  		
+```
 
 * Explanation:
 
@@ -567,7 +581,9 @@ Usage: split [options] <infile>
 
 * Example:
 
-      runlist split t/repeat.yml -o stdout (App::RL)	
+```bash
+runlist split t/repeat.yml -o stdout (App::RL)	
+```
 
 * Explanation:
 
@@ -636,12 +652,14 @@ Usage: stat [options] <chr.size> <infile>
 
 * Example:
 
-      jrunlist stat t/chr.sizes t/intergenic.yml -o stdout 
-      jrunlist stat t/chr.sizes t/intergenic.yml -o stdout --all
-      jrunlist stat t/Atha.chr.sizes t/Atha.yml --all -o stdout
-      runlist stat t/intergenic.yml -s t/chr.sizes -o stdout (App::RL)	
-      runlist stat t/intergenic.yml -s t/chr.sizes --all -o stdout (App::RL)
-      runlist stat t/Atha.yml -s t/Atha.chr.sizes --mk --all -o stdout (App::RL)
+```bash
+jrunlist stat t/chr.sizes t/intergenic.yml -o stdout 
+jrunlist stat t/chr.sizes t/intergenic.yml -o stdout --all
+jrunlist stat t/Atha.chr.sizes t/Atha.yml --all -o stdout
+runlist stat t/intergenic.yml -s t/chr.sizes -o stdout (App::RL)	
+runlist stat t/intergenic.yml -s t/chr.sizes --all -o stdout (App::RL)
+runlist stat t/Atha.yml -s t/Atha.chr.sizes --mk --all -o stdout (App::RL)
+```
 
 * Explanation: 
 
@@ -789,12 +807,14 @@ Usage: statop [options] <chr.size> <infile1> <infile2>
 
 * Example:
 
-      jrunlist statop --op intersect t/chr.sizes t/intergenic.yml t/repeat.yml -o stdout 
-      jrunlist statop --op intersect --all t/chr.sizes t/intergenic.yml t/repeat.yml -o stdout
-      jrunlist statop --op intersect --all t/Atha.chr.sizes t/Atha.yml t/Atha.trf.yml -o stdout
-      runlist stat2 --op intersect t/intergenic.yml t/repeat.yml -s t/chr.sizes -o stdout (App::RL)	
-      runlist stat2 --op intersect t/intergenic.yml t/repeat.yml -s t/chr.sizes --all -o stdout (App::RL)
-      runlist stat2 --op intersect t/Atha.yml t/Atha.trf.yml -s t/Atha.chr.sizes --all --mk -o stdout (App::RL)
+```bash
+jrunlist statop --op intersect t/chr.sizes t/intergenic.yml t/repeat.yml -o stdout 
+jrunlist statop --op intersect --all t/chr.sizes t/intergenic.yml t/repeat.yml -o stdout
+jrunlist statop --op intersect --all t/Atha.chr.sizes t/Atha.yml t/Atha.trf.yml -o stdout
+runlist stat2 --op intersect t/intergenic.yml t/repeat.yml -s t/chr.sizes -o stdout (App::RL)	
+runlist stat2 --op intersect t/intergenic.yml t/repeat.yml -s t/chr.sizes --all -o stdout (App::RL)
+runlist stat2 --op intersect t/Atha.yml t/Atha.trf.yml -s t/Atha.chr.sizes --all --mk -o stdout (App::RL)
+```
 
 * Explanation:
 
