@@ -1,5 +1,7 @@
 # runlist 
+
 `jrunlist` operates chromosome runlist files
+
 `jrunlist`可操作染色体runlist文件
 
 ## Compile
@@ -12,16 +14,23 @@ brew install wang-q/tap/jrunlist
 
 ## Example
 例子
+
 Usage: <main class> [options] [command] [command options]
 用法：<主体> [选项] [命令] [命令选项]
+
 Options:
 选项：
 --help, -h
+
 Print this help and quit
 Default: false
+
 Commands:
 命令：
-### 1. combine      
+
+### 1. combine
+
+```bash    
 Combine multiple sets of runlists in a yaml file.
 It's expected that the YAML file is --mk.
 Otherwise this command will make no effects.
@@ -35,10 +44,8 @@ Remove 'chr0' from chromosome names.
 Default: false
 Example:
 
-```bash
 jrunlist combine t/Atha.yml -o stdout
 jrunlist combine t/brca2.yml -o stdout
-```
 
 Explanation:
 Atha.yml：
@@ -58,7 +65,11 @@ AT2G01021.1:
 1: "3631-3913,3996-4276,4486-4605,4706-5095,5174-5326,5439-5899,5928-6263,6437-7069,7157-7450,7564-7649,7762-7835,7942-7987,8236-8325,8417-8464,8571-8737"
 2: "1025-1272,1458-1510,1873-2810,3706-5513,5782-5945,6571-6672"
 同理brca2.yml
-### 2. compare      
+```
+
+### 2. compare
+
+```bash   
 Compare 2 YAML files.
 Only the *first* file can contain multiple sets of runlists.
 --比较两个YAML文件
@@ -75,9 +86,7 @@ Remove 'chr0' from chromosome names.
 Default: false
 Example:
 
-```bash
 jrunlist compare --op intersect t/intergenic.yml t/repeat.yml -o stdout
-```
 
 Explanation:
 intergenic.yml:
@@ -135,8 +144,11 @@ XIV: "-"
 XV: "-"
 XVI: "-"
 ps: 结果得到的是两个文件相互重叠的部分
+```
 
-### 3. cover      
+### 3. cover
+
+```bash
 Output covers on chromosomes.
 Like `command combine`, but <infiles> are chromosome positions.
 I:1-100
@@ -152,9 +164,7 @@ Remove 'chr0' from chromosome names.
 Default: false
 Example:
 
-```bash
 jrunlist cover t/S288c.txt -o stdout
-```
 
 Explanation:
 S288c.txt:
@@ -168,7 +178,11 @@ II:23537-24097
 I: "1-150,190-200"
 II: "21294-22075,23537-24097"
 ps: 物种名、正负链信息将被省略。
-### 4. genome      
+```
+
+### 4. genome
+
+```bash
 Convert chr.size to runlists
 Usage: genome [options] <infile>
 Options:
@@ -179,9 +193,7 @@ Remove 'chr0' from chromosome names.
 Default: false
 Example:
 
-```bash
 jrunlist genome t/chr.sizes -o stdout
-```
 
 Explanation:
 chr.sizes:
@@ -218,8 +230,12 @@ XII: "1-1078177"
 XIII: "1-924431"
 XIV: "1-784333"
 XV: "1-1091291"
-XVI: "1-948066"   
-### 5. merge      
+XVI: "1-948066"
+```
+
+### 5. merge
+
+```bash
 Merge runlist yaml files
 --将多个yaml文件整合成一个文件
 Usage: merge [options] <infiles>
@@ -228,10 +244,9 @@ Options:
 Output filename. [stdout] for screen.
 Example:
 
-```bash
 jrunlist merge t/I.yml t/II.yml -o stdout
-```
 
+Explanation:
 I.yml:
 ---
 I: 13744-17133,20043-21352,27969-29557,32941-33447,45023-45898,67521-68715,69526-71785
@@ -244,7 +259,10 @@ I:
 I: "13744-17133,20043-21352,27969-29557,32941-33447,45023-45898,67521-68715,69526-71785"
 II:
 II: "21294-22075,23537-24097,28547-29194,36489-36988,44919-45977,63330-63875,71128-71865"		
-### 6. some      
+
+### 6. some
+
+```bash
 Extract some records from a runlist yaml file
 --提取runlist yaml文件中的部分
 Usage: some [options] <infile> <list.file>
@@ -253,9 +271,7 @@ Options:
 Output filename. [stdout] for screen.
 Example:
 
-```bash
 jrunlist some t/Atha.yml t/Atha.list -o stdout
-```
 
 Explanation:
 Atha.yml:
@@ -283,7 +299,11 @@ AT1G01020.1:
 AT2G01008.1:
 2: "1025-1272,1458-1510,1873-2810,3706-5513,5782-5945"
 ps: some可以吧相应的yaml文件提取出来
-### 7. span      
+```
+
+### 7. span
+
+```bash
 Operate spans in a YAML file.
 List of operations
 cover:  a single span from min to max;
@@ -311,13 +331,11 @@ Remove 'chr0' from chromosome names.
 Default: false
 Example:
 
-```bash
 jrunlist span t/brca2.yml --op cover -o stdout
 jrunlist span t/brca2.yml --op fill -n 1000 -o stdout
 runlist span --op holes --mk t/Atha.yml -o stdout (App::RL)
 runlist span --op excise -n 100 --mk t/Atha.yml -o stdout (App::RL)
 runlist span --op trim -n 50 --mk t/Atha.yml -o stdout (App::RL)  		
-```
 
 Explanation:
 brca2.yml:
@@ -396,7 +414,11 @@ AT2G01008.1:
 AT2G01021.1: 
 2: 6521-6722
 ppps: 我们可以发现该操作是将所有跨度的前端减少50，后端增加50，整个跨度增大100，如果原间隔长度小于100，跨度增加后会有重叠，那么则会进行合并。
-### 8. split      
+```
+
+### 8. split
+
+```bash
 Split a runlist yaml file
 Usage: split [options] <infile>
 Options:
@@ -408,9 +430,7 @@ Extension of output files.
 Default: .yml
 Example:
 
-```bash
 runlist split t/repeat.yml -o stdout (App::RL)	
-```
 
 Explanation:
 repeat.yml:
@@ -447,8 +467,12 @@ XVI: 560481-561065
 --- 327069-327703
 --- 560481-561065
 --- 162831-163399
---- "-" 
-### 9. stat      
+--- "-"
+```
+
+### 9. stat
+
+```bash      
 Coverage on chromosomes for runlists
 统计runlist覆盖染色体的比例
 Usage: stat [options] <chr.size> <infile>
@@ -463,14 +487,12 @@ Remove 'chr0' from chromosome names.
 Default: false
 Example:
 
-```bash
 jrunlist stat t/chr.sizes t/intergenic.yml -o stdout 
 jrunlist stat t/chr.sizes t/intergenic.yml -o stdout --all
 jrunlist stat t/Atha.chr.sizes t/Atha.yml --all -o stdout
 runlist stat t/intergenic.yml -s t/chr.sizes -o stdout (App::RL)	
 runlist stat t/intergenic.yml -s t/chr.sizes --all -o stdout (App::RL)
 runlist stat t/Atha.yml -s t/Atha.chr.sizes --mk --all -o stdout (App::RL)
-```
 
 Explanation: 
 intergenic.yml:
@@ -558,7 +580,11 @@ AT1G01020.2,30427671,1085,0.0000
 AT2G01008.1,19698289,3211,0.0002
 AT2G01021.1,19698289,102,0.0000
 ps: 作用效果和runlist stat t/Atha.yml -s t/Atha.chr.sizes --mk --all -o stdout (App::RL)相同，但是书写顺序有所差别。
-### 10. statop      
+```
+
+### 10. statop
+
+```bash
 Coverage on chromosomes for one YAML crossed another
 Only the *first* file can contain multiple sets of runlists.
 Usage: statop [options] <chr.size> <infile1> <infile2>
@@ -578,14 +604,12 @@ Remove 'chr0' from chromosome names.
 Default: false
 Example:
 
-```bash
 jrunlist statop --op intersect t/chr.sizes t/intergenic.yml t/repeat.yml -o stdout 
 jrunlist statop --op intersect --all t/chr.sizes t/intergenic.yml t/repeat.yml -o stdout
 jrunlist statop --op intersect --all t/Atha.chr.sizes t/Atha.yml t/Atha.trf.yml -o stdout
 runlist stat2 --op intersect t/intergenic.yml t/repeat.yml -s t/chr.sizes -o stdout (App::RL)	
 runlist stat2 --op intersect t/intergenic.yml t/repeat.yml -s t/chr.sizes --all -o stdout (App::RL)
 runlist stat2 --op intersect t/Atha.yml t/Atha.trf.yml -s t/Atha.chr.sizes --all --mk -o stdout (App::RL)
-```
 
 Explanation:
 intergenic.yml:
@@ -645,3 +669,4 @@ XVI,948066,81016,585,0,0.0855,0.0000,0.0000
 all,12071326,1059702,36721,172,0.0878,0.0047,0.0534
 ps: repeatSize指的是两个yml文件交集的部分，c1=size/chrLength，c2=repeatSize/repeatLength，ratio=c2/c1
 pps: 作用效果和runlist stat2 --op intersect t/intergenic.yml t/repeat.yml -s t/chr.sizes -o stdout (App::RL)相同，但是书写顺序有所差别。
+```
