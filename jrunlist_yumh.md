@@ -1,71 +1,83 @@
 # runlist 
 
-`jrunlist` operates chromosome runlist files
+		`jrunlist` operates chromosome runlist files
+		`jrunlist`可操作染色体runlist文件
 
-`jrunlist`可操作染色体runlist文件
 
 ## Compile
 编译
 
-```bash
-brew install wang-q/tap/jrunlist
-利用homebrew进行下载安装
-```
+    brew install wang-q/tap/jrunlist
+    利用homebrew进行下载安装
 
 ## Example
 例子
 
+```bash
 Usage: <main class> [options] [command] [command options]
 用法：<主体> [选项] [命令] [命令选项]
 
-Options:
-选项：
---help, -h
+    Options:
+    选项：              
+            --help, -h
+    Print this help and quit
+    Default: false
+    
+    Commands:
+    命令：
+```
 
-Print this help and quit
-Default: false
+* 1. combine
 
-Commands:
-命令：
-
-### 1. combine
-
-```bash    
 Combine multiple sets of runlists in a yaml file.
+
 It's expected that the YAML file is --mk.
+    
 Otherwise this command will make no effects.
+
 --在一个yaml文件中，合并多个runlists的集合
+
+``` bash
 Usage: combine [options] <infile>
-Options:
---outfile, -o
-Output filename. [stdout] for screen.
---remove, -r
-Remove 'chr0' from chromosome names.
-Default: false
+
+    Options:
+            --outfile, -o
+    Output filename. [stdout] for screen.
+            --remove, -r
+    Remove 'chr0' from chromosome names.
+    Default: false
+```
+
 Example:
 
-jrunlist combine t/Atha.yml -o stdout
-jrunlist combine t/brca2.yml -o stdout
+```bash
+    jrunlist combine t/Atha.yml -o stdout
+    jrunlist combine t/brca2.yml -o stdout
+```
 
 Explanation:
-Atha.yml：
----
-AT1G01010.1:
-1: 3631-3913,3996-4276,4486-4605,4706-5095,5174-5326,5439-5899
-AT1G01020.1:
-1: 5928-6263,6437-7069,7157-7232,7384-7450,7564-7649,7762-7835,7942-7987,8236-8325,8417-8464,8571-8737
-AT1G01020.2:
-1: 6790-7069,7157-7450,7564-7649,7762-7835,7942-7987,8236-8325,8417-8464,8571-8737
-AT2G01008.1:
-2: 1025-1272,1458-1510,1873-2810,3706-5513,5782-5945
-AT2G01021.1:
-2: 6571-6672
+
+    Atha.yml：
+    ---
+    AT1G01010.1:
+    1: 3631-3913,3996-4276,4486-4605,4706-5095,5174-5326,5439-5899
+    AT1G01020.1:
+    1: 5928-6263,6437-7069,7157-7232,7384-7450,7564-7649,7762-7835,7942-7987,8236-8325,8417-8464,8571-8737
+    AT1G01020.2:
+    1: 6790-7069,7157-7450,7564-7649,7762-7835,7942-7987,8236-8325,8417-8464,8571-8737
+    AT2G01008.1:
+    2: 1025-1272,1458-1510,1873-2810,3706-5513,5782-5945
+    AT2G01021.1:
+    2: 6571-6672
+    
 经过combine后可以得到:
----
-1: "3631-3913,3996-4276,4486-4605,4706-5095,5174-5326,5439-5899,5928-6263,6437-7069,7157-7450,7564-7649,7762-7835,7942-7987,8236-8325,8417-8464,8571-8737"
-2: "1025-1272,1458-1510,1873-2810,3706-5513,5782-5945,6571-6672"
+
+    ---
+    1: "3631-3913,3996-4276,4486-4605,4706-5095,5174-5326,5439-5899,5928-6263,6437-7069,7157-7450,7564-7649,7762-7835,7942-7987,8236-8325,8417-8464,8571-8737"
+    2: "1025-1272,1458-1510,1873-2810,3706-5513,5782-5945,6571-6672"
+
 同理brca2.yml
-```
+
 
 ### 2. compare
 
