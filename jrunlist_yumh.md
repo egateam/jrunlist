@@ -889,3 +889,52 @@ ps: repeatSize指的是两个yml文件交集的部分，c1=size/chrLength，c2=r
 
 pps: 作用效果和runlist stat2 --op intersect t/intergenic.yml t/repeat.yml -s t/chr.sizes -o stdout (App::RL)相同，但是书写顺序有所差别。
 
+## benchmark测试
+
+* Preparation
+
+a. 在 https://github.com/egateam/jrunlist/releases/tag/jrunlist-0.1.2 下载 jrunlist-0.1.2-jar-with-dependencies.jar，目录放在~/benchmark/target中
+b. 使用cpanm --local-lib=~/perl5 local::lib && eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)命令安装模块
+
+* Command
+```bash
+bash run.sh
+```
+
+* OSX 10.12.3, 4 GHz Intel Core i7, java version "1.8.0_121"
+
+```bash
+App::RL is up to date. (0.2.31)
+==> jrunlist
+        3.22 real         9.07 user         1.12 sys
+ 968478720  maximum resident set size
+         0  average shared memory size
+         0  average unshared data size
+         0  average unshared stack size
+    249531  page reclaims
+       217  page faults
+         0  swaps
+         0  block input operations
+         8  block output operations
+         0  messages sent
+         0  messages received
+         4  signals received
+         3  voluntary context switches
+     47942  involuntary context switches
+==> App::RL
+      377.24 real       374.89 user         1.13 sys
+ 145616896  maximum resident set size
+         0  average shared memory size
+         0  average unshared data size
+         0  average unshared stack size
+     37673  page reclaims
+        20  page faults
+         0  swaps
+         8  block input operations
+         1  block output operations
+         0  messages sent
+         0  messages received
+         0  signals received
+        54  voluntary context switches
+    186492  involuntary context switches
+```
