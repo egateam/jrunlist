@@ -894,6 +894,7 @@ pps: 作用效果和runlist stat2 --op intersect t/intergenic.yml t/repeat.yml -
 * Preparation
 
 a. 在 https://github.com/egateam/jrunlist/releases/tag/jrunlist-0.1.2 下载 jrunlist-0.1.2-jar-with-dependencies.jar，目录放在~/benchmark/target中
+
 b. 使用cpanm --local-lib=~/perl5 local::lib && eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)命令安装模块
 
 * Command
