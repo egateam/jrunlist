@@ -2,13 +2,28 @@
 [![Codecov branch](https://img.shields.io/codecov/c/github/egateam/jrunlist/master.svg)](https://codecov.io/github/egateam/jrunlist?branch=master)
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.egateam/jrunlist.svg)](http://search.maven.org/#search|ga|1|g%3A%22com.github.egateam%22%20AND%20a%3A%22jrunlist%22)
 
+[TOC levels=1-3]: # " "
+- [NAME](#name)
+- [SYNOPSIS](#synopsis)
+- [DESCRIPTION](#description)
+- [REQUIREMENTS](#requirements)
+- [EXAMPLES](#examples)
+- [COMPARISON](#comparison)
+    - [CLOC](#cloc)
+    - [BENCHMARK](#benchmark)
+    - [Different implementations of IntSpan](#different-implementations-of-intspan)
+- [AUTHOR](#author)
+- [COPYRIGHT AND LICENSE](#copyright-and-license)
+
+
 # NAME
 
 `jrunlist` operates chromosome runlist files
 
-## SYNOPSIS
+# SYNOPSIS
 
-```
+```text
+$ jrunlist --help
 Usage: <main class> [options] [command] [command options]
   Options:
     --help, -h
@@ -137,11 +152,11 @@ Usage: <main class> [options] [command] [command options]
 
 ```
 
-## DESCRIPTION
+# DESCRIPTION
 
 This Java class is ported from the Perl module `App::RL`.
 
-## REQUIREMENTS
+# REQUIREMENTS
 
 Oracle/Open JDK 1.7 or higher.
 
@@ -149,7 +164,7 @@ Optional:
 
 * yamljs: `npm install -g yamljs`
 
-## EXAMPLES
+# EXAMPLES
 
 ```bash
 mvn clean verify
@@ -207,9 +222,9 @@ time java -jar target/jrunlist-*-jar-with-dependencies.jar \
     --op intersect --all -o stdout > /dev/null
 ```
 
-## COMPARISON
+# COMPARISON
 
-### CLOC
+## CLOC
 
 ```bash
 cloc ~/Scripts/java/jrunlist/src/main
@@ -221,7 +236,7 @@ cloc ~/Scripts/cpan/App-RL/lib/ ~/Scripts/cpan/App-RL/script/
 | App::RL  | 961     |
 | jrunlist | 1083    |
 
-### BENCHMARK
+## BENCHMARK
 
 ```bash
 cd benchmark
@@ -318,7 +333,7 @@ bash run.sh
         Exit status: 0
 ```
 
-### Different implementations of IntSpan
+## Different implementations of IntSpan
 
 ```
 time java -Xmx16g -jar target/jrunlist-*-jar-with-dependencies.jar \
@@ -359,11 +374,11 @@ user	0m49.367s
 sys	    0m12.870s
 ```
 
-## AUTHOR
+# AUTHOR
 
 Qiang Wang &lt;wang-q@outlook.com&gt;
 
-## COPYRIGHT AND LICENSE
+# COPYRIGHT AND LICENSE
 
 This software is copyright (c) 2016 by Qiang Wang.
 
