@@ -56,22 +56,41 @@ public class Cover {
         //----------------------------
         // Loading
         //----------------------------
-        for ( String infile : files ) {
-            for ( String str : Utils.readLines(infile) ) {
+        for ( String inFile : files ) {
 
+            // Don't slurp file contents. inFile can be huge.
+            // List<String> lines = Utils.readLines(inFile);
+
+            LineIterator iter;
+            if ( inFile.toLowerCase().equals("stdin") ) {
+                iter = IOUtils.lineIterator(System.in, "utf-8");
+            } else {
+                iter = FileUtils.lineIterator(new File(inFile), "utf-8");
+            }
+
+            try {
                 //----------------------------
                 // Operating
                 //----------------------------
-                ChrRange chrRange = new ChrRange(str);
-                if ( !chrRange.isEmpty() ) {
-                    String chrName = chrRange.getChr();
-                    if ( !setSingle.containsKey(chrName) ) {
-                        setSingle.put(chrName, new IntSpan());
+                while ( iter.hasNext() ) {
+                    String line = iter.nextLine();
+
+                    ChrRange chrRange = new ChrRange(line);
+                    if ( !chrRange.isEmpty() ) {
+                        String chrName = chrRange.getChr();
+                        if ( !setSingle.containsKey(chrName) ) {
+                            setSingle.put(chrName, new IntSpan());
+                        }
+
+                        setSingle.get(chrName)
+                                .addPair(chrRange.getStart(), chrRange.getEnd());
                     }
 
-                    setSingle.get(chrName).addPair(chrRange.getStart(), chrRange.getEnd());
                 }
+            } finally {
+                iter.close();
             }
+
         }
 
         //----------------------------
