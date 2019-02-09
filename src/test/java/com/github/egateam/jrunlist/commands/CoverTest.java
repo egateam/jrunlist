@@ -51,8 +51,20 @@ public class CoverTest {
         Assert.assertTrue(this.stdoutContent.toString().contains("1-150"), "covered");
     }
 
-    @Test(description = "Test command with dazzname.txt")
+    @Test(description = "Test command with S288c.txt -c 2")
     public void testExecute2() throws Exception {
+        String   fileName = Utils.expendResource("S288c.txt");
+        String[] args     = {"cover", fileName, "--coverage", "2", "--outfile", "stdout"};
+        Cli.main(args);
+
+        Assert.assertEquals(this.stdoutContent.toString().split("\r\n|\r|\n").length, 3, "line count");
+        Assert.assertFalse(this.stdoutContent.toString().contains("S288c"), "species name");
+        Assert.assertFalse(this.stdoutContent.toString().contains("1-150"), "coverage 1");
+        Assert.assertTrue(this.stdoutContent.toString().contains("90-100"), "coverage 2");
+    }
+
+    @Test(description = "Test command with dazzname.txt")
+    public void testExecute3() throws Exception {
         String   fileName = Utils.expendResource("dazzname.txt");
         String[] args     = {"cover", fileName, "--outfile", "stdout"};
         Cli.main(args);
