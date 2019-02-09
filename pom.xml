@@ -7,7 +7,7 @@
 
     <groupId>com.github.egateam</groupId>
     <artifactId>jrunlist</artifactId>
-    <version>0.1.6</version>
+    <version>0.1.7</version>
 
     <name>${project.artifactId}</name>
     <description>`jrunlist` operates chromosome runlist files.</description>
