@@ -7,6 +7,7 @@
 - [SYNOPSIS](#synopsis)
 - [DESCRIPTION](#description)
 - [REQUIREMENTS](#requirements)
+- [INSTALLATION](#installation)
 - [EXAMPLES](#examples)
 - [COMPARISON](#comparison)
     - [CLOC](#cloc)
@@ -164,62 +165,70 @@ Optional:
 
 * yamljs: `npm install -g yamljs`
 
+# INSTALLATION
+
+* By Homebrew (Linuxbrew)
+
+  ```bash
+  brew install wang-q/tap/jrunlist
+  ```
+
+* By maven
+
+  ```bash
+  git clone https://github.com/egateam/jrunlist
+    cd jrunlist
+    
+    mvn clean verify
+  ```
+
 # EXAMPLES
 
 ```bash
-mvn clean verify
+# mvn clean verify
+# java -jar target/jrunlist-*-jar-with-dependencies.jar cover src/test/resources/S288c.txt -o stdout
 
-java -jar target/jrunlist-*-jar-with-dependencies.jar \
-    genome -o stdout \
-    src/test/resources/chr.sizes
+jrunlist genome -o stdout src/test/resources/chr.sizes
 
-java -jar target/jrunlist-*-jar-with-dependencies.jar \
-    merge -o stdout \
+jrunlist merge -o stdout \
     src/test/resources/I.yml \
     src/test/resources/II.yml
 
-java -jar target/jrunlist-*-jar-with-dependencies.jar \
-    cover -o stdout \
-    src/test/resources/S288c.txt
+jrunlist cover src/test/resources/S288c.txt -o stdout
+jrunlist cover -c 2 src/test/resources/S288c.txt -o stdout
 
-java -jar target/jrunlist-*-jar-with-dependencies.jar \
-    span -o stdout \
+jrunlist span -o stdout \
     --op cover \
     src/test/resources/brca2.yml
 
-java -jar target/jrunlist-*-jar-with-dependencies.jar \
-    compare -o stdout \
+jrunlist compare -o stdout \
     --op intersect \
     src/test/resources/intergenic.yml \
     src/test/resources/repeat.yml
 
-java -jar target/jrunlist-*-jar-with-dependencies.jar \
-    compare -o stdout \
+jrunlist compare -o stdout \
     --op intersect \
     src/test/resources/I.II.yml \
     src/test/resources/intergenic.yml
 
-java -jar target/jrunlist-*-jar-with-dependencies.jar \
-    stat -o stdout \
+jrunlist stat -o stdout \
     src/test/resources/chr.sizes \
     src/test/resources/intergenic.yml
 
-java -jar target/jrunlist-*-jar-with-dependencies.jar \
-    statop -o stdout \
+jrunlist statop -o stdout \
     --op intersect \
     src/test/resources/chr.sizes \
     src/test/resources/intergenic.yml \
     src/test/resources/repeat.yml
 
-java -jar target/jrunlist-*-jar-with-dependencies.jar \
-    stat \
+jrunlist stat \
     benchmark/chr.sizes benchmark/sep-gene.yml \
     --all -o stdout
 
-time java -jar target/jrunlist-*-jar-with-dependencies.jar \
-    statop \
+time jrunlist statop \
     benchmark/chr.sizes benchmark/sep-gene.yml benchmark/paralog.yml \
     --op intersect --all -o stdout > /dev/null
+
 ```
 
 # COMPARISON
@@ -231,16 +240,15 @@ cloc ~/Scripts/java/jrunlist/src/main
 cloc ~/Scripts/cpan/App-RL/lib/ ~/Scripts/cpan/App-RL/script/
 ```
 
-| name     | cloc    |
-| :-----   | :-----: |
-| App::RL  | 961     |
-| jrunlist | 1083    |
+| name     | cloc |
+|:---------|-----:|
+| App::RL  | 1514 |
+| jrunlist |  927 |
 
 ## BENCHMARK
 
 ```bash
-cd benchmark
-bash run.sh
+bash benchmark/run.sh
 ```
 
 * OSX 10.11 i7-6700k oracleJDK8
