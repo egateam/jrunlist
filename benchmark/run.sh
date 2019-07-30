@@ -43,7 +43,7 @@ cd ${BASE_DIR}
 # Run
 #----------------------------#
 log_info "jrunlist"
-${COMMAND_TIME} java -jar ../target/jrunlist-*-jar-with-dependencies.jar \
+${COMMAND_TIME} java -jar ../target/jrunlist-0.1.7-jar-with-dependencies.jar \
     statop \
     chr.sizes sep-gene.yml paralog.yml  \
     --op intersect --all \
