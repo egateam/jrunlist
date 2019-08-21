@@ -251,41 +251,57 @@ cloc ~/Scripts/cpan/App-RL/lib/ ~/Scripts/cpan/App-RL/script/
 bash benchmark/run.sh
 ```
 
-* OSX 10.11 i7-6700k oracleJDK8
+* OSX 10.14 i7-8700k oracleJDK8
 
 ```
 ==> jrunlist
-        3.12 real         8.17 user         0.91 sys
-1064009728  maximum resident set size
+        2.89 real         8.60 user         1.25 sys
+1062014976  maximum resident set size
          0  average shared memory size
          0  average unshared data size
          0  average unshared stack size
-    270271  page reclaims
-         0  page faults
+    264649  page reclaims
+        56  page faults
          0  swaps
          0  block input operations
-         5  block output operations
+         0  block output operations
          0  messages sent
          0  messages received
-         2  signals received
+         3  signals received
          2  voluntary context switches
-     40022  involuntary context switches
-==> App::RL
-      352.19 real       350.19 user         1.60 sys
- 115826688  maximum resident set size
+     59505  involuntary context switches
+==> intspan
+        1.94 real         1.90 user         0.04 sys
+ 135766016  maximum resident set size
          0  average shared memory size
          0  average unshared data size
          0  average unshared stack size
-     42417  page reclaims
-         0  page faults
+     33277  page reclaims
+         3  page faults
          0  swaps
          0  block input operations
-         6  block output operations
+         0  block output operations
          0  messages sent
          0  messages received
-        20  signals received
-        56  voluntary context switches
-     55700  involuntary context switches
+         0  signals received
+         0  voluntary context switches
+        97  involuntary context switches
+==> App::RL
+      213.61 real       213.20 user         0.22 sys
+ 117841920  maximum resident set size
+         0  average shared memory size
+         0  average unshared data size
+         0  average unshared stack size
+     28769  page reclaims
+        10  page faults
+         0  swaps
+         0  block input operations
+         0  block output operations
+         0  messages sent
+         0  messages received
+         0  signals received
+        54  voluntary context switches
+     22610  involuntary context switches
 ```
 
 * Ubuntu 14.04 E5-2690 v3 openJDK7

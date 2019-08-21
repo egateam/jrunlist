@@ -50,6 +50,14 @@ ${COMMAND_TIME} java -jar ../target/jrunlist-0.1.7-jar-with-dependencies.jar \
     -o stdout \
     > jstatop.csv.tmp
 
+log_info "intspan"
+${COMMAND_TIME} intspan \
+    statop \
+    chr.sizes sep-gene.yml paralog.yml  \
+    --op intersect --all \
+    -o stdout \
+    > rstatop.csv.tmp
+
 log_info "App::RL"
 ${COMMAND_TIME} runlist \
     stat2 \
