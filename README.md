@@ -255,29 +255,29 @@ bash benchmark/run.sh
 
 ```
 ==> jrunlist
-        3.31 real         8.94 user         1.17 sys
-1050587136  maximum resident set size
+        3.06 real         8.85 user         1.30 sys
+1058832384  maximum resident set size
          0  average shared memory size
          0  average unshared data size
          0  average unshared stack size
-    260356  page reclaims
-      2312  page faults
+    264196  page reclaims
+         0  page faults
          0  swaps
          0  block input operations
          0  block output operations
          0  messages sent
          0  messages received
-         3  signals received
-       378  voluntary context switches
-     60083  involuntary context switches
-==> intspan
-        2.04 real         1.98 user         0.04 sys
- 136495104  maximum resident set size
+         2  signals received
+         0  voluntary context switches
+     63640  involuntary context switches
+==> spanr
+        2.01 real         1.93 user         0.05 sys
+ 136843264  maximum resident set size
          0  average shared memory size
          0  average unshared data size
          0  average unshared stack size
-     33140  page reclaims
-       197  page faults
+     33176  page reclaims
+       247  page faults
          0  swaps
          0  block input operations
          0  block output operations
@@ -285,23 +285,23 @@ bash benchmark/run.sh
          0  messages received
          0  signals received
          1  voluntary context switches
-       430  involuntary context switches
+      1254  involuntary context switches
 ==> App::RL
-      227.39 real       226.40 user         0.55 sys
- 117587968  maximum resident set size
+      221.32 real       220.84 user         0.29 sys
+ 117743616  maximum resident set size
          0  average shared memory size
          0  average unshared data size
          0  average unshared stack size
-     28668  page reclaims
-        50  page faults
+     28756  page reclaims
+         0  page faults
          0  swaps
          0  block input operations
          0  block output operations
          0  messages sent
          0  messages received
          0  signals received
-       129  voluntary context switches
-     46252  involuntary context switches
+         0  voluntary context switches
+     28138  involuntary context switches
 ```
 
 * Ubuntu 14.04 E5-2690 v3 openJDK8
@@ -309,44 +309,44 @@ bash benchmark/run.sh
 ```
 ==> jrunlist
         Command being timed: "java -jar ../target/jrunlist-0.1.7-jar-with-dependencies.jar statop chr.sizes sep-gene.yml paralog.yml --op intersect --all -o stdout"
-        User time (seconds): 12.19
-        System time (seconds): 1.66
-        Percent of CPU this job got: 304%
-        Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.54
+        User time (seconds): 11.60
+        System time (seconds): 1.23
+        Percent of CPU this job got: 338%
+        Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.78
         Average shared text size (kbytes): 0
         Average unshared data size (kbytes): 0
         Average stack size (kbytes): 0
         Average total size (kbytes): 0
-        Maximum resident set size (kbytes): 1094976
+        Maximum resident set size (kbytes): 1113600
         Average resident set size (kbytes): 0
-        Major (requiring I/O) page faults: 4
-        Minor (reclaiming a frame) page faults: 45024
-        Voluntary context switches: 8758
-        Involuntary context switches: 244
+        Major (requiring I/O) page faults: 1
+        Minor (reclaiming a frame) page faults: 45606
+        Voluntary context switches: 7911
+        Involuntary context switches: 168
         Swaps: 0
-        File system inputs: 15488
-        File system outputs: 3600
+        File system inputs: 8344
+        File system outputs: 3560
         Socket messages sent: 0
         Socket messages received: 0
         Signals delivered: 0
         Page size (bytes): 4096
         Exit status: 0
-==> intspan
-        Command being timed: "intspan statop chr.sizes sep-gene.yml paralog.yml --op intersect --all -o stdout"
-        User time (seconds): 2.17
-        System time (seconds): 0.07
+==> spanr
+        Command being timed: "spanr statop chr.sizes sep-gene.yml paralog.yml --op intersect --all -o stdout"
+        User time (seconds): 1.83
+        System time (seconds): 0.04
         Percent of CPU this job got: 100%
-        Elapsed (wall clock) time (h:mm:ss or m:ss): 0:02.24
+        Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.87
         Average shared text size (kbytes): 0
         Average unshared data size (kbytes): 0
         Average stack size (kbytes): 0
         Average total size (kbytes): 0
-        Maximum resident set size (kbytes): 112640
+        Maximum resident set size (kbytes): 113164
         Average resident set size (kbytes): 0
         Major (requiring I/O) page faults: 0
-        Minor (reclaiming a frame) page faults: 56937
+        Minor (reclaiming a frame) page faults: 29863
         Voluntary context switches: 1
-        Involuntary context switches: 26
+        Involuntary context switches: 17
         Swaps: 0
         File system inputs: 0
         File system outputs: 3488
@@ -357,22 +357,22 @@ bash benchmark/run.sh
         Exit status: 0
 ==> App::RL
         Command being timed: "runlist stat2 -s chr.sizes sep-gene.yml paralog.yml --op intersect --all --mk -o stdout"
-        User time (seconds): 368.10
-        System time (seconds): 0.18
+        User time (seconds): 367.23
+        System time (seconds): 0.12
         Percent of CPU this job got: 99%
-        Elapsed (wall clock) time (h:mm:ss or m:ss): 6:08.36
+        Elapsed (wall clock) time (h:mm:ss or m:ss): 6:07.48
         Average shared text size (kbytes): 0
         Average unshared data size (kbytes): 0
         Average stack size (kbytes): 0
         Average total size (kbytes): 0
-        Maximum resident set size (kbytes): 115476
+        Maximum resident set size (kbytes): 115528
         Average resident set size (kbytes): 0
         Major (requiring I/O) page faults: 4
-        Minor (reclaiming a frame) page faults: 162850
-        Voluntary context switches: 113
-        Involuntary context switches: 4534
+        Minor (reclaiming a frame) page faults: 163253
+        Voluntary context switches: 110
+        Involuntary context switches: 3313
         Swaps: 0
-        File system inputs: 3848
+        File system inputs: 3840
         File system outputs: 3488
         Socket messages sent: 0
         Socket messages received: 0

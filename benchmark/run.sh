@@ -50,8 +50,8 @@ ${COMMAND_TIME} java -jar ../target/jrunlist-0.1.7-jar-with-dependencies.jar \
     -o stdout \
     > jstatop.csv.tmp
 
-log_info "intspan"
-${COMMAND_TIME} intspan \
+log_info "spanr"
+${COMMAND_TIME} spanr \
     statop \
     chr.sizes sep-gene.yml paralog.yml  \
     --op intersect --all \
